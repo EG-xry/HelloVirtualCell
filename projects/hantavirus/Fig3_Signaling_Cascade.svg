@@ -1,0 +1,446 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif">
+  <rect width="800" height="520" fill="#ffffff"/>
+
+  <!-- ── PANEL LABELS ── -->
+  <text x="12" y="22" font-size="13" font-weight="700" fill="#111">A</text>
+  <text x="272" y="22" font-size="13" font-weight="700" fill="#111">B</text>
+  <text x="512" y="22" font-size="13" font-weight="700" fill="#111">C</text>
+  <text x="12" y="292" font-size="13" font-weight="700" fill="#111">D</text>
+  <text x="272" y="292" font-size="13" font-weight="700" fill="#111">E</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL A — Phosphoproteomics Volcano Plot
+       x: 12–260, y: 28–275
+  ════════════════════════════════════════════ -->
+
+  <!-- axes -->
+  <line x1="38" y1="40" x2="38" y2="200" stroke="#555" stroke-width="0.9"/>
+  <line x1="38" y1="200" x2="255" y2="200" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: -log10(p) 0–5 -->
+  <text x="32" y="203" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="34" y1="200" x2="38" y2="200" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="175" font-size="7" text-anchor="end" fill="#444">1</text>
+  <line x1="34" y1="172" x2="38" y2="172" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="145" font-size="7" text-anchor="end" fill="#444">2</text>
+  <line x1="34" y1="144" x2="38" y2="144" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="117" font-size="7" text-anchor="end" fill="#444">3</text>
+  <line x1="34" y1="116" x2="38" y2="116" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="89" font-size="7" text-anchor="end" fill="#444">4</text>
+  <line x1="34" y1="88" x2="38" y2="88" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="61" font-size="7" text-anchor="end" fill="#444">5</text>
+  <line x1="34" y1="60" x2="38" y2="60" stroke="#555" stroke-width="0.8"/>
+
+  <!-- x-axis: log2FC -4 to +4 -->
+  <text x="38" y="212" font-size="7" text-anchor="middle" fill="#444">-4</text>
+  <text x="65" y="212" font-size="7" text-anchor="middle" fill="#444">-2</text>
+  <text x="92" y="212" font-size="7" text-anchor="middle" fill="#444">0</text>
+  <text x="120" y="212" font-size="7" text-anchor="middle" fill="#444">2</text>
+  <text x="147" y="212" font-size="7" text-anchor="middle" fill="#444">4</text>
+  <!-- x ticks -->
+  <line x1="38" y1="200" x2="38" y2="204" stroke="#555" stroke-width="0.8"/>
+  <line x1="65" y1="200" x2="65" y2="204" stroke="#555" stroke-width="0.8"/>
+  <line x1="92" y1="200" x2="92" y2="204" stroke="#555" stroke-width="0.8"/>
+  <line x1="120" y1="200" x2="120" y2="204" stroke="#555" stroke-width="0.8"/>
+  <line x1="147" y1="200" x2="147" y2="204" stroke="#555" stroke-width="0.8"/>
+
+  <!-- significance threshold dashed line p=0.05 → -log10=1.3 → y=200-1.3*28=163.6 -->
+  <line x1="38" y1="163" x2="255" y2="163" stroke="#aaa" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="258" y="166" font-size="6" fill="#888">p=0.05</text>
+
+  <!-- FC threshold lines at ±1 -->
+  <line x1="65" y1="40" x2="65" y2="200" stroke="#ddd" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <line x1="120" y1="40" x2="120" y2="200" stroke="#ddd" stroke-width="0.8" stroke-dasharray="3,2"/>
+
+  <!-- grid -->
+  <line x1="38" y1="144" x2="255" y2="144" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="116" x2="255" y2="116" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="88" x2="255" y2="88" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- y-axis label -->
+  <text x="18" y="120" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,18,120)">-log₁₀(p-value)</text>
+  <!-- x-axis label -->
+  <text x="92" y="224" font-size="7.5" text-anchor="middle" fill="#333">log₂(HTNV / ANDV fold-change)</text>
+
+  <!-- Scatter dots: gray background phosphosites -->
+  <circle cx="50" cy="185" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="55" cy="178" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="60" cy="190" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="70" cy="175" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="75" cy="183" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="80" cy="170" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="85" cy="187" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="90" cy="180" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="95" cy="173" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="100" cy="188" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="105" cy="178" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="110" cy="165" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="115" cy="182" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="125" cy="174" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="130" cy="169" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="135" cy="181" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="140" cy="176" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="145" cy="164" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="155" cy="179" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="160" cy="186" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="165" cy="172" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="170" cy="183" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="92" cy="175" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="98" cy="160" r="2" fill="#cccccc" opacity="0.6"/>
+  <circle cx="88" cy="155" r="2" fill="#cccccc" opacity="0.6"/>
+
+  <!-- HTNV-upregulated (right side, blue) significant above threshold -->
+  <!-- PI3K: FC=2.8, -log10p=3.9 → x=92+2.8*13.5=130, y=200-3.9*28=91 -->
+  <circle cx="130" cy="91" r="3" fill="#1565C0" opacity="0.85"/>
+  <!-- Akt-S473: FC=3.2, -log10p=4.5 → x=92+3.2*13.5=135, y=200-4.5*28=74 -->
+  <circle cx="135" cy="74" r="3.5" fill="#1565C0" opacity="0.9"/>
+  <!-- FAK-Y397 shared: FC=1.8, -log10p=3.2 → x=92+1.8*13.5=116, y=200-3.2*28=110 -->
+  <circle cx="116" cy="110" r="3" fill="#7B1FA2" opacity="0.85"/>
+  <!-- mTOR: FC=2.4, -log10p=3.0 → x=92+2.4*13.5=124, y=200-3.0*28=116 -->
+  <circle cx="124" cy="116" r="2.5" fill="#1565C0" opacity="0.8"/>
+  <!-- labels for HTNV sig -->
+  <text x="137" y="72" font-size="6.5" fill="#1565C0" font-weight="700">Akt-S473</text>
+  <text x="132" y="89" font-size="6.5" fill="#1565C0">PI3K-p110</text>
+  <text x="118" y="107" font-size="6.5" fill="#7B1FA2">FAK-Y397</text>
+
+  <!-- ANDV-upregulated (left, red) -->
+  <!-- Src-Y416: FC=-3.0, p=4.2 → x=92-3.0*13.5=51, y=200-4.2*28=82 -->
+  <circle cx="51" cy="82" r="3.5" fill="#C62828" opacity="0.9"/>
+  <!-- RhoA: FC=-2.5, p=3.8 → x=92-2.5*13.5=58, y=200-3.8*28=94 -->
+  <circle cx="58" cy="94" r="3" fill="#C62828" opacity="0.85"/>
+  <!-- VE-cad-Y658: FC=-2.8, p=4.8 → x=92-2.8*13.5=54, y=200-4.8*28=66 -->
+  <circle cx="54" cy="66" r="4" fill="#E53935" opacity="0.9"/>
+  <!-- labels -->
+  <text x="30" y="80" font-size="6.5" fill="#C62828" font-weight="700">Src-Y416</text>
+  <text x="36" y="93" font-size="6.5" fill="#C62828">RhoA-S188</text>
+  <text x="30" y="64" font-size="6.5" fill="#E53935" font-weight="700">VE-cad-Y658</text>
+
+  <!-- legend -->
+  <circle cx="45" cy="237" r="3.5" fill="#1565C0"/>
+  <text x="51" y="240" font-size="7" fill="#1565C0">HTNV-enriched</text>
+  <circle cx="120" cy="237" r="3.5" fill="#C62828"/>
+  <text x="126" y="240" font-size="7" fill="#C62828">ANDV-enriched</text>
+
+  <!-- subtitle -->
+  <text x="145" y="255" font-size="8" text-anchor="middle" fill="#222" font-weight="600">Phosphoproteomic divergence (2 h post-infection)</text>
+  <text x="145" y="267" font-size="7.5" text-anchor="middle" fill="#555">HMVEC-L, TMT16-plex, TiO₂ enrichment (n=4 bio. reps.)</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL B — Signaling Pathway Bifurcation Diagram
+       x: 270–500, y: 28–275
+  ════════════════════════════════════════════ -->
+
+  <defs>
+    <marker id="arr-b" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#555"/>
+    </marker>
+    <marker id="arr-bl" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#1565C0"/>
+    </marker>
+    <marker id="arr-rd" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#C62828"/>
+    </marker>
+  </defs>
+
+  <!-- β3 integrin receptor at top (shared) -->
+  <rect x="327" y="38" width="100" height="28" rx="5" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.2"/>
+  <text x="377" y="50" font-size="8" text-anchor="middle" fill="#7B1FA2" font-weight="700">β3 Integrin</text>
+  <text x="377" y="61" font-size="7" text-anchor="middle" fill="#7B1FA2">receptor activation</text>
+
+  <!-- FAK shared node -->
+  <rect x="339" y="85" width="76" height="24" rx="4" fill="#EDE7F6" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="377" y="100" font-size="8" text-anchor="middle" fill="#7B1FA2" font-weight="700">FAK-Y397↑</text>
+  <!-- arrow: β3 → FAK -->
+  <line x1="377" y1="66" x2="377" y2="85" stroke="#7B1FA2" stroke-width="1.2" marker-end="url(#arr-b)"/>
+
+  <!-- bifurcation: HTNV left, ANDV right -->
+  <!-- HTNV branch left -->
+  <line x1="350" y1="109" x2="315" y2="128" stroke="#1565C0" stroke-width="1.2" marker-end="url(#arr-bl)"/>
+  <rect x="270" y="128" width="88" height="22" rx="4" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="314" y="141" font-size="8" text-anchor="middle" fill="#1565C0" font-weight="700">PI3K-p110↑</text>
+
+  <!-- ANDV branch right -->
+  <line x1="404" y1="109" x2="436" y2="128" stroke="#C62828" stroke-width="1.2" marker-end="url(#arr-rd)"/>
+  <rect x="395" y="128" width="88" height="22" rx="4" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="439" y="141" font-size="8" text-anchor="middle" fill="#C62828" font-weight="700">Src-Y416↑</text>
+
+  <!-- HTNV downstream: Akt -->
+  <line x1="314" y1="150" x2="314" y2="166" stroke="#1565C0" stroke-width="1.2" marker-end="url(#arr-bl)"/>
+  <rect x="270" y="166" width="88" height="22" rx="4" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="314" y="179" font-size="8" text-anchor="middle" fill="#1565C0" font-weight="700">Akt-S473↑</text>
+
+  <!-- ANDV downstream: RhoA -->
+  <line x1="439" y1="150" x2="439" y2="166" stroke="#C62828" stroke-width="1.2" marker-end="url(#arr-rd)"/>
+  <rect x="395" y="166" width="88" height="22" rx="4" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="439" y="179" font-size="8" text-anchor="middle" fill="#C62828" font-weight="700">RhoA-S188↑</text>
+
+  <!-- HTNV downstream: mTOR / survival -->
+  <line x1="314" y1="188" x2="314" y2="204" stroke="#1565C0" stroke-width="1.2" marker-end="url(#arr-bl)"/>
+  <rect x="270" y="204" width="88" height="22" rx="4" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="314" y="217" font-size="8" text-anchor="middle" fill="#1565C0" font-weight="700">mTOR / Survival</text>
+
+  <!-- ANDV downstream: VE-cad / leak -->
+  <line x1="439" y1="188" x2="439" y2="204" stroke="#C62828" stroke-width="1.2" marker-end="url(#arr-rd)"/>
+  <rect x="395" y="204" width="88" height="22" rx="4" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="439" y="217" font-size="8" text-anchor="middle" fill="#C62828" font-weight="700">VE-cad-Y658↑</text>
+
+  <!-- outcome boxes -->
+  <rect x="270" y="240" width="88" height="22" rx="4" fill="#1565C0"/>
+  <text x="314" y="253" font-size="7.5" text-anchor="middle" fill="#fff" font-weight="700">HFRS: Complement</text>
+  <rect x="395" y="240" width="88" height="22" rx="4" fill="#C62828"/>
+  <text x="439" y="253" font-size="7.5" text-anchor="middle" fill="#fff" font-weight="700">HPS: Vascular leak</text>
+
+  <!-- column labels -->
+  <text x="314" y="33" font-size="8.5" text-anchor="middle" fill="#1565C0" font-weight="700">HTNV (HFRS)</text>
+  <text x="439" y="33" font-size="8.5" text-anchor="middle" fill="#C62828" font-weight="700">ANDV (HPS)</text>
+
+  <!-- subtitle -->
+  <text x="375" y="278" font-size="8" text-anchor="middle" fill="#222" font-weight="600">Signaling bifurcation from shared FAK node</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL C — TEER Time Course
+       x: 515–788, y: 28–275
+  ════════════════════════════════════════════ -->
+
+  <line x1="540" y1="40" x2="540" y2="200" stroke="#555" stroke-width="0.9"/>
+  <line x1="540" y1="200" x2="785" y2="200" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: 0–120 Ω·cm² -->
+  <text x="534" y="203" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="536" y1="200" x2="540" y2="200" stroke="#555" stroke-width="0.8"/>
+  <text x="534" y="175" font-size="7" text-anchor="end" fill="#444">30</text>
+  <line x1="536" y1="172" x2="540" y2="172" stroke="#555" stroke-width="0.8"/>
+  <text x="534" y="147" font-size="7" text-anchor="end" fill="#444">60</text>
+  <line x1="536" y1="144" x2="540" y2="144" stroke="#555" stroke-width="0.8"/>
+  <text x="534" y="119" font-size="7" text-anchor="end" fill="#444">90</text>
+  <line x1="536" y1="116" x2="540" y2="116" stroke="#555" stroke-width="0.8"/>
+  <text x="534" y="91" font-size="7" text-anchor="end" fill="#444">120</text>
+  <line x1="536" y1="88" x2="540" y2="88" stroke="#555" stroke-width="0.8"/>
+
+  <!-- x-axis: 0, 6, 12, 24, 48, 72 h post-infection -->
+  <!-- positions: 0h=560, 6h=595, 12h=630, 24h=680, 48h=740, 72h=780 -->
+  <text x="560" y="212" font-size="7" text-anchor="middle" fill="#444">0</text>
+  <text x="595" y="212" font-size="7" text-anchor="middle" fill="#444">6</text>
+  <text x="630" y="212" font-size="7" text-anchor="middle" fill="#444">12</text>
+  <text x="680" y="212" font-size="7" text-anchor="middle" fill="#444">24</text>
+  <text x="735" y="212" font-size="7" text-anchor="middle" fill="#444">48</text>
+  <text x="778" y="212" font-size="7" text-anchor="middle" fill="#444">72 h p.i.</text>
+
+  <!-- grid -->
+  <line x1="540" y1="144" x2="785" y2="144" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="540" y1="116" x2="785" y2="116" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="540" y1="172" x2="785" y2="172" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- y-axis label -->
+  <text x="520" y="120" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,520,120)">TEER (Ω·cm²)</text>
+
+  <!-- TEER values: scale 0-120 → 0-160px range (200-160=40 to 200)
+       30=172, 60=144, 90=116, 120=88
+       Ctrl: stays ~100 (200-133=67) → y≈107 all timepoints
+       HTNV: slight drop to ~75 then recovers → ~107,105,100,95,95,100
+       ANDV: major drop to ~35 (200-46=154) at 24h, then partial recovery
+  -->
+  <!-- Control line (gray) -->
+  <polyline points="560,107 595,106 630,105 680,104 735,105 778,106" fill="none" stroke="#9e9e9e" stroke-width="1.8"/>
+  <!-- HTNV line (blue) -->
+  <polyline points="560,107 595,103 630,98 680,92 735,94 778,98" fill="none" stroke="#1565C0" stroke-width="1.8"/>
+  <!-- ANDV line (red) -->
+  <polyline points="560,107 595,108 630,120 680,155 735,148 778,140" fill="none" stroke="#C62828" stroke-width="1.8"/>
+  <!-- ANDV + Dasatinib (red dashed, rescue) -->
+  <polyline points="560,107 595,108 630,122 680,140 735,128 778,115" fill="none" stroke="#C62828" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.8"/>
+
+  <!-- data points -->
+  <circle cx="560" cy="107" r="2.5" fill="#9e9e9e"/>
+  <circle cx="595" cy="106" r="2.5" fill="#9e9e9e"/>
+  <circle cx="630" cy="105" r="2.5" fill="#9e9e9e"/>
+  <circle cx="680" cy="104" r="2.5" fill="#9e9e9e"/>
+  <circle cx="735" cy="105" r="2.5" fill="#9e9e9e"/>
+  <circle cx="778" cy="106" r="2.5" fill="#9e9e9e"/>
+
+  <circle cx="560" cy="107" r="2.5" fill="#1565C0"/>
+  <circle cx="595" cy="103" r="2.5" fill="#1565C0"/>
+  <circle cx="630" cy="98" r="2.5" fill="#1565C0"/>
+  <circle cx="680" cy="92" r="2.5" fill="#1565C0"/>
+  <circle cx="735" cy="94" r="2.5" fill="#1565C0"/>
+  <circle cx="778" cy="98" r="2.5" fill="#1565C0"/>
+
+  <circle cx="560" cy="107" r="2.5" fill="#C62828"/>
+  <circle cx="595" cy="108" r="2.5" fill="#C62828"/>
+  <circle cx="630" cy="120" r="2.5" fill="#C62828"/>
+  <circle cx="680" cy="155" r="2.5" fill="#C62828"/>
+  <circle cx="735" cy="148" r="2.5" fill="#C62828"/>
+  <circle cx="778" cy="140" r="2.5" fill="#C62828"/>
+
+  <!-- significance bracket at 24h ANDV vs Ctrl -->
+  <line x1="680" y1="152" x2="680" y2="101" stroke="#C62828" stroke-width="0.9"/>
+  <line x1="677" y1="101" x2="683" y2="101" stroke="#C62828" stroke-width="0.9"/>
+  <text x="685" y="128" font-size="7" fill="#C62828">***</text>
+
+  <!-- legend -->
+  <line x1="545" y1="230" x2="565" y2="230" stroke="#9e9e9e" stroke-width="1.8"/>
+  <text x="568" y="233" font-size="7" fill="#555">Control</text>
+  <line x1="610" y1="230" x2="630" y2="230" stroke="#1565C0" stroke-width="1.8"/>
+  <text x="633" y="233" font-size="7" fill="#1565C0">HTNV</text>
+  <line x1="665" y1="230" x2="685" y2="230" stroke="#C62828" stroke-width="1.8"/>
+  <text x="688" y="233" font-size="7" fill="#C62828">ANDV</text>
+  <line x1="545" y1="244" x2="565" y2="244" stroke="#C62828" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="568" y="247" font-size="7" fill="#C62828">ANDV+Dasatinib</text>
+
+  <!-- subtitle -->
+  <text x="662" y="260" font-size="8" text-anchor="middle" fill="#222" font-weight="600">TEER — endothelial barrier integrity</text>
+  <text x="662" y="272" font-size="7.5" text-anchor="middle" fill="#555">HMVEC-L monolayer; Src inhibitor (dasatinib, 10 nM)</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL D — Complement Receptor Upregulation (HTNV TEC)
+       x: 12–255, y: 300–500
+  ════════════════════════════════════════════ -->
+
+  <line x1="38" y1="310" x2="38" y2="460" stroke="#555" stroke-width="0.9"/>
+  <line x1="38" y1="460" x2="255" y2="460" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: fold change 0–4 -->
+  <text x="32" y="463" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="34" y1="460" x2="38" y2="460" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="423" font-size="7" text-anchor="end" fill="#444">1</text>
+  <line x1="34" y1="422" x2="38" y2="422" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="385" font-size="7" text-anchor="end" fill="#444">2</text>
+  <line x1="34" y1="384" x2="38" y2="384" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="347" font-size="7" text-anchor="end" fill="#444">3</text>
+  <line x1="34" y1="346" x2="38" y2="346" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="309" font-size="7" text-anchor="end" fill="#444">4</text>
+  <line x1="34" y1="308" x2="38" y2="308" stroke="#555" stroke-width="0.8"/>
+
+  <!-- grid -->
+  <line x1="38" y1="422" x2="255" y2="422" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="384" x2="255" y2="384" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="346" x2="255" y2="346" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- baseline at fold=1 is y=422 -->
+  <line x1="38" y1="422" x2="255" y2="422" stroke="#E65100" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- y-axis label -->
+  <text x="18" y="390" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,18,390)">Fold change (vs Ctrl)</text>
+
+  <!-- 4 targets: CR3-CD11b, CR4-CD11c, C3aR, C5aR1 -->
+  <!-- Each has HTNV + ANDV bars, scale: 4→308, each unit=38px, y=460-val*38 -->
+  <!-- Group positions: center at 65, 105, 155, 205 -->
+
+  <!-- CR3/CD11b: HTNV~3.2→460-3.2*38=338, ANDV~0.8→460-0.8*38=430 -->
+  <rect x="52" y="338" width="16" height="122" fill="#1565C0" rx="1.5"/>
+  <line x1="60" y1="332" x2="60" y2="344" stroke="#0d3c7a" stroke-width="1.2"/>
+  <line x1="57" y1="332" x2="63" y2="332" stroke="#0d3c7a" stroke-width="1"/>
+  <line x1="57" y1="344" x2="63" y2="344" stroke="#0d3c7a" stroke-width="1"/>
+  <rect x="71" y="430" width="16" height="30" fill="#C62828" rx="1.5" opacity="0.6"/>
+  <text x="79" y="449" font-size="6.5" text-anchor="middle" fill="#666">ns</text>
+  <text x="60" y="328" font-size="7" text-anchor="middle" fill="#1565C0">***</text>
+  <text x="69" y="475" font-size="7" text-anchor="middle" fill="#333">CR3</text>
+
+  <!-- CR4/CD11c: HTNV~2.8→460-2.8*38=354, ANDV~0.9→427 -->
+  <rect x="100" y="354" width="16" height="106" fill="#1565C0" rx="1.5"/>
+  <line x1="108" y1="347" x2="108" y2="361" stroke="#0d3c7a" stroke-width="1.2"/>
+  <line x1="105" y1="347" x2="111" y2="347" stroke="#0d3c7a" stroke-width="1"/>
+  <line x1="105" y1="361" x2="111" y2="361" stroke="#0d3c7a" stroke-width="1"/>
+  <rect x="119" y="426" width="16" height="34" fill="#C62828" rx="1.5" opacity="0.6"/>
+  <text x="108" y="340" font-size="7" text-anchor="middle" fill="#1565C0">***</text>
+  <text x="119" y="475" font-size="7" text-anchor="middle" fill="#333">CR4</text>
+
+  <!-- C3aR: HTNV~2.1→460-2.1*38=380, ANDV~1.2→415 -->
+  <rect x="150" y="380" width="16" height="80" fill="#1565C0" rx="1.5"/>
+  <rect x="169" y="414" width="16" height="46" fill="#C62828" rx="1.5" opacity="0.6"/>
+  <text x="158" y="373" font-size="7" text-anchor="middle" fill="#1565C0">**</text>
+  <text x="169" y="475" font-size="7" text-anchor="middle" fill="#333">C3aR</text>
+
+  <!-- C5aR1: HTNV~1.8→460-1.8*38=392, ANDV~1.1→418 -->
+  <rect x="198" y="392" width="16" height="68" fill="#1565C0" rx="1.5"/>
+  <rect x="217" y="418" width="16" height="42" fill="#C62828" rx="1.5" opacity="0.6"/>
+  <text x="206" y="385" font-size="7" text-anchor="middle" fill="#1565C0">*</text>
+  <text x="217" y="475" font-size="7" text-anchor="middle" fill="#333">C5aR1</text>
+
+  <!-- legend -->
+  <rect x="38" y="482" width="9" height="9" fill="#1565C0" rx="1.5"/>
+  <text x="50" y="490" font-size="7" fill="#1565C0">HTNV (HK-2 TEC)</text>
+  <rect x="140" y="482" width="9" height="9" fill="#C62828" rx="1.5" opacity="0.6"/>
+  <text x="152" y="490" font-size="7" fill="#C62828" opacity="0.8">ANDV (HK-2 TEC)</text>
+
+  <!-- subtitle -->
+  <text x="145" y="505" font-size="7.5" text-anchor="middle" fill="#222" font-weight="600">Complement receptor upregulation — HTNV-specific</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL E — VE-Cadherin Y658 Phosphorylation + Rescue
+       x: 270–790, y: 300–500
+  ════════════════════════════════════════════ -->
+
+  <line x1="300" y1="310" x2="300" y2="460" stroke="#555" stroke-width="0.9"/>
+  <line x1="300" y1="460" x2="785" y2="460" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: 0–5 (arbitrary units) -->
+  <text x="294" y="463" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="296" y1="460" x2="300" y2="460" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="433" font-size="7" text-anchor="end" fill="#444">1</text>
+  <line x1="296" y1="430" x2="300" y2="430" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="403" font-size="7" text-anchor="end" fill="#444">2</text>
+  <line x1="296" y1="400" x2="300" y2="400" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="373" font-size="7" text-anchor="end" fill="#444">3</text>
+  <line x1="296" y1="370" x2="300" y2="370" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="343" font-size="7" text-anchor="end" fill="#444">4</text>
+  <line x1="296" y1="340" x2="300" y2="340" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="313" font-size="7" text-anchor="end" fill="#444">5</text>
+  <line x1="296" y1="310" x2="300" y2="310" stroke="#555" stroke-width="0.8"/>
+
+  <!-- grid -->
+  <line x1="300" y1="430" x2="785" y2="430" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="300" y1="400" x2="785" y2="400" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="300" y1="370" x2="785" y2="370" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- y-axis label -->
+  <text x="280" y="390" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,280,390)">pVE-cad-Y658 (AU)</text>
+
+  <!-- 6 conditions, scale: 5→310, each unit=30px, y=460-val*30 -->
+  <!-- Ctrl: ~0.5→445, HTNV: ~0.8→436, ANDV: ~4.2→334, ANDV+Dasa: ~1.2→424, ANDV+tirofiban: ~4.0→340, ANDV+LY: ~3.9→343 -->
+  <!-- x positions: 325, 375, 425, 490, 555, 620 -->
+
+  <rect x="313" y="445" width="24" height="15" fill="#9e9e9e" rx="1.5"/>
+  <text x="325" y="440" font-size="6.5" text-anchor="middle" fill="#666">ns</text>
+  <text x="325" y="475" font-size="7" text-anchor="middle" fill="#555">Ctrl</text>
+
+  <rect x="363" y="436" width="24" height="24" fill="#1565C0" rx="1.5"/>
+  <text x="375" y="430" font-size="6.5" text-anchor="middle" fill="#666">ns</text>
+  <text x="375" y="475" font-size="7" text-anchor="middle" fill="#1565C0">HTNV</text>
+
+  <rect x="413" y="334" width="24" height="126" fill="#C62828" rx="1.5"/>
+  <line x1="425" y1="328" x2="425" y2="340" stroke="#7b0000" stroke-width="1.2"/>
+  <line x1="422" y1="328" x2="428" y2="328" stroke="#7b0000" stroke-width="1"/>
+  <line x1="422" y1="340" x2="428" y2="340" stroke="#7b0000" stroke-width="1"/>
+  <text x="425" y="322" font-size="7" text-anchor="middle" fill="#C62828">***</text>
+  <text x="425" y="475" font-size="7" text-anchor="middle" fill="#C62828">ANDV</text>
+
+  <!-- rescue lines at y=340 (ANDV level) connecting to ANDV+rescue bars -->
+  <rect x="478" y="424" width="24" height="36" fill="#C62828" rx="1.5" opacity="0.6"/>
+  <line x1="490" y1="418" x2="490" y2="430" stroke="#7b0000" stroke-width="1.2"/>
+  <line x1="487" y1="418" x2="493" y2="418" stroke="#7b0000" stroke-width="1"/>
+  <line x1="487" y1="430" x2="493" y2="430" stroke="#7b0000" stroke-width="1"/>
+  <text x="490" y="412" font-size="7" text-anchor="middle" fill="#666">***</text>
+  <text x="490" y="475" font-size="6.5" text-anchor="middle" fill="#C62828">+Dasa</text>
+
+  <rect x="543" y="340" width="24" height="120" fill="#C62828" rx="1.5" opacity="0.7"/>
+  <text x="555" y="334" font-size="7" text-anchor="middle" fill="#666">ns</text>
+  <text x="555" y="475" font-size="6.5" text-anchor="middle" fill="#C62828">+tirofiban</text>
+
+  <rect x="608" y="343" width="24" height="117" fill="#C62828" rx="1.5" opacity="0.7"/>
+  <text x="620" y="337" font-size="7" text-anchor="middle" fill="#666">ns</text>
+  <text x="620" y="475" font-size="6.5" text-anchor="middle" fill="#C62828">+LY294002</text>
+
+  <!-- bracket indicating Src-specific rescue -->
+  <line x1="425" y1="302" x2="490" y2="302" stroke="#333" stroke-width="0.9"/>
+  <line x1="425" y1="299" x2="425" y2="334" stroke="#333" stroke-width="0.9"/>
+  <line x1="490" y1="299" x2="490" y2="424" stroke="#333" stroke-width="0.9"/>
+  <text x="457" y="298" font-size="7.5" text-anchor="middle" fill="#333">Src-specific rescue</text>
+
+  <!-- subtitle -->
+  <text x="542" y="490" font-size="8" text-anchor="middle" fill="#222" font-weight="600">VE-cadherin Y658 phosphorylation — Src-specific rescue</text>
+  <text x="542" y="503" font-size="7.5" text-anchor="middle" fill="#555">Dasatinib 10 nM (Src inhibitor); LY294002 10 µM (PI3K); Tirofiban 1 µg/ml (β3)</text>
+
+  <!-- ── figure caption line ── -->
+  <line x1="12" y1="512" x2="788" y2="512" stroke="#cccccc" stroke-width="0.6"/>
+  <text x="12" y="518" font-size="6.5" fill="#888">Fig. 3 | Signaling cascade divergence after hantavirus infection. A, Volcano plot of phosphoproteomic changes (HTNV vs ANDV, 2 h p.i.). B, Bifurcation of signaling from shared FAK-Y397 activation. C, TEER barrier integrity with dasatinib rescue. D, Complement receptor upregulation (HTNV-specific). E, VE-cadherin Y658 phosphorylation and inhibitor rescue.</text>
+</svg>

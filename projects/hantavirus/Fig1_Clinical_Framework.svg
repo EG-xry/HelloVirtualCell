@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 310" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif">
+  <rect width="800" height="310" fill="#ffffff"/>
+
+  <!-- ── PANEL LABELS ── -->
+  <text x="12" y="22" font-size="13" font-weight="700" fill="#111">A</text>
+  <text x="272" y="22" font-size="13" font-weight="700" fill="#111">B</text>
+  <text x="512" y="22" font-size="13" font-weight="700" fill="#111">C</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL A  — Clinical Organ Damage Paradox
+       Two sub-plots: BUN (kidney) + PaO₂/FiO₂ (lung)
+       x: 12–255, y: 28–295
+  ════════════════════════════════════════════ -->
+
+  <!-- A left: BUN (kidney marker) -->
+  <!-- axis -->
+  <line x1="38" y1="60" x2="38" y2="180" stroke="#555" stroke-width="0.9"/>
+  <line x1="38" y1="180" x2="145" y2="180" stroke="#555" stroke-width="0.9"/>
+  <!-- y-axis ticks + labels -->
+  <line x1="34" y1="180" x2="38" y2="180" stroke="#555" stroke-width="0.9"/>
+  <text x="32" y="183" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="34" y1="156" x2="38" y2="156" stroke="#555" stroke-width="0.9"/>
+  <text x="32" y="159" font-size="7" text-anchor="end" fill="#444">20</text>
+  <line x1="34" y1="132" x2="38" y2="132" stroke="#555" stroke-width="0.9"/>
+  <text x="32" y="135" font-size="7" text-anchor="end" fill="#444">40</text>
+  <line x1="34" y1="108" x2="38" y2="108" stroke="#555" stroke-width="0.9"/>
+  <text x="32" y="111" font-size="7" text-anchor="end" fill="#444">60</text>
+  <!-- grid -->
+  <line x1="38" y1="156" x2="145" y2="156" stroke="#eeeeee" stroke-width="0.7"/>
+  <line x1="38" y1="132" x2="145" y2="132" stroke="#eeeeee" stroke-width="0.7"/>
+  <line x1="38" y1="108" x2="145" y2="108" stroke="#eeeeee" stroke-width="0.7"/>
+  <!-- y-axis label -->
+  <text x="18" y="122" font-size="8" text-anchor="middle" fill="#333" transform="rotate(-90,18,122)">BUN (mg/dL)</text>
+
+  <!-- Bars: Control, HFRS, HPS (x positions: 55, 85, 115) -->
+  <!-- Control BUN ~12 → height = 12/60 × 120 = 24px, y = 180-24=156 -->
+  <rect x="50" y="151" width="18" height="29" fill="#9e9e9e" rx="1"/>
+  <!-- SD error bar -->
+  <line x1="59" y1="148" x2="59" y2="154" stroke="#555" stroke-width="1.2"/>
+  <line x1="56" y1="148" x2="62" y2="148" stroke="#555" stroke-width="1"/>
+  <line x1="56" y1="154" x2="62" y2="154" stroke="#555" stroke-width="1"/>
+
+  <!-- HFRS BUN ~45 → height = 45/60 × 120 = 90px, y = 180-90=90 -->
+  <rect x="80" y="90" width="18" height="90" fill="#1565C0" rx="1"/>
+  <!-- SD -->
+  <line x1="89" y1="84" x2="89" y2="96" stroke="#333" stroke-width="1.2"/>
+  <line x1="86" y1="84" x2="92" y2="84" stroke="#333" stroke-width="1"/>
+  <line x1="86" y1="96" x2="92" y2="96" stroke="#333" stroke-width="1"/>
+
+  <!-- HPS BUN ~18 → height = 36px, y = 144 -->
+  <rect x="110" y="144" width="18" height="36" fill="#C62828" rx="1"/>
+  <line x1="119" y1="140" x2="119" y2="148" stroke="#333" stroke-width="1.2"/>
+  <line x1="116" y1="140" x2="122" y2="140" stroke="#333" stroke-width="1"/>
+  <line x1="116" y1="148" x2="122" y2="148" stroke="#333" stroke-width="1"/>
+
+  <!-- significance stars -->
+  <text x="89" y="82" font-size="8" text-anchor="middle" fill="#333">***</text>
+  <text x="119" y="138" font-size="8" text-anchor="middle" fill="#777">ns</text>
+
+  <!-- x-axis labels -->
+  <text x="59" y="192" font-size="7" text-anchor="middle" fill="#555">Ctrl</text>
+  <text x="89" y="192" font-size="7" text-anchor="middle" fill="#1565C0">HFRS</text>
+  <text x="119" y="192" font-size="7" text-anchor="middle" fill="#C62828">HPS</text>
+  <!-- normal range shading -->
+  <rect x="38" y="156" width="107" height="12" fill="#FFF9C4" opacity="0.7"/>
+  <text x="146" y="165" font-size="6.5" fill="#888" text-anchor="start">normal</text>
+  <text x="55" y="207" font-size="8" text-anchor="middle" fill="#333" font-style="italic">Kidney marker</text>
+
+  <!-- A right: PaO₂/FiO₂ -->
+  <line x1="165" y1="60" x2="165" y2="180" stroke="#555" stroke-width="0.9"/>
+  <line x1="165" y1="180" x2="258" y2="180" stroke="#555" stroke-width="0.9"/>
+  <!-- y-axis: 0–500, 120px range → scale: 120/500 = 0.24px per unit -->
+  <line x1="161" y1="180" x2="165" y2="180" stroke="#555" stroke-width="0.9"/>
+  <text x="159" y="183" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="161" y1="156" x2="165" y2="156" stroke="#555" stroke-width="0.9"/>
+  <text x="159" y="159" font-size="7" text-anchor="end" fill="#444">100</text>
+  <line x1="161" y1="132" x2="165" y2="132" stroke="#555" stroke-width="0.9"/>
+  <text x="159" y="135" font-size="7" text-anchor="end" fill="#444">200</text>
+  <line x1="161" y1="108" x2="165" y2="108" stroke="#555" stroke-width="0.9"/>
+  <text x="159" y="111" font-size="7" text-anchor="end" fill="#444">300</text>
+  <line x1="161" y1="84" x2="165" y2="84" stroke="#555" stroke-width="0.9"/>
+  <text x="159" y="87" font-size="7" text-anchor="end" fill="#444">400</text>
+  <line x1="161" y1="60" x2="165" y2="60" stroke="#555" stroke-width="0.9"/>
+  <text x="159" y="63" font-size="7" text-anchor="end" fill="#444">500</text>
+  <!-- grid -->
+  <line x1="165" y1="108" x2="258" y2="108" stroke="#eeeeee" stroke-width="0.7"/>
+  <line x1="165" y1="132" x2="258" y2="132" stroke="#eeeeee" stroke-width="0.7"/>
+  <line x1="165" y1="84" x2="258" y2="84" stroke="#eeeeee" stroke-width="0.7"/>
+  <line x1="165" y1="60" x2="258" y2="60" stroke="#eeeeee" stroke-width="0.7"/>
+  <text x="148" y="122" font-size="8" text-anchor="middle" fill="#333" transform="rotate(-90,148,122)">PaO₂/FiO₂ (mmHg)</text>
+
+  <!-- Ctrl PaO2/FiO2 ~450 → height = 450*120/500 = 108, y = 72 -->
+  <rect x="177" y="72" width="18" height="108" fill="#9e9e9e" rx="1"/>
+  <line x1="186" y1="67" x2="186" y2="77" stroke="#555" stroke-width="1.2"/>
+  <line x1="183" y1="67" x2="189" y2="67" stroke="#555" stroke-width="1"/>
+  <line x1="183" y1="77" x2="189" y2="77" stroke="#555" stroke-width="1"/>
+
+  <!-- HFRS PaO2/FiO2 ~380 → height = 91.2, y ≈ 89 -->
+  <rect x="207" y="89" width="18" height="91" fill="#1565C0" rx="1"/>
+  <line x1="216" y1="83" x2="216" y2="95" stroke="#333" stroke-width="1.2"/>
+  <line x1="213" y1="83" x2="219" y2="83" stroke="#333" stroke-width="1"/>
+  <line x1="213" y1="95" x2="219" y2="95" stroke="#333" stroke-width="1"/>
+
+  <!-- HPS PaO2/FiO2 ~175 → height = 42, y = 138 -->
+  <rect x="237" y="138" width="18" height="42" fill="#C62828" rx="1"/>
+  <line x1="246" y1="128" x2="246" y2="138" stroke="#333" stroke-width="1.2"/>
+  <line x1="243" y1="128" x2="249" y2="128" stroke="#333" stroke-width="1"/>
+  <line x1="243" y1="138" x2="249" y2="138" stroke="#333" stroke-width="1"/>
+
+  <!-- significance -->
+  <text x="216" y="81" font-size="8" text-anchor="middle" fill="#777">ns</text>
+  <text x="246" y="126" font-size="8" text-anchor="middle" fill="#333">***</text>
+
+  <!-- x labels -->
+  <text x="186" y="192" font-size="7" text-anchor="middle" fill="#555">Ctrl</text>
+  <text x="216" y="192" font-size="7" text-anchor="middle" fill="#1565C0">HFRS</text>
+  <text x="246" y="192" font-size="7" text-anchor="middle" fill="#C62828">HPS</text>
+  <!-- normal range -->
+  <rect x="165" y="72" width="93" height="12" fill="#FFF9C4" opacity="0.7"/>
+  <text x="259" y="81" font-size="6.5" fill="#888">normal</text>
+  <text x="215" y="207" font-size="8" text-anchor="middle" fill="#333" font-style="italic">Lung marker</text>
+
+  <!-- Panel A subtitle -->
+  <text x="130" y="225" font-size="8.5" text-anchor="middle" fill="#222" font-weight="600">Organ-specific disease markers (n=130 patients)</text>
+  <text x="130" y="238" font-size="7.5" text-anchor="middle" fill="#555">HFRS and HPS share β3 integrin receptor yet damage</text>
+  <text x="130" y="249" font-size="7.5" text-anchor="middle" fill="#555">different organs — a 30-year unsolved paradox</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL B  — β3 Integrin Expression Paradox
+       x: 270–500, y: 28–295
+  ════════════════════════════════════════════ -->
+
+  <!-- axis -->
+  <line x1="308" y1="60" x2="308" y2="200" stroke="#555" stroke-width="0.9"/>
+  <line x1="308" y1="200" x2="490" y2="200" stroke="#555" stroke-width="0.9"/>
+  <!-- y-axis: 0–5 AU -->
+  <text x="302" y="203" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="304" y1="172" x2="308" y2="172" stroke="#555" stroke-width="0.8"/>
+  <text x="302" y="175" font-size="7" text-anchor="end" fill="#444">1</text>
+  <line x1="304" y1="144" x2="308" y2="144" stroke="#555" stroke-width="0.8"/>
+  <text x="302" y="147" font-size="7" text-anchor="end" fill="#444">2</text>
+  <line x1="304" y1="116" x2="308" y2="116" stroke="#555" stroke-width="0.8"/>
+  <text x="302" y="119" font-size="7" text-anchor="end" fill="#444">3</text>
+  <line x1="304" y1="88" x2="308" y2="88" stroke="#555" stroke-width="0.8"/>
+  <text x="302" y="91" font-size="7" text-anchor="end" fill="#444">4</text>
+  <line x1="304" y1="60" x2="308" y2="60" stroke="#555" stroke-width="0.8"/>
+  <text x="302" y="63" font-size="7" text-anchor="end" fill="#444">5</text>
+  <!-- grid -->
+  <line x1="308" y1="172" x2="490" y2="172" stroke="#eeeeee" stroke-width="0.7"/>
+  <line x1="308" y1="144" x2="490" y2="144" stroke="#eeeeee" stroke-width="0.7"/>
+  <line x1="308" y1="116" x2="490" y2="116" stroke="#eeeeee" stroke-width="0.7"/>
+  <line x1="308" y1="88" x2="490" y2="88" stroke="#eeeeee" stroke-width="0.7"/>
+  <text x="285" y="130" font-size="8" text-anchor="middle" fill="#333" transform="rotate(-90,285,130)">β3 Integrin (AU)</text>
+
+  <!-- Cell type groups: PMVEC (2 bars: HTNV, ANDV), then TEC (2 bars), then NK, Fibro -->
+  <!-- Scale: 0–5 → 0–140px; y_bar = 200 - val*28 -->
+  <!-- PMVEC group: x ~ 330, 350 -->
+  <!-- PMVEC + HTNV ~2.8 → 200 - 2.8*28 = 121.6 → height 78.4 -->
+  <rect x="325" y="122" width="16" height="78" fill="#1565C0" rx="1.5" opacity="0.85"/>
+  <line x1="333" y1="113" x2="333" y2="131" stroke="#0d3c7a" stroke-width="1.2"/>
+  <line x1="330" y1="113" x2="336" y2="113" stroke="#0d3c7a" stroke-width="1"/>
+  <line x1="330" y1="131" x2="336" y2="131" stroke="#0d3c7a" stroke-width="1"/>
+  <!-- PMVEC + ANDV ~2.6 → height 72.8 -->
+  <rect x="344" y="127" width="16" height="73" fill="#C62828" rx="1.5" opacity="0.85"/>
+  <line x1="352" y1="118" x2="352" y2="136" stroke="#7b1717" stroke-width="1.2"/>
+  <line x1="349" y1="118" x2="355" y2="118" stroke="#7b1717" stroke-width="1"/>
+  <line x1="349" y1="136" x2="355" y2="136" stroke="#7b1717" stroke-width="1"/>
+
+  <!-- TEC group: x ~ 380, 400 -->
+  <!-- TEC + HTNV ~2.5 → height 70 -->
+  <rect x="378" y="130" width="16" height="70" fill="#1565C0" rx="1.5" opacity="0.85"/>
+  <line x1="386" y1="121" x2="386" y2="139" stroke="#0d3c7a" stroke-width="1.2"/>
+  <line x1="383" y1="121" x2="389" y2="121" stroke="#0d3c7a" stroke-width="1"/>
+  <line x1="383" y1="139" x2="389" y2="139" stroke="#0d3c7a" stroke-width="1"/>
+  <!-- TEC + ANDV ~2.8 → height 78 -->
+  <rect x="397" y="122" width="16" height="78" fill="#C62828" rx="1.5" opacity="0.85"/>
+  <line x1="405" y1="113" x2="405" y2="131" stroke="#7b1717" stroke-width="1.2"/>
+  <line x1="402" y1="113" x2="408" y2="113" stroke="#7b1717" stroke-width="1"/>
+  <line x1="402" y1="131" x2="408" y2="131" stroke="#7b1717" stroke-width="1"/>
+
+  <!-- NK (low) ~0.5 → height 14 -->
+  <rect x="431" y="186" width="16" height="14" fill="#78909C" rx="1.5" opacity="0.85"/>
+
+  <!-- Fibroblast ~0.3 → height 8 -->
+  <rect x="458" y="192" width="16" height="8" fill="#78909C" rx="1.5" opacity="0.85"/>
+
+  <!-- ns bracket between PMVEC and TEC groups -->
+  <line x1="333" y1="108" x2="386" y2="108" stroke="#555" stroke-width="0.9"/>
+  <line x1="333" y1="105" x2="333" y2="111" stroke="#555" stroke-width="0.9"/>
+  <line x1="386" y1="105" x2="386" y2="111" stroke="#555" stroke-width="0.9"/>
+  <text x="360" y="106" font-size="7.5" text-anchor="middle" fill="#555">ns  p=0.74</text>
+
+  <!-- x-axis labels -->
+  <text x="338" y="213" font-size="7.5" text-anchor="middle" fill="#2E7D32" font-weight="600">PMVEC</text>
+  <text x="392" y="213" font-size="7.5" text-anchor="middle" fill="#E65100" font-weight="600">TEC</text>
+  <text x="439" y="213" font-size="7" text-anchor="middle" fill="#555">NK</text>
+  <text x="466" y="213" font-size="7" text-anchor="middle" fill="#555">Fibro</text>
+  <text x="338" y="222" font-size="6.5" text-anchor="middle" fill="#888">(lung)</text>
+  <text x="392" y="222" font-size="6.5" text-anchor="middle" fill="#888">(kidney)</text>
+
+  <!-- legend -->
+  <rect x="310" y="230" width="9" height="9" fill="#1565C0" rx="1.5"/>
+  <text x="322" y="238" font-size="7.5" fill="#1565C0">HTNV-infected</text>
+  <rect x="400" y="230" width="9" height="9" fill="#C62828" rx="1.5"/>
+  <text x="412" y="238" font-size="7.5" fill="#C62828">ANDV-infected</text>
+
+  <text x="395" y="260" font-size="8.5" text-anchor="middle" fill="#222" font-weight="600">Same receptor, same cell types — different organ fate</text>
+  <text x="395" y="273" font-size="7.5" text-anchor="middle" fill="#555">β3 integrin expression is equivalent in PMVEC and TEC (ns),</text>
+  <text x="395" y="284" font-size="7.5" text-anchor="middle" fill="#555">yet organ-specific pathology remains unexplained</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL C  — MS-VIC Multi-scale Framework
+       x: 515–790, y: 28–295
+  ════════════════════════════════════════════ -->
+
+  <!-- defs for arrow markers -->
+  <defs>
+    <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#555"/>
+    </marker>
+    <marker id="arr-w" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#ffffff"/>
+    </marker>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1565C0"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="652" y="43" font-size="9" text-anchor="middle" fill="#333" font-weight="600">Multi-scale Virtual Infected Cell (MS-VIC)</text>
+
+  <!-- Scale 1: Atoms/MD -->
+  <rect x="520" y="52" width="128" height="38" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.2"/>
+  <text x="584" y="67" font-size="8.5" text-anchor="middle" fill="#1565C0" font-weight="700">Stage 0: MD Simulation</text>
+  <text x="584" y="79" font-size="7.5" text-anchor="middle" fill="#1565C0">Gc–β3 integrin · ΔG_bind · Conformations</text>
+  <text x="516" y="64" font-size="7" fill="#888">Atomic</text>
+
+  <!-- arrow down -->
+  <line x1="584" y1="90" x2="584" y2="108" stroke="#555" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Scale 2: PPI / Network -->
+  <rect x="520" y="108" width="128" height="38" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.2"/>
+  <text x="584" y="123" font-size="8.5" text-anchor="middle" fill="#7B1FA2" font-weight="700">Stage 1–2: Signal Network</text>
+  <text x="584" y="135" font-size="7.5" text-anchor="middle" fill="#7B1FA2">Phosphoproteomics · GRN · Pathway fork</text>
+  <text x="516" y="120" font-size="7" fill="#888">Protein</text>
+
+  <!-- arrow down -->
+  <line x1="584" y1="146" x2="584" y2="164" stroke="#555" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Scale 3: Cell / scRNA-seq -->
+  <rect x="520" y="164" width="128" height="38" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.2"/>
+  <text x="584" y="179" font-size="8.5" text-anchor="middle" fill="#2E7D32" font-weight="700">Stage 3: VIC Model</text>
+  <text x="584" y="191" font-size="7.5" text-anchor="middle" fill="#2E7D32">scRNA-seq · Fate prediction · Blind test</text>
+  <text x="516" y="176" font-size="7" fill="#888">Cell</text>
+
+  <!-- arrow down -->
+  <line x1="584" y1="202" x2="584" y2="220" stroke="#555" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Scale 4: Organ / Patient -->
+  <rect x="520" y="220" width="128" height="38" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="1.2"/>
+  <text x="584" y="235" font-size="8.5" text-anchor="middle" fill="#E65100" font-weight="700">Stage 4: Clinical Validation</text>
+  <text x="584" y="247" font-size="7.5" text-anchor="middle" fill="#E65100">Patient cohort · Prognosis · Biomarkers</text>
+  <text x="516" y="232" font-size="7" fill="#888">Organ</text>
+
+  <!-- Right side: HTNV → HFRS + ANDV → HPS branches -->
+  <!-- Branch from Stage 3 -->
+  <line x1="648" y1="183" x2="680" y2="163" stroke="#1565C0" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arr)"/>
+  <line x1="648" y1="183" x2="680" y2="203" stroke="#C62828" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arr)"/>
+
+  <!-- HFRS outcome box -->
+  <rect x="680" y="148" width="105" height="30" rx="5" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="732" y="161" font-size="8" text-anchor="middle" fill="#1565C0" font-weight="700">HTNV → HFRS</text>
+  <text x="732" y="172" font-size="7" text-anchor="middle" fill="#1565C0">Kidney · Complement</text>
+
+  <!-- HPS outcome box -->
+  <rect x="680" y="188" width="105" height="30" rx="5" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="732" y="201" font-size="8" text-anchor="middle" fill="#C62828" font-weight="700">ANDV → HPS</text>
+  <text x="732" y="212" font-size="7" text-anchor="middle" fill="#C62828">Lung · VE-cadherin</text>
+
+  <!-- Connecting question mark above branches -->
+  <text x="665" y="160" font-size="14" text-anchor="middle" fill="#F57F17" font-weight="700">?</text>
+  <text x="665" y="174" font-size="7" text-anchor="middle" fill="#F57F17">15-aa Δ</text>
+
+  <!-- bottom label -->
+  <text x="652" y="280" font-size="8.5" text-anchor="middle" fill="#222" font-weight="600">Integrated multi-scale prediction pipeline</text>
+  <text x="652" y="293" font-size="7.5" text-anchor="middle" fill="#555">Atoms → Proteins → Cells → Organ outcomes</text>
+
+  <!-- ── figure caption line ── -->
+  <line x1="12" y1="302" x2="788" y2="302" stroke="#cccccc" stroke-width="0.6"/>
+  <text x="12" y="308" font-size="6.5" fill="#888">Fig. 1 | Clinical paradox of hantavirus organ tropism and the MS-VIC research framework. A, Organ-specific clinical markers in HFRS vs HPS patients. B, β3 integrin protein expression is comparable across cell types. C, Multi-scale VIC pipeline.</text>
+</svg>

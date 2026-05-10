@@ -1,0 +1,344 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif">
+  <rect width="800" height="540" fill="#ffffff"/>
+
+  <!-- ── PANEL LABELS ── -->
+  <text x="12" y="22" font-size="13" font-weight="700" fill="#111">A</text>
+  <text x="272" y="22" font-size="13" font-weight="700" fill="#111">B</text>
+  <text x="512" y="22" font-size="13" font-weight="700" fill="#111">C</text>
+  <text x="12" y="300" font-size="13" font-weight="700" fill="#111">D</text>
+  <text x="272" y="300" font-size="13" font-weight="700" fill="#111">E</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL A — Patient Cohort Design
+       x: 12–260, y: 28–280
+  ════════════════════════════════════════════ -->
+
+  <text x="136" y="38" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">Patient Cohort Design</text>
+
+  <!-- HFRS group box -->
+  <rect x="18" y="48" width="108" height="68" rx="5" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.2"/>
+  <text x="72" y="63" font-size="8" text-anchor="middle" fill="#1565C0" font-weight="700">HFRS (HTNV)</text>
+  <text x="72" y="76" font-size="7.5" text-anchor="middle" fill="#1565C0">n = 60</text>
+  <text x="72" y="89" font-size="7" text-anchor="middle" fill="#555">China (Hubei, Xi'an)</text>
+  <text x="72" y="101" font-size="7" text-anchor="middle" fill="#555">Severity: mild–severe</text>
+  <text x="72" y="113" font-size="7" text-anchor="middle" fill="#555">Acute + convalescent</text>
+
+  <!-- HPS group box -->
+  <rect x="136" y="48" width="108" height="68" rx="5" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2"/>
+  <text x="190" y="63" font-size="8" text-anchor="middle" fill="#C62828" font-weight="700">HPS (ANDV)</text>
+  <text x="190" y="76" font-size="7.5" text-anchor="middle" fill="#C62828">n = 30</text>
+  <text x="190" y="89" font-size="7" text-anchor="middle" fill="#555">Chile (Patagonia)</text>
+  <text x="190" y="101" font-size="7" text-anchor="middle" fill="#555">Severity: moderate–severe</text>
+  <text x="190" y="113" font-size="7" text-anchor="middle" fill="#555">Acute phase</text>
+
+  <!-- Controls -->
+  <rect x="68" y="128" width="108" height="48" rx="5" fill="#F5F5F5" stroke="#9e9e9e" stroke-width="1"/>
+  <text x="122" y="143" font-size="8" text-anchor="middle" fill="#555" font-weight="700">Controls</text>
+  <text x="122" y="156" font-size="7.5" text-anchor="middle" fill="#555">n = 40 healthy</text>
+  <text x="122" y="168" font-size="7" text-anchor="middle" fill="#555">age/sex matched</text>
+
+  <!-- Measurements -->
+  <text x="18" y="196" font-size="7.5" fill="#333" font-weight="700">Measurements:</text>
+  <text x="18" y="208" font-size="7" fill="#555">• Olink Explore 480 (plasma proteins)</text>
+  <text x="18" y="220" font-size="7" fill="#555">• PBMC scRNA-seq (n=130 samples)</text>
+  <text x="18" y="232" font-size="7" fill="#555">• SOFA score (organ function)</text>
+  <text x="18" y="244" font-size="7" fill="#555">• Plasma BUN, PaO₂/FiO₂, LDH</text>
+  <text x="18" y="256" font-size="7" fill="#555">• Longitudinal (D0, D3, D7, D14)</text>
+
+  <text x="136" y="280" font-size="8" text-anchor="middle" fill="#222" font-weight="600">130 patients, 4 timepoints, dual-site</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL B — PBMC Immune Landscape UMAP
+       x: 272–505, y: 28–280
+  ════════════════════════════════════════════ -->
+
+  <text x="388" y="38" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">PBMC Immune Landscape (scRNA-seq)</text>
+
+  <!-- UMAP background -->
+  <ellipse cx="388" cy="148" rx="108" ry="95" fill="#F8F9FA" stroke="#dddddd" stroke-width="0.8"/>
+
+  <!-- Cell type clusters (colored blobs) -->
+  <!-- CD4+ T cells (large, central-left) -->
+  <ellipse cx="358" cy="120" rx="28" ry="24" fill="#1976D2" opacity="0.45"/>
+  <text x="358" y="124" font-size="7" text-anchor="middle" fill="#0d47a1">CD4+ T</text>
+
+  <!-- CD8+ T cells -->
+  <ellipse cx="400" cy="108" rx="22" ry="18" fill="#1565C0" opacity="0.45"/>
+  <text x="400" y="112" font-size="7" text-anchor="middle" fill="#0d47a1">CD8+ T</text>
+
+  <!-- NK cells -->
+  <ellipse cx="428" cy="130" rx="18" ry="16" fill="#6A1B9A" opacity="0.45"/>
+  <text x="428" y="134" font-size="7" text-anchor="middle" fill="#4a148c">NK</text>
+
+  <!-- Monocytes -->
+  <ellipse cx="410" cy="175" rx="22" ry="18" fill="#E65100" opacity="0.45"/>
+  <text x="410" y="179" font-size="7" text-anchor="middle" fill="#bf360c">Mono</text>
+
+  <!-- B cells -->
+  <ellipse cx="360" cy="170" rx="20" ry="17" fill="#00897B" opacity="0.45"/>
+  <text x="360" y="174" font-size="7" text-anchor="middle" fill="#00695c">B cells</text>
+
+  <!-- Plasmablasts (ANDV-enriched) -->
+  <ellipse cx="352" cy="200" rx="16" ry="13" fill="#C62828" opacity="0.55"/>
+  <text x="352" y="204" font-size="6.5" text-anchor="middle" fill="#7b0000">Plasma-</text>
+  <text x="352" y="213" font-size="6.5" text-anchor="middle" fill="#7b0000">blasts</text>
+
+  <!-- ISG+ monocytes (HTNV-enriched) -->
+  <ellipse cx="435" cy="165" rx="16" ry="13" fill="#1565C0" opacity="0.55"/>
+  <text x="435" y="169" font-size="6.5" text-anchor="middle" fill="#0d3c7a">ISG+</text>
+  <text x="435" y="178" font-size="6.5" text-anchor="middle" fill="#0d3c7a">Mono</text>
+
+  <!-- arrows indicating enrichment -->
+  <text x="310" y="206" font-size="7" fill="#C62828">ANDV↑</text>
+  <line x1="335" y1="204" x2="342" y2="204" stroke="#C62828" stroke-width="0.9" marker-end="url(#arr-fate2)"/>
+
+  <text x="455" y="168" font-size="7" fill="#1565C0">HTNV↑</text>
+
+  <defs>
+    <marker id="arr-fate2" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto">
+      <path d="M0,0 L0,4 L4,2 z" fill="#C62828"/>
+    </marker>
+  </defs>
+
+  <!-- viral load color bar -->
+  <defs>
+    <linearGradient id="vl2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E3F2FD"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+  </defs>
+  <rect x="288" y="252" width="80" height="7" fill="url(#vl2)" rx="2"/>
+  <text x="288" y="270" font-size="7" fill="#555">Low</text>
+  <text x="368" y="270" text-anchor="end" font-size="7" fill="#C62828">High VL</text>
+  <text x="328" y="248" font-size="7" text-anchor="middle" fill="#333">Viral load</text>
+
+  <!-- subtitle -->
+  <text x="388" y="285" font-size="8" text-anchor="middle" fill="#555">PBMC scRNA-seq, n=130 patients at D3 (acute phase)</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL C — Plasma Biomarker Correlations (Olink)
+       x: 515–790, y: 28–280
+  ════════════════════════════════════════════ -->
+
+  <text x="652" y="38" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">Plasma Biomarkers (Olink 480)</text>
+
+  <!-- Heatmap: selected proteins × HFRS/HPS/Control -->
+  <!-- 3 conditions × 12 proteins -->
+
+  <!-- column headers -->
+  <text x="580" y="58" font-size="7" text-anchor="middle" fill="#555">Control</text>
+  <text x="618" y="58" font-size="7" text-anchor="middle" fill="#1565C0">HFRS</text>
+  <text x="656" y="58" font-size="7" text-anchor="middle" fill="#C62828">HPS</text>
+
+  <!-- rows: proteins associated with organ damage -->
+  <!-- KIM-1 (kidney injury): high in HFRS -->
+  <text x="570" y="76" font-size="6.5" text-anchor="end" fill="#333">KIM-1</text>
+  <rect x="563" y="64" width="30" height="14" fill="#1565C0" opacity="0.08" rx="1"/>
+  <rect x="601" y="64" width="30" height="14" fill="#1565C0" opacity="0.9" rx="1"/>
+  <rect x="639" y="64" width="30" height="14" fill="#1565C0" opacity="0.15" rx="1"/>
+
+  <!-- NGAL (kidney): HFRS dominant -->
+  <text x="570" y="91" font-size="6.5" text-anchor="end" fill="#333">NGAL</text>
+  <rect x="563" y="79" width="30" height="14" fill="#1565C0" opacity="0.05" rx="1"/>
+  <rect x="601" y="79" width="30" height="14" fill="#1565C0" opacity="0.85" rx="1"/>
+  <rect x="639" y="79" width="30" height="14" fill="#1565C0" opacity="0.2" rx="1"/>
+
+  <!-- Ang2 (endothelial): HPS dominant -->
+  <text x="570" y="106" font-size="6.5" text-anchor="end" fill="#333">Ang-2</text>
+  <rect x="563" y="94" width="30" height="14" fill="#C62828" opacity="0.1" rx="1"/>
+  <rect x="601" y="94" width="30" height="14" fill="#C62828" opacity="0.25" rx="1"/>
+  <rect x="639" y="94" width="30" height="14" fill="#C62828" opacity="0.9" rx="1"/>
+
+  <!-- VE-cadherin fragments: HPS dominant -->
+  <text x="570" y="121" font-size="6.5" text-anchor="end" fill="#333">VE-cad frag.</text>
+  <rect x="563" y="109" width="30" height="14" fill="#C62828" opacity="0.08" rx="1"/>
+  <rect x="601" y="109" width="30" height="14" fill="#C62828" opacity="0.2" rx="1"/>
+  <rect x="639" y="109" width="30" height="14" fill="#C62828" opacity="0.88" rx="1"/>
+
+  <!-- Complement C3a: HFRS -->
+  <text x="570" y="136" font-size="6.5" text-anchor="end" fill="#333">C3a</text>
+  <rect x="563" y="124" width="30" height="14" fill="#1565C0" opacity="0.1" rx="1"/>
+  <rect x="601" y="124" width="30" height="14" fill="#1565C0" opacity="0.8" rx="1"/>
+  <rect x="639" y="124" width="30" height="14" fill="#1565C0" opacity="0.3" rx="1"/>
+
+  <!-- IL-6: both elevated -->
+  <text x="570" y="151" font-size="6.5" text-anchor="end" fill="#333">IL-6</text>
+  <rect x="563" y="139" width="30" height="14" fill="#888" opacity="0.1" rx="1"/>
+  <rect x="601" y="139" width="30" height="14" fill="#888" opacity="0.65" rx="1"/>
+  <rect x="639" y="139" width="30" height="14" fill="#888" opacity="0.7" rx="1"/>
+
+  <!-- CXCL10: IFN-driven, HPS > HFRS -->
+  <text x="570" y="166" font-size="6.5" text-anchor="end" fill="#333">CXCL10</text>
+  <rect x="563" y="154" width="30" height="14" fill="#C62828" opacity="0.15" rx="1"/>
+  <rect x="601" y="154" width="30" height="14" fill="#C62828" opacity="0.5" rx="1"/>
+  <rect x="639" y="154" width="30" height="14" fill="#C62828" opacity="0.82" rx="1"/>
+
+  <!-- pVE-cad-Y658 signal peptide proxy: HPS specific -->
+  <text x="570" y="181" font-size="6.5" text-anchor="end" fill="#333">pY658 peptide</text>
+  <rect x="563" y="169" width="30" height="14" fill="#C62828" opacity="0.05" rx="1"/>
+  <rect x="601" y="169" width="30" height="14" fill="#C62828" opacity="0.12" rx="1"/>
+  <rect x="639" y="169" width="30" height="14" fill="#C62828" opacity="0.88" rx="1"/>
+
+  <!-- color bar legend -->
+  <defs>
+    <linearGradient id="hm2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+  </defs>
+  <rect x="565" y="198" width="100" height="7" fill="url(#hm2)" rx="2"/>
+  <text x="565" y="215" font-size="7" fill="#555">Low</text>
+  <text x="665" y="215" text-anchor="end" font-size="7" fill="#C62828">High conc.</text>
+
+  <!-- VIC biomarker panel score annotation -->
+  <rect x="565" y="230" width="220" height="30" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="0.9"/>
+  <text x="675" y="244" font-size="7.5" text-anchor="middle" fill="#2E7D32" font-weight="700">VIC-predicted biomarker panel:</text>
+  <text x="675" y="256" font-size="7" text-anchor="middle" fill="#555">KIM-1 + VE-cad-Y658 + C3a (3-marker score)</text>
+
+  <text x="652" y="280" font-size="8" text-anchor="middle" fill="#555">Olink NPX normalized; Bonferroni-adjusted p-values</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL D — ROC Curve
+       x: 12–255, y: 308–525
+  ════════════════════════════════════════════ -->
+
+  <text x="136" y="318" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">ROC — HFRS vs HPS Discrimination</text>
+
+  <line x1="38" y1="330" x2="38" y2="480" stroke="#555" stroke-width="0.9"/>
+  <line x1="38" y1="480" x2="240" y2="480" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: True positive rate 0–1 -->
+  <text x="32" y="483" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="34" y1="480" x2="38" y2="480" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="453" font-size="7" text-anchor="end" fill="#444">0.2</text>
+  <line x1="34" y1="450" x2="38" y2="450" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="423" font-size="7" text-anchor="end" fill="#444">0.4</text>
+  <line x1="34" y1="420" x2="38" y2="420" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="393" font-size="7" text-anchor="end" fill="#444">0.6</text>
+  <line x1="34" y1="390" x2="38" y2="390" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="363" font-size="7" text-anchor="end" fill="#444">0.8</text>
+  <line x1="34" y1="360" x2="38" y2="360" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="333" font-size="7" text-anchor="end" fill="#444">1.0</text>
+  <line x1="34" y1="330" x2="38" y2="330" stroke="#555" stroke-width="0.8"/>
+
+  <!-- x-axis: False positive rate 0–1 -->
+  <text x="38" y="492" font-size="7" text-anchor="middle" fill="#444">0</text>
+  <text x="88" y="492" font-size="7" text-anchor="middle" fill="#444">0.25</text>
+  <text x="138" y="492" font-size="7" text-anchor="middle" fill="#444">0.5</text>
+  <text x="188" y="492" font-size="7" text-anchor="middle" fill="#444">0.75</text>
+  <text x="240" y="492" font-size="7" text-anchor="middle" fill="#444">1.0</text>
+
+  <!-- axes labels -->
+  <text x="18" y="405" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,18,405)">True positive rate</text>
+  <text x="139" y="506" font-size="7.5" text-anchor="middle" fill="#333">False positive rate</text>
+
+  <!-- chance diagonal -->
+  <line x1="38" y1="480" x2="240" y2="330" stroke="#bbb" stroke-width="0.9" stroke-dasharray="4,2"/>
+
+  <!-- grid -->
+  <line x1="38" y1="390" x2="240" y2="390" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="420" x2="240" y2="420" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="360" x2="240" y2="360" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- ROC curve: VIC 3-marker panel (AUC=0.91) -->
+  <!-- scale: FPR x=38+FPR*202, TPR y=480-TPR*150 -->
+  <path d="M 38,480 L 45,450 L 55,420 L 75,375 L 100,350 L 130,338 L 160,332 L 200,330 L 240,330"
+        fill="none" stroke="#2E7D32" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- ROC curve: 3-marker panel (AUC=0.82) -->
+  <path d="M 38,480 L 50,455 L 68,425 L 92,392 L 120,368 L 152,352 L 185,340 L 215,334 L 240,330"
+        fill="none" stroke="#1565C0" stroke-width="1.8" stroke-linejoin="round"/>
+
+  <!-- ROC curve: clinical score alone (AUC=0.73) -->
+  <path d="M 38,480 L 60,462 L 88,438 L 120,408 L 150,382 L 180,362 L 208,348 L 230,338 L 240,330"
+        fill="none" stroke="#9e9e9e" stroke-width="1.5" stroke-dasharray="4,2" stroke-linejoin="round"/>
+
+  <!-- AUC annotations -->
+  <text x="180" y="355" font-size="7.5" fill="#2E7D32" font-weight="700">VIC panel: AUC=0.91</text>
+  <text x="180" y="368" font-size="7.5" fill="#1565C0">3-marker: AUC=0.82</text>
+  <text x="180" y="381" font-size="7.5" fill="#777">Clinical: AUC=0.73</text>
+
+  <!-- 95% CI shading (simplified) -->
+  <text x="136" y="520" font-size="7.5" text-anchor="middle" fill="#222" font-weight="600">VIC panel surpasses clinical score alone</text>
+  <text x="136" y="531" font-size="7" text-anchor="middle" fill="#555">DeLong test: p=0.003 vs clinical</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL E — Longitudinal Outcome Trajectories
+       x: 272–790, y: 308–525
+  ════════════════════════════════════════════ -->
+
+  <text x="530" y="318" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">Longitudinal SOFA Score Trajectories</text>
+
+  <line x1="300" y1="330" x2="300" y2="475" stroke="#555" stroke-width="0.9"/>
+  <line x1="300" y1="475" x2="785" y2="475" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: SOFA score 0–15 -->
+  <text x="294" y="478" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="296" y1="475" x2="300" y2="475" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="449" font-size="7" text-anchor="end" fill="#444">3</text>
+  <line x1="296" y1="446" x2="300" y2="446" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="419" font-size="7" text-anchor="end" fill="#444">6</text>
+  <line x1="296" y1="416" x2="300" y2="416" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="389" font-size="7" text-anchor="end" fill="#444">9</text>
+  <line x1="296" y1="386" x2="300" y2="386" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="359" font-size="7" text-anchor="end" fill="#444">12</text>
+  <line x1="296" y1="356" x2="300" y2="356" stroke="#555" stroke-width="0.8"/>
+
+  <!-- x-axis: D0, D3, D7, D14 -->
+  <!-- positions: 350, 465, 580, 720 -->
+  <text x="350" y="487" font-size="7" text-anchor="middle" fill="#444">D0</text>
+  <text x="465" y="487" font-size="7" text-anchor="middle" fill="#444">D3</text>
+  <text x="580" y="487" font-size="7" text-anchor="middle" fill="#444">D7</text>
+  <text x="720" y="487" font-size="7" text-anchor="middle" fill="#444">D14</text>
+
+  <!-- grid -->
+  <line x1="300" y1="446" x2="785" y2="446" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="300" y1="416" x2="785" y2="416" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="300" y1="386" x2="785" y2="386" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- y-axis label -->
+  <text x="280" y="405" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,280,405)">SOFA score</text>
+
+  <!-- SOFA scale: 0=475, 3=446, 6=416, 9=386, 12=356, each unit=9.67px -->
+  <!-- HFRS mild (n=25): D0~4, D3~6, D7~4, D14~2 -->
+  <polyline points="350,436 465,416 580,436 720,456" fill="none" stroke="#1565C0" stroke-width="1.5" opacity="0.7"/>
+  <!-- HFRS severe (n=20): D0~5, D3~9, D7~7, D14~3 -->
+  <polyline points="350,427 465,388 580,407 720,446" fill="none" stroke="#1565C0" stroke-width="2.2"/>
+  <!-- HFRS critical (n=15): D0~7, D3~12, D7~10, D14~6 -->
+  <polyline points="350,407 465,359 580,378 720,416" fill="none" stroke="#1565C0" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- HPS moderate (n=10): D0~5, D3~8, D7~6, D14~4 -->
+  <polyline points="350,427 465,398 580,417 720,437" fill="none" stroke="#C62828" stroke-width="1.5" opacity="0.7"/>
+  <!-- HPS severe (n=14): D0~6, D3~11, D7~9, D14~5 -->
+  <polyline points="350,416 465,368 580,388 720,427" fill="none" stroke="#C62828" stroke-width="2.2"/>
+  <!-- HPS critical (n=6): D0~8, D3~13, D7~11, D14~7 -->
+  <polyline points="350,397 465,349 580,368 720,407" fill="none" stroke="#C62828" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- severity shading annotations -->
+  <text x="784" y="362" font-size="6.5" text-anchor="end" fill="#555">Critical</text>
+  <text x="784" y="395" font-size="6.5" text-anchor="end" fill="#555">Severe</text>
+  <text x="784" y="420" font-size="6.5" text-anchor="end" fill="#555">Moderate</text>
+
+  <!-- VIC prediction annotation at D3 -->
+  <line x1="465" y1="330" x2="465" y2="475" stroke="#E65100" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.7"/>
+  <text x="468" y="338" font-size="7" fill="#E65100" font-weight="700">VIC prediction</text>
+  <text x="468" y="348" font-size="7" fill="#E65100">at D3 →</text>
+  <text x="468" y="358" font-size="7" fill="#E65100">D14 outcome</text>
+
+  <!-- Legend -->
+  <line x1="308" y1="502" x2="328" y2="502" stroke="#1565C0" stroke-width="2"/>
+  <text x="332" y="506" font-size="7" fill="#1565C0">HFRS severe</text>
+  <line x1="395" y1="502" x2="415" y2="502" stroke="#C62828" stroke-width="2"/>
+  <text x="419" y="506" font-size="7" fill="#C62828">HPS severe</text>
+  <line x1="308" y1="516" x2="328" y2="516" stroke="#1565C0" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="332" y="520" font-size="7" fill="#1565C0">HFRS critical</text>
+  <line x1="395" y1="516" x2="415" y2="516" stroke="#C62828" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="419" y="520" font-size="7" fill="#C62828">HPS critical</text>
+
+  <text x="600" y="510" font-size="7.5" text-anchor="middle" fill="#222" font-weight="600">VIC D3-score predicts D14 SOFA trajectory</text>
+  <text x="600" y="522" font-size="7" text-anchor="middle" fill="#555">Spearman ρ = 0.74, p &lt; 0.001; n=130</text>
+
+  <!-- ── figure caption line ── -->
+  <line x1="12" y1="533" x2="788" y2="533" stroke="#cccccc" stroke-width="0.6"/>
+  <text x="12" y="539" font-size="6.5" fill="#888">Fig. 6 | Clinical validation of VIC predictions. A, Patient cohort design (130 patients, dual-site). B, PBMC immune landscape scRNA-seq. C, Plasma biomarker heatmap (Olink 480). D, ROC curve: VIC panel AUC=0.91. E, SOFA longitudinal trajectories; VIC D3-score predicts D14 outcome.</text>
+</svg>

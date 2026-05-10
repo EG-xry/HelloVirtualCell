@@ -1,0 +1,436 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif">
+  <rect width="800" height="520" fill="#ffffff"/>
+
+  <!-- ── PANEL LABELS ── -->
+  <text x="12" y="22" font-size="13" font-weight="700" fill="#111">A</text>
+  <text x="162" y="22" font-size="13" font-weight="700" fill="#111">B</text>
+  <text x="430" y="22" font-size="13" font-weight="700" fill="#111">C</text>
+  <text x="12" y="295" font-size="13" font-weight="700" fill="#111">D</text>
+  <text x="272" y="295" font-size="13" font-weight="700" fill="#111">E</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL A — Experimental design matrix
+       x: 12–150, y: 28–275
+  ════════════════════════════════════════════ -->
+
+  <text x="82" y="38" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">Experimental Design</text>
+
+  <!-- table header -->
+  <rect x="18" y="44" width="128" height="16" fill="#E3F2FD" rx="2"/>
+  <text x="48" y="55" font-size="7" text-anchor="middle" fill="#1565C0" font-weight="700">Timepoint</text>
+  <text x="98" y="55" font-size="7" text-anchor="middle" fill="#1565C0" font-weight="700">Cells</text>
+  <text x="130" y="55" font-size="7" text-anchor="middle" fill="#1565C0" font-weight="700">Reps</text>
+
+  <!-- rows: 2 viruses × 6 timepoints -->
+  <!-- timepoints: 0h, 2h, 6h, 12h, 24h, 48h -->
+  <!-- Cell types: HMVEC-L, HK-2 -->
+  <!-- Hantavirus: HTNV, ANDV, Mock -->
+  <text x="18" y="72" font-size="7" fill="#555">HTNV</text>
+  <text x="18" y="84" font-size="7" fill="#555">ANDV</text>
+  <text x="18" y="96" font-size="7" fill="#555">Mock</text>
+
+  <!-- Time headers -->
+  <text x="50" y="65" font-size="7" text-anchor="middle" fill="#777">0 h</text>
+  <text x="70" y="65" font-size="7" text-anchor="middle" fill="#777">2 h</text>
+  <text x="90" y="65" font-size="7" text-anchor="middle" fill="#777">6 h</text>
+  <text x="110" y="65" font-size="7" text-anchor="middle" fill="#777">12 h</text>
+  <text x="130" y="65" font-size="7" text-anchor="middle" fill="#777">24 h</text>
+
+  <!-- HTNV circles -->
+  <circle cx="50" cy="72" r="5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="70" cy="72" r="5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="90" cy="72" r="5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="110" cy="72" r="5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="130" cy="72" r="5" fill="#1565C0" opacity="0.7"/>
+  <!-- ANDV circles -->
+  <circle cx="50" cy="84" r="5" fill="#C62828" opacity="0.7"/>
+  <circle cx="70" cy="84" r="5" fill="#C62828" opacity="0.7"/>
+  <circle cx="90" cy="84" r="5" fill="#C62828" opacity="0.7"/>
+  <circle cx="110" cy="84" r="5" fill="#C62828" opacity="0.7"/>
+  <circle cx="130" cy="84" r="5" fill="#C62828" opacity="0.7"/>
+  <!-- Mock circles -->
+  <circle cx="50" cy="96" r="5" fill="#9e9e9e" opacity="0.5"/>
+  <circle cx="70" cy="96" r="5" fill="#9e9e9e" opacity="0.5"/>
+  <circle cx="90" cy="96" r="5" fill="#9e9e9e" opacity="0.5"/>
+  <circle cx="110" cy="96" r="5" fill="#9e9e9e" opacity="0.5"/>
+  <circle cx="130" cy="96" r="5" fill="#9e9e9e" opacity="0.5"/>
+
+  <!-- n cells info -->
+  <text x="18" y="116" font-size="7" fill="#333">2 cell types:</text>
+  <text x="18" y="127" font-size="7" fill="#2E7D32">HMVEC-L (lung)</text>
+  <text x="18" y="138" font-size="7" fill="#E65100">HK-2 (kidney)</text>
+  <text x="18" y="152" font-size="7" fill="#333">3 reps / condition</text>
+  <text x="18" y="163" font-size="7" fill="#333">MOI = 1</text>
+  <text x="18" y="174" font-size="7" fill="#333">~72 samples total</text>
+
+  <text x="18" y="190" font-size="7" fill="#333" font-weight="700">Technology:</text>
+  <text x="18" y="201" font-size="7" fill="#555">10× Chromium v3.1</text>
+  <text x="18" y="212" font-size="7" fill="#555">STARsolo (dual index)</text>
+  <text x="18" y="223" font-size="7" fill="#555">~3,000 cells/sample</text>
+  <text x="18" y="234" font-size="7" fill="#555">joint host+viral UMI</text>
+
+  <text x="82" y="255" font-size="8" text-anchor="middle" fill="#222" font-weight="600">72 scRNA-seq samples</text>
+  <text x="82" y="267" font-size="7.5" text-anchor="middle" fill="#555">2 viruses × 5 t.p. × 2 cell types × 3 reps</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL B — UMAP Trajectory
+       x: 162–420, y: 28–275
+  ════════════════════════════════════════════ -->
+
+  <text x="290" y="38" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">Fate Trajectory (UMAP + CellRank2)</text>
+
+  <!-- UMAP background ellipse -->
+  <ellipse cx="290" cy="155" rx="115" ry="105" fill="#F8F9FA" stroke="#dddddd" stroke-width="0.8"/>
+
+  <!-- Cell clusters as colored blobs using ellipses -->
+  <!-- Healthy/Mock cluster -->
+  <ellipse cx="255" cy="100" rx="28" ry="22" fill="#9e9e9e" opacity="0.35"/>
+  <text x="255" y="104" font-size="7" text-anchor="middle" fill="#555">Mock</text>
+
+  <!-- Early infection (shared) -->
+  <ellipse cx="290" cy="120" rx="22" ry="18" fill="#CE93D8" opacity="0.5"/>
+  <text x="290" y="124" font-size="7" text-anchor="middle" fill="#7B1FA2">Early</text>
+
+  <!-- HTNV trajectory (going upper-right) -->
+  <ellipse cx="340" cy="100" rx="30" ry="22" fill="#1565C0" opacity="0.4"/>
+  <text x="340" cy="100" font-size="7" text-anchor="middle" fill="#0d3c7a">HTNV</text>
+  <text x="340" y="107" font-size="7" text-anchor="middle" fill="#0d3c7a">HFRS-like</text>
+
+  <!-- ANDV trajectory (going lower-right) -->
+  <ellipse cx="345" cy="195" rx="30" ry="22" fill="#C62828" opacity="0.4"/>
+  <text x="345" y="199" font-size="7" text-anchor="middle" fill="#7b1717">ANDV</text>
+  <text x="345" y="208" font-size="7" text-anchor="middle" fill="#7b1717">HPS-like</text>
+
+  <!-- Late stress/apoptosis cluster (bottom) -->
+  <ellipse cx="250" cy="210" rx="25" ry="18" fill="#FF8F00" opacity="0.4"/>
+  <text x="250" y="214" font-size="7" text-anchor="middle" fill="#E65100">Stress</text>
+
+  <!-- trajectory arrows (CellRank) -->
+  <defs>
+    <marker id="arr-fate" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#555"/>
+    </marker>
+    <marker id="arr-bl2" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#1565C0"/>
+    </marker>
+    <marker id="arr-rd2" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#C62828"/>
+    </marker>
+  </defs>
+
+  <!-- Mock → Early -->
+  <path d="M 270,106 Q 278,114 280,118" fill="none" stroke="#888" stroke-width="1.2" marker-end="url(#arr-fate)"/>
+
+  <!-- Early → HTNV (upper path) -->
+  <path d="M 305,114 Q 318,110 320,103" fill="none" stroke="#1565C0" stroke-width="1.5" marker-end="url(#arr-bl2)"/>
+
+  <!-- Early → ANDV (lower path) -->
+  <path d="M 298,132 Q 315,160 320,186" fill="none" stroke="#C62828" stroke-width="1.5" marker-end="url(#arr-rd2)"/>
+
+  <!-- HTNV → Stress (some cells) -->
+  <path d="M 315,108 Q 290,145 268,205" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="3,2" marker-end="url(#arr-fate)"/>
+
+  <!-- time labels on arrows -->
+  <text x="320" y="96" font-size="6.5" fill="#1565C0">24-48 h</text>
+  <text x="322" y="190" font-size="6.5" fill="#C62828">24-48 h</text>
+
+  <!-- viral load color bar legend -->
+  <defs>
+    <linearGradient id="vl-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E3F2FD"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+  </defs>
+  <rect x="170" y="238" width="100" height="8" fill="url(#vl-grad)" rx="2"/>
+  <text x="170" y="256" font-size="7" fill="#555">Low viral</text>
+  <text x="268" y="256" font-size="7" text-anchor="end" fill="#C62828">High viral load</text>
+  <text x="218" y="232" font-size="7" text-anchor="middle" fill="#333">Viral load (viral_UMI / total_UMI)</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL C — TF Activity Heatmap
+       x: 432–790, y: 28–275
+  ════════════════════════════════════════════ -->
+
+  <text x="610" y="38" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">TF Activity (VIPER) — Top 20 TFs</text>
+
+  <!-- heatmap: 20 TFs × 4 conditions (HTNV-early, HTNV-late, ANDV-early, ANDV-late) -->
+  <!-- x: 500-780, y: 44-244 -->
+  <!-- col headers -->
+  <text x="522" y="56" font-size="6.5" text-anchor="middle" fill="#1565C0">HTNV</text>
+  <text x="522" y="64" font-size="6.5" text-anchor="middle" fill="#1565C0">2-6h</text>
+  <text x="552" y="56" font-size="6.5" text-anchor="middle" fill="#1565C0">HTNV</text>
+  <text x="552" y="64" font-size="6.5" text-anchor="middle" fill="#1565C0">24h</text>
+  <text x="582" y="56" font-size="6.5" text-anchor="middle" fill="#C62828">ANDV</text>
+  <text x="582" y="64" font-size="6.5" text-anchor="middle" fill="#C62828">2-6h</text>
+  <text x="612" y="56" font-size="6.5" text-anchor="middle" fill="#C62828">ANDV</text>
+  <text x="612" y="64" font-size="6.5" text-anchor="middle" fill="#C62828">24h</text>
+
+  <!-- TF names and heatmap tiles -->
+  <!-- Colors: red=high activity, blue=low activity -->
+  <!-- Format: TF_name, HTNV_early, HTNV_late, ANDV_early, ANDV_late -->
+  <!-- (opacity-coded blue=0.1 → red=1.0, using two gradients) -->
+
+  <defs>
+    <!-- red gradient for positive activity -->
+    <linearGradient id="hm-pos" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+    <!-- blue gradient for negative activity -->
+    <linearGradient id="hm-neg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#1565C0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- TF rows - data: [name, HTNV-early, HTNV-late, ANDV-early, ANDV-late] -->
+  <!-- Color coded: pos=red opacity, neg=blue opacity, 0=white -->
+
+  <!-- IRF3 -->
+  <text x="492" y="76" font-size="6.5" text-anchor="end" fill="#333">IRF3</text>
+  <rect x="508" y="68" width="25" height="10" fill="#C62828" opacity="0.55" rx="1"/>
+  <rect x="538" y="68" width="25" height="10" fill="#C62828" opacity="0.85" rx="1"/>
+  <rect x="568" y="68" width="25" height="10" fill="#C62828" opacity="0.6" rx="1"/>
+  <rect x="598" y="68" width="25" height="10" fill="#C62828" opacity="0.9" rx="1"/>
+
+  <!-- IRF7 -->
+  <text x="492" y="88" font-size="6.5" text-anchor="end" fill="#333">IRF7</text>
+  <rect x="508" y="80" width="25" height="10" fill="#C62828" opacity="0.4" rx="1"/>
+  <rect x="538" y="80" width="25" height="10" fill="#C62828" opacity="0.75" rx="1"/>
+  <rect x="568" y="80" width="25" height="10" fill="#C62828" opacity="0.5" rx="1"/>
+  <rect x="598" y="80" width="25" height="10" fill="#C62828" opacity="0.85" rx="1"/>
+
+  <!-- STAT1 -->
+  <text x="492" y="100" font-size="6.5" text-anchor="end" fill="#333">STAT1</text>
+  <rect x="508" y="92" width="25" height="10" fill="#C62828" opacity="0.7" rx="1"/>
+  <rect x="538" y="92" width="25" height="10" fill="#C62828" opacity="0.9" rx="1"/>
+  <rect x="568" y="92" width="25" height="10" fill="#C62828" opacity="0.8" rx="1"/>
+  <rect x="598" y="92" width="25" height="10" fill="#C62828" opacity="0.95" rx="1"/>
+
+  <!-- NF-κB (HTNV-dominant) -->
+  <text x="492" y="112" font-size="6.5" text-anchor="end" fill="#333">NF-κB</text>
+  <rect x="508" y="104" width="25" height="10" fill="#1565C0" opacity="0.5" rx="1"/>
+  <rect x="538" y="104" width="25" height="10" fill="#C62828" opacity="0.7" rx="1"/>
+  <rect x="568" y="104" width="25" height="10" fill="#ffffff" rx="1" stroke="#ddd" stroke-width="0.5"/>
+  <rect x="598" y="104" width="25" height="10" fill="#1565C0" opacity="0.3" rx="1"/>
+
+  <!-- HIF1A -->
+  <text x="492" y="124" font-size="6.5" text-anchor="end" fill="#333">HIF1A</text>
+  <rect x="508" y="116" width="25" height="10" fill="#ffffff" rx="1" stroke="#ddd" stroke-width="0.5"/>
+  <rect x="538" y="116" width="25" height="10" fill="#C62828" opacity="0.4" rx="1"/>
+  <rect x="568" y="116" width="25" height="10" fill="#C62828" opacity="0.5" rx="1"/>
+  <rect x="598" y="116" width="25" height="10" fill="#C62828" opacity="0.8" rx="1"/>
+
+  <!-- CEBPB (ANDV-dominant) -->
+  <text x="492" y="136" font-size="6.5" text-anchor="end" fill="#333">CEBPB</text>
+  <rect x="508" y="128" width="25" height="10" fill="#1565C0" opacity="0.2" rx="1"/>
+  <rect x="538" y="128" width="25" height="10" fill="#1565C0" opacity="0.3" rx="1"/>
+  <rect x="568" y="128" width="25" height="10" fill="#C62828" opacity="0.6" rx="1"/>
+  <rect x="598" y="128" width="25" height="10" fill="#C62828" opacity="0.9" rx="1"/>
+
+  <!-- YAP1 -->
+  <text x="492" y="148" font-size="6.5" text-anchor="end" fill="#333">YAP1</text>
+  <rect x="508" y="140" width="25" height="10" fill="#C62828" opacity="0.3" rx="1"/>
+  <rect x="538" y="140" width="25" height="10" fill="#C62828" opacity="0.5" rx="1"/>
+  <rect x="568" y="140" width="25" height="10" fill="#1565C0" opacity="0.4" rx="1"/>
+  <rect x="598" y="140" width="25" height="10" fill="#1565C0" opacity="0.6" rx="1"/>
+
+  <!-- AP1/FOS (ANDV) -->
+  <text x="492" y="160" font-size="6.5" text-anchor="end" fill="#333">AP1/FOS</text>
+  <rect x="508" y="152" width="25" height="10" fill="#1565C0" opacity="0.3" rx="1"/>
+  <rect x="538" y="152" width="25" height="10" fill="#ffffff" rx="1" stroke="#ddd" stroke-width="0.5"/>
+  <rect x="568" y="152" width="25" height="10" fill="#C62828" opacity="0.55" rx="1"/>
+  <rect x="598" y="152" width="25" height="10" fill="#C62828" opacity="0.8" rx="1"/>
+
+  <!-- KLF4 -->
+  <text x="492" y="172" font-size="6.5" text-anchor="end" fill="#333">KLF4</text>
+  <rect x="508" y="164" width="25" height="10" fill="#C62828" opacity="0.6" rx="1"/>
+  <rect x="538" y="164" width="25" height="10" fill="#C62828" opacity="0.75" rx="1"/>
+  <rect x="568" y="164" width="25" height="10" fill="#1565C0" opacity="0.25" rx="1"/>
+  <rect x="598" y="164" width="25" height="10" fill="#1565C0" opacity="0.4" rx="1"/>
+
+  <!-- EGR1 -->
+  <text x="492" y="184" font-size="6.5" text-anchor="end" fill="#333">EGR1</text>
+  <rect x="508" y="176" width="25" height="10" fill="#1565C0" opacity="0.4" rx="1"/>
+  <rect x="538" y="176" width="25" height="10" fill="#C62828" opacity="0.35" rx="1"/>
+  <rect x="568" y="176" width="25" height="10" fill="#C62828" opacity="0.65" rx="1"/>
+  <rect x="598" y="176" width="25" height="10" fill="#C62828" opacity="0.8" rx="1"/>
+
+  <!-- colorbar legend -->
+  <defs>
+    <linearGradient id="hm-legend" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1565C0"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+  </defs>
+  <rect x="500" y="200" width="130" height="8" fill="url(#hm-legend)" rx="2"/>
+  <text x="500" y="219" font-size="7" fill="#1565C0">Low activity</text>
+  <text x="630" y="219" text-anchor="end" font-size="7" fill="#C62828">High activity</text>
+
+  <text x="610" y="240" font-size="8" text-anchor="middle" fill="#222" font-weight="600">Transcription factor activity divergence</text>
+  <text x="610" y="252" font-size="7.5" text-anchor="middle" fill="#555">VIPER algorithm; regulon from DoRothEA database</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL D — Viral Load vs Cell Fate Scatter
+       x: 12–255, y: 300–505
+  ════════════════════════════════════════════ -->
+
+  <line x1="38" y1="310" x2="38" y2="462" stroke="#555" stroke-width="0.9"/>
+  <line x1="38" y1="462" x2="248" y2="462" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: ANDV fate probability 0–1 -->
+  <text x="32" y="465" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="34" y1="462" x2="38" y2="462" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="435" font-size="7" text-anchor="end" fill="#444">0.25</text>
+  <line x1="34" y1="432" x2="38" y2="432" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="405" font-size="7" text-anchor="end" fill="#444">0.5</text>
+  <line x1="34" y1="402" x2="38" y2="402" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="375" font-size="7" text-anchor="end" fill="#444">0.75</text>
+  <line x1="34" y1="372" x2="38" y2="372" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="345" font-size="7" text-anchor="end" fill="#444">1.0</text>
+  <line x1="34" y1="342" x2="38" y2="342" stroke="#555" stroke-width="0.8"/>
+
+  <!-- x-axis: viral load 0–0.25 -->
+  <text x="38" y="474" font-size="7" text-anchor="middle" fill="#444">0</text>
+  <text x="100" y="474" font-size="7" text-anchor="middle" fill="#444">0.1</text>
+  <text x="162" y="474" font-size="7" text-anchor="middle" fill="#444">0.2</text>
+  <text x="224" y="474" font-size="7" text-anchor="middle" fill="#444">0.3</text>
+
+  <!-- grid -->
+  <line x1="38" y1="402" x2="248" y2="402" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="432" x2="248" y2="432" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="372" x2="248" y2="372" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- axis labels -->
+  <text x="18" y="390" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,18,390)">ANDV fate probability</text>
+  <text x="143" y="487" font-size="7.5" text-anchor="middle" fill="#333">Viral load (viral / total UMI)</text>
+
+  <!-- scatter points: ANDV cells (red) show positive correlation, HTNV cells (blue) near zero -->
+  <!-- scale: x=viral_load*620+38, y=462-fate_prob*120 -->
+  <!-- ANDV cells (red) - positive correlation -->
+  <circle cx="48" cy="450" r="2" fill="#C62828" opacity="0.5"/>
+  <circle cx="55" cy="445" r="2" fill="#C62828" opacity="0.5"/>
+  <circle cx="62" cy="440" r="2" fill="#C62828" opacity="0.5"/>
+  <circle cx="70" cy="432" r="2" fill="#C62828" opacity="0.5"/>
+  <circle cx="80" cy="425" r="2" fill="#C62828" opacity="0.5"/>
+  <circle cx="90" cy="418" r="2" fill="#C62828" opacity="0.5"/>
+  <circle cx="105" cy="408" r="2" fill="#C62828" opacity="0.5"/>
+  <circle cx="118" cy="398" r="2" fill="#C62828" opacity="0.5"/>
+  <circle cx="130" cy="388" r="2" fill="#C62828" opacity="0.6"/>
+  <circle cx="145" cy="376" r="2" fill="#C62828" opacity="0.6"/>
+  <circle cx="158" cy="366" r="2" fill="#C62828" opacity="0.7"/>
+  <circle cx="168" cy="356" r="2" fill="#C62828" opacity="0.7"/>
+  <circle cx="178" cy="348" r="2" fill="#C62828" opacity="0.7"/>
+  <circle cx="190" cy="345" r="2" fill="#C62828" opacity="0.7"/>
+  <circle cx="200" cy="343" r="2" fill="#C62828" opacity="0.7"/>
+  <!-- regression line ANDV -->
+  <line x1="45" y1="453" x2="205" y2="340" stroke="#C62828" stroke-width="1.2" stroke-dasharray="4,2" opacity="0.7"/>
+
+  <!-- HTNV cells (blue) - flat, near zero fate_prob -->
+  <circle cx="52" cy="460" r="2" fill="#1565C0" opacity="0.5"/>
+  <circle cx="70" cy="458" r="2" fill="#1565C0" opacity="0.5"/>
+  <circle cx="88" cy="459" r="2" fill="#1565C0" opacity="0.5"/>
+  <circle cx="105" cy="457" r="2" fill="#1565C0" opacity="0.5"/>
+  <circle cx="120" cy="459" r="2" fill="#1565C0" opacity="0.5"/>
+  <circle cx="135" cy="456" r="2" fill="#1565C0" opacity="0.5"/>
+  <circle cx="150" cy="458" r="2" fill="#1565C0" opacity="0.5"/>
+  <circle cx="165" cy="455" r="2" fill="#1565C0" opacity="0.5"/>
+  <circle cx="180" cy="457" r="2" fill="#1565C0" opacity="0.5"/>
+  <!-- regression line HTNV (flat) -->
+  <line x1="45" y1="459" x2="190" y2="456" stroke="#1565C0" stroke-width="1.2" stroke-dasharray="4,2" opacity="0.7"/>
+
+  <!-- r² labels -->
+  <text x="170" y="358" font-size="7" fill="#C62828">r²=0.81</text>
+  <text x="170" y="452" font-size="7" fill="#1565C0">r²=0.04</text>
+
+  <!-- subtitle -->
+  <text x="143" y="500" font-size="8" text-anchor="middle" fill="#222" font-weight="600">Viral load predicts ANDV fate commitment</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL E — IFN/ISG Temporal Decoupling
+       x: 272–790, y: 300–505
+  ════════════════════════════════════════════ -->
+
+  <line x1="300" y1="310" x2="300" y2="460" stroke="#555" stroke-width="0.9"/>
+  <line x1="300" y1="460" x2="785" y2="460" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: expression (log2 norm) -->
+  <text x="294" y="463" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="296" y1="460" x2="300" y2="460" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="435" font-size="7" text-anchor="end" fill="#444">1</text>
+  <line x1="296" y1="432" x2="300" y2="432" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="408" font-size="7" text-anchor="end" fill="#444">2</text>
+  <line x1="296" y1="404" x2="300" y2="404" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="380" font-size="7" text-anchor="end" fill="#444">3</text>
+  <line x1="296" y1="376" x2="300" y2="376" stroke="#555" stroke-width="0.8"/>
+  <text x="294" y="352" font-size="7" text-anchor="end" fill="#444">4</text>
+  <line x1="296" y1="348" x2="300" y2="348" stroke="#555" stroke-width="0.8"/>
+
+  <!-- x-axis: timepoints 0,2,6,12,24 h -->
+  <!-- positions: 325, 388, 451, 534, 637, 730 -->
+  <text x="325" y="472" font-size="7" text-anchor="middle" fill="#444">0</text>
+  <text x="388" y="472" font-size="7" text-anchor="middle" fill="#444">2</text>
+  <text x="451" y="472" font-size="7" text-anchor="middle" fill="#444">6</text>
+  <text x="534" y="472" font-size="7" text-anchor="middle" fill="#444">12</text>
+  <text x="637" y="472" font-size="7" text-anchor="middle" fill="#444">24 h p.i.</text>
+
+  <!-- grid -->
+  <line x1="300" y1="432" x2="785" y2="432" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="300" y1="404" x2="785" y2="404" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="300" y1="376" x2="785" y2="376" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="300" y1="348" x2="785" y2="348" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- y-axis label -->
+  <text x="280" y="390" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,280,390)">Expression (log₂ norm.)</text>
+
+  <!-- IFN-β ANDV (red, dashed) - stays low throughout (IFN antagonism) -->
+  <polyline points="325,458 388,456 451,454 534,452 637,450" fill="none" stroke="#C62828" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- IFN-β HTNV (blue, dashed) - modest increase -->
+  <polyline points="325,458 388,454 451,448 534,440 637,432" fill="none" stroke="#1565C0" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- ISG15 ANDV (red, solid) - increases DESPITE low IFN (decoupling!) -->
+  <polyline points="325,458 388,452 451,440 534,400 637,355" fill="none" stroke="#C62828" stroke-width="2"/>
+
+  <!-- ISG15 HTNV (blue, solid) - modest increase -->
+  <polyline points="325,458 388,450 451,440 534,420 637,395" fill="none" stroke="#1565C0" stroke-width="2"/>
+
+  <!-- MX1 ANDV (solid, orange) -->
+  <polyline points="325,458 388,450 451,436 534,395 637,350" fill="none" stroke="#E65100" stroke-width="1.5"/>
+
+  <!-- data points for key lines -->
+  <circle cx="325" cy="458" r="2.5" fill="#C62828"/>
+  <circle cx="388" cy="452" r="2.5" fill="#C62828"/>
+  <circle cx="451" cy="440" r="2.5" fill="#C62828"/>
+  <circle cx="534" cy="400" r="2.5" fill="#C62828"/>
+  <circle cx="637" cy="355" r="2.5" fill="#C62828"/>
+
+  <circle cx="325" cy="458" r="2.5" fill="#1565C0"/>
+  <circle cx="388" cy="450" r="2.5" fill="#1565C0"/>
+  <circle cx="451" cy="440" r="2.5" fill="#1565C0"/>
+  <circle cx="534" cy="420" r="2.5" fill="#1565C0"/>
+  <circle cx="637" cy="395" r="2.5" fill="#1565C0"/>
+
+  <!-- decoupling annotation -->
+  <rect x="655" y="338" width="88" height="36" rx="4" fill="#FFF9C4" stroke="#F57F17" stroke-width="1"/>
+  <text x="699" y="353" font-size="7" text-anchor="middle" fill="#E65100" font-weight="700">IFN-decoupling:</text>
+  <text x="699" y="365" font-size="7" text-anchor="middle" fill="#555">ISG↑ without IFN↑</text>
+  <text x="699" y="377" font-size="7" text-anchor="middle" fill="#555">(cGAS-STING?)</text>
+
+  <!-- legend -->
+  <line x1="308" y1="490" x2="328" y2="490" stroke="#1565C0" stroke-width="2"/>
+  <text x="332" y="494" font-size="7" fill="#1565C0">HTNV ISG15</text>
+  <line x1="390" y1="490" x2="410" y2="490" stroke="#C62828" stroke-width="2"/>
+  <text x="414" y="494" font-size="7" fill="#C62828">ANDV ISG15</text>
+  <line x1="308" y1="504" x2="328" y2="504" stroke="#1565C0" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="332" y="508" font-size="7" fill="#1565C0">HTNV IFN-β</text>
+  <line x1="390" y1="504" x2="410" y2="504" stroke="#C62828" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="414" y="508" font-size="7" fill="#C62828">ANDV IFN-β</text>
+  <line x1="470" y1="490" x2="490" y2="490" stroke="#E65100" stroke-width="1.5"/>
+  <text x="494" y="494" font-size="7" fill="#E65100">ANDV MX1</text>
+
+  <!-- ── figure caption line ── -->
+  <line x1="12" y1="514" x2="788" y2="514" stroke="#cccccc" stroke-width="0.6"/>
+  <text x="12" y="518" font-size="6.5" fill="#888">Fig. 4 | Temporal single-cell transcriptomics reveals divergent infection trajectories. A, Experimental design (72 scRNA-seq samples). B, UMAP + CellRank2 fate trajectories. C, TF activity heatmap (VIPER). D, Viral load correlates with ANDV fate probability. E, IFN-ISG temporal decoupling — ISG induction precedes IFN production (cGAS-STING bypass hypothesis).</text>
+</svg>

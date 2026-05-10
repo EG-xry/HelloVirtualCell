@@ -1,0 +1,431 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif">
+  <rect width="800" height="540" fill="#ffffff"/>
+
+  <!-- ── PANEL LABELS ── -->
+  <text x="12" y="22" font-size="13" font-weight="700" fill="#111">A</text>
+  <text x="272" y="22" font-size="13" font-weight="700" fill="#111">B</text>
+  <text x="512" y="22" font-size="13" font-weight="700" fill="#111">C</text>
+  <text x="12" y="302" font-size="13" font-weight="700" fill="#111">D</text>
+  <text x="412" y="302" font-size="13" font-weight="700" fill="#111">E</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL A — MultiScaleVIC Architecture
+       x: 12–260, y: 28–285
+  ════════════════════════════════════════════ -->
+
+  <text x="136" y="36" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">MultiScaleVIC Architecture</text>
+
+  <defs>
+    <marker id="arr-arch" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#666"/>
+    </marker>
+    <marker id="arr-out" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#2E7D32"/>
+    </marker>
+  </defs>
+
+  <!-- Input features (left column, y 45-155) -->
+  <!-- Gc embedding box -->
+  <rect x="14" y="45" width="88" height="18" rx="3" fill="#E3F2FD" stroke="#1565C0" stroke-width="0.9"/>
+  <text x="58" y="56" font-size="6.5" text-anchor="middle" fill="#1565C0">ESM-2 Gc embed.</text>
+  <text x="58" y="64" font-size="6" text-anchor="middle" fill="#1565C0">(480-dim)</text>
+
+  <!-- β3 conformation box -->
+  <rect x="14" y="72" width="88" height="18" rx="3" fill="#E3F2FD" stroke="#1565C0" stroke-width="0.9"/>
+  <text x="58" y="83" font-size="6.5" text-anchor="middle" fill="#1565C0">β3 conformation</text>
+  <text x="58" y="91" font-size="6" text-anchor="middle" fill="#1565C0">(open/inter/bent)</text>
+
+  <!-- Cell expression box -->
+  <rect x="14" y="99" width="88" height="18" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="0.9"/>
+  <text x="58" y="110" font-size="6.5" text-anchor="middle" fill="#2E7D32">scGPT-HV expr.</text>
+  <text x="58" y="118" font-size="6" text-anchor="middle" fill="#2E7D32">(512-dim)</text>
+
+  <!-- Viral load box -->
+  <rect x="14" y="126" width="88" height="18" rx="3" fill="#FFF3E0" stroke="#E65100" stroke-width="0.9"/>
+  <text x="58" y="137" font-size="6.5" text-anchor="middle" fill="#E65100">Viral load + t</text>
+  <text x="58" y="145" font-size="6" text-anchor="middle" fill="#E65100">(scalar + sin. enc.)</text>
+
+  <!-- arrows from inputs to CrossAttention -->
+  <line x1="102" y1="54" x2="125" y2="80" stroke="#666" stroke-width="0.9" marker-end="url(#arr-arch)"/>
+  <line x1="102" y1="81" x2="125" y2="85" stroke="#666" stroke-width="0.9" marker-end="url(#arr-arch)"/>
+  <line x1="102" y1="108" x2="125" y2="100" stroke="#666" stroke-width="0.9" marker-end="url(#arr-arch)"/>
+  <line x1="102" y1="135" x2="125" y2="110" stroke="#666" stroke-width="0.9" marker-end="url(#arr-arch)"/>
+
+  <!-- CrossAttention module (center) -->
+  <rect x="125" y="60" width="72" height="60" rx="5" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.2"/>
+  <text x="161" y="76" font-size="7" text-anchor="middle" fill="#7B1FA2" font-weight="700">Cross</text>
+  <text x="161" y="86" font-size="7" text-anchor="middle" fill="#7B1FA2" font-weight="700">Attention</text>
+  <text x="161" y="96" font-size="6.5" text-anchor="middle" fill="#7B1FA2">(Gc·Cell)</text>
+  <text x="161" y="113" font-size="6" text-anchor="middle" fill="#888">8 heads, 256d</text>
+
+  <!-- TemporalTransformer -->
+  <rect x="125" y="132" width="72" height="44" rx="5" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.2"/>
+  <text x="161" y="148" font-size="7" text-anchor="middle" fill="#7B1FA2" font-weight="700">Temporal</text>
+  <text x="161" y="159" font-size="7" text-anchor="middle" fill="#7B1FA2" font-weight="700">Transformer</text>
+  <text x="161" y="170" font-size="6" text-anchor="middle" fill="#888">4 layers, 128d</text>
+
+  <!-- Arrow CA → TT -->
+  <line x1="161" y1="120" x2="161" y2="132" stroke="#7B1FA2" stroke-width="1" marker-end="url(#arr-arch)"/>
+
+  <!-- Neural ODE -->
+  <rect x="125" y="185" width="72" height="36" rx="5" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.2"/>
+  <text x="161" y="198" font-size="7" text-anchor="middle" fill="#7B1FA2" font-weight="700">Neural ODE</text>
+  <text x="161" y="210" font-size="6.5" text-anchor="middle" fill="#7B1FA2">State dynamics</text>
+  <text x="161" y="220" font-size="6" text-anchor="middle" fill="#888">adjoint method</text>
+
+  <!-- Arrow TT → ODE -->
+  <line x1="161" y1="176" x2="161" y2="185" stroke="#7B1FA2" stroke-width="1" marker-end="url(#arr-arch)"/>
+
+  <!-- Arrow ODE → outputs -->
+  <line x1="197" y1="200" x2="218" y2="175" stroke="#2E7D32" stroke-width="0.9" marker-end="url(#arr-out)"/>
+  <line x1="197" y1="205" x2="218" y2="200" stroke="#2E7D32" stroke-width="0.9" marker-end="url(#arr-out)"/>
+  <line x1="197" y1="210" x2="218" y2="226" stroke="#2E7D32" stroke-width="0.9" marker-end="url(#arr-out)"/>
+
+  <!-- Output boxes (right) -->
+  <rect x="218" y="162" width="40" height="22" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="0.9"/>
+  <text x="238" y="175" font-size="6" text-anchor="middle" fill="#2E7D32">Fate</text>
+  <text x="238" y="182" font-size="6" text-anchor="middle" fill="#2E7D32">5-class</text>
+
+  <rect x="218" y="190" width="40" height="22" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="0.9"/>
+  <text x="238" y="203" font-size="6" text-anchor="middle" fill="#2E7D32">Δgene</text>
+  <text x="238" y="210" font-size="6" text-anchor="middle" fill="#2E7D32">expr.</text>
+
+  <rect x="218" y="218" width="40" height="22" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="0.9"/>
+  <text x="238" y="231" font-size="6" text-anchor="middle" fill="#2E7D32">Pathway</text>
+  <text x="238" y="238" font-size="6" text-anchor="middle" fill="#2E7D32">×12</text>
+
+  <!-- model performance note -->
+  <text x="136" y="268" font-size="7.5" text-anchor="middle" fill="#222" font-weight="600">MultiScaleVIC model</text>
+  <text x="136" y="280" font-size="7" text-anchor="middle" fill="#555">Train: 2 viruses × 2 cells × t=0–12h</text>
+  <text x="136" y="291" font-size="7" text-anchor="middle" fill="#555">Test (blind): t=24h predictions</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL B — Cross-Validation Performance
+       x: 272–505, y: 28–285
+  ════════════════════════════════════════════ -->
+
+  <text x="388" y="36" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">Fate Prediction Performance (5-fold CV)</text>
+
+  <!-- Confusion matrix (3×3 showing 3 main fates: Healthy/HFRS/HPS) -->
+  <!-- 30px per cell, starting x=295, y=50 -->
+  <text x="295" y="58" font-size="7" text-anchor="middle" fill="#555">Pred →</text>
+  <text x="340" y="58" font-size="7" text-anchor="middle" fill="#1565C0">HFRS</text>
+  <text x="375" y="58" font-size="7" text-anchor="middle" fill="#C62828">HPS</text>
+  <text x="410" y="58" font-size="7" text-anchor="middle" fill="#555">Health</text>
+
+  <text x="280" y="78" font-size="7" text-anchor="end" fill="#1565C0">HFRS</text>
+  <text x="280" y="108" font-size="7" text-anchor="end" fill="#C62828">HPS</text>
+  <text x="280" y="138" font-size="7" text-anchor="end" fill="#555">Health</text>
+
+  <!-- row HFRS -->
+  <rect x="295" y="65" width="35" height="25" fill="#1565C0" opacity="0.85" rx="2"/>
+  <text x="313" y="80" font-size="8" text-anchor="middle" fill="#fff" font-weight="700">87</text>
+  <rect x="335" y="65" width="35" height="25" fill="#1565C0" opacity="0.07" rx="2"/>
+  <text x="353" y="80" font-size="8" text-anchor="middle" fill="#555">5</text>
+  <rect x="375" y="65" width="35" height="25" fill="#1565C0" opacity="0.05" rx="2"/>
+  <text x="393" y="80" font-size="8" text-anchor="middle" fill="#555">8</text>
+
+  <!-- row HPS -->
+  <rect x="295" y="93" width="35" height="25" fill="#C62828" opacity="0.07" rx="2"/>
+  <text x="313" y="108" font-size="8" text-anchor="middle" fill="#555">4</text>
+  <rect x="335" y="93" width="35" height="25" fill="#C62828" opacity="0.85" rx="2"/>
+  <text x="353" y="108" font-size="8" text-anchor="middle" fill="#fff" font-weight="700">89</text>
+  <rect x="375" y="93" width="35" height="25" fill="#C62828" opacity="0.05" rx="2"/>
+  <text x="393" y="108" font-size="8" text-anchor="middle" fill="#555">7</text>
+
+  <!-- row Healthy -->
+  <rect x="295" y="121" width="35" height="25" fill="#9e9e9e" opacity="0.05" rx="2"/>
+  <text x="313" y="136" font-size="8" text-anchor="middle" fill="#555">3</text>
+  <rect x="335" y="121" width="35" height="25" fill="#9e9e9e" opacity="0.05" rx="2"/>
+  <text x="353" y="136" font-size="8" text-anchor="middle" fill="#555">4</text>
+  <rect x="375" y="121" width="35" height="25" fill="#9e9e9e" opacity="0.85" rx="2"/>
+  <text x="393" y="136" font-size="8" text-anchor="middle" fill="#fff" font-weight="700">93</text>
+
+  <!-- confusion matrix box -->
+  <rect x="295" y="65" width="115" height="81" fill="none" stroke="#ccc" stroke-width="0.8" rx="2"/>
+  <text x="295" y="162" font-size="7" text-anchor="start" fill="#555">Values = % correct per class</text>
+
+  <!-- AUC scores -->
+  <text x="440" y="70" font-size="7.5" fill="#1565C0" font-weight="700">AUC:</text>
+  <text x="440" y="85" font-size="7.5" fill="#1565C0">HFRS: 0.91</text>
+  <text x="440" y="100" font-size="7.5" fill="#C62828">HPS: 0.93</text>
+  <text x="440" y="115" font-size="7.5" fill="#555">Healthy: 0.96</text>
+
+  <text x="440" y="135" font-size="7.5" fill="#333" font-weight="700">Overall:</text>
+  <text x="440" y="150" font-size="8" fill="#2E7D32" font-weight="700">Bal.Acc: 0.90</text>
+  <text x="440" y="165" font-size="7.5" fill="#333">F1: 0.89</text>
+  <text x="440" y="180" font-size="7.5" fill="#333">MCC: 0.86</text>
+
+  <!-- Δgene RMSE bar comparison -->
+  <text x="350" y="200" font-size="7.5" text-anchor="middle" fill="#222" font-weight="600">Gene Expression Prediction (RMSE)</text>
+
+  <!-- bars: MS-VIC vs Baseline (scGPT alone) -->
+  <text x="290" y="220" font-size="7" text-anchor="end" fill="#555">MS-VIC</text>
+  <rect x="295" y="212" width="87" height="12" fill="#2E7D32" rx="1.5"/>
+  <text x="385" y="222" font-size="7.5" fill="#2E7D32">0.31</text>
+
+  <text x="290" y="242" font-size="7" text-anchor="end" fill="#555">scGPT only</text>
+  <rect x="295" y="234" width="128" height="12" fill="#9e9e9e" rx="1.5"/>
+  <text x="426" y="244" font-size="7.5" fill="#555">0.46</text>
+
+  <text x="290" y="264" font-size="7" text-anchor="end" fill="#555">Linear</text>
+  <rect x="295" y="256" width="175" height="12" fill="#bdbdbd" rx="1.5"/>
+  <text x="473" y="266" font-size="7.5" fill="#555">0.63</text>
+
+  <!-- subtitle -->
+  <text x="388" y="285" font-size="8" text-anchor="middle" fill="#555">5-fold CV on held-out timepoints (n=720 cells/fold)</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL C — Blind Test: Predicted vs Observed
+       x: 515–790, y: 28–285
+  ════════════════════════════════════════════ -->
+
+  <text x="652" y="36" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">Pre-Registered Blind Test (t=24h)</text>
+
+  <!-- Scatter plot: predicted vs observed gene expression -->
+  <line x1="535" y1="48" x2="535" y2="210" stroke="#555" stroke-width="0.9"/>
+  <line x1="535" y1="210" x2="785" y2="210" stroke="#555" stroke-width="0.9"/>
+
+  <!-- axis labels -->
+  <text x="518" y="130" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,518,130)">Observed log₂ expr.</text>
+  <text x="660" y="224" font-size="7.5" text-anchor="middle" fill="#333">Predicted log₂ expr.</text>
+
+  <!-- axis ticks -->
+  <text x="529" y="213" font-size="7" text-anchor="end" fill="#444">-2</text>
+  <text x="529" y="180" font-size="7" text-anchor="end" fill="#444">0</text>
+  <text x="529" y="147" font-size="7" text-anchor="end" fill="#444">2</text>
+  <text x="529" y="114" font-size="7" text-anchor="end" fill="#444">4</text>
+  <text x="529" y="81" font-size="7" text-anchor="end" fill="#444">6</text>
+  <text x="529" y="48" font-size="7" text-anchor="end" fill="#444">8</text>
+
+  <text x="550" y="222" font-size="7" text-anchor="middle" fill="#444">-2</text>
+  <text x="600" y="222" font-size="7" text-anchor="middle" fill="#444">0</text>
+  <text x="650" y="222" font-size="7" text-anchor="middle" fill="#444">2</text>
+  <text x="700" y="222" font-size="7" text-anchor="middle" fill="#444">4</text>
+  <text x="750" y="222" font-size="7" text-anchor="middle" fill="#444">6</text>
+
+  <!-- grid -->
+  <line x1="535" y1="180" x2="785" y2="180" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="535" y1="147" x2="785" y2="147" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="535" y1="114" x2="785" y2="114" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="535" y1="81" x2="785" y2="81" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="600" y1="48" x2="600" y2="210" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="650" y1="48" x2="650" y2="210" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="700" y1="48" x2="700" y2="210" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- diagonal y=x reference line -->
+  <!-- x=-2→535+0=535, y=210. x=8→535+250=785, y=210-250=neg, clip at frame -->
+  <!-- scale: each unit = 33px on both axes (x and y) -->
+  <!-- x_px = 535 + (pred+2)*33, y_px = 210 - (obs+2)*33 -->
+  <!-- line from (-2,-2) → (6,6): px (535,210) → (799,clipped) use (785,188) -->
+  <line x1="535" y1="210" x2="785" y2="44" stroke="#888" stroke-width="0.9" stroke-dasharray="4,2" opacity="0.5"/>
+
+  <!-- HTNV scatter points (blue) - good correlation -->
+  <circle cx="555" cy="192" r="2.5" fill="#1565C0" opacity="0.6"/>
+  <circle cx="568" cy="185" r="2.5" fill="#1565C0" opacity="0.6"/>
+  <circle cx="580" cy="175" r="2.5" fill="#1565C0" opacity="0.6"/>
+  <circle cx="595" cy="162" r="2.5" fill="#1565C0" opacity="0.6"/>
+  <circle cx="610" cy="148" r="2.5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="628" cy="133" r="2.5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="645" cy="118" r="2.5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="660" cy="105" r="2.5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="675" cy="92" r="2.5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="695" cy="78" r="2.5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="710" cy="66" r="2.5" fill="#1565C0" opacity="0.7"/>
+  <circle cx="730" cy="54" r="2.5" fill="#1565C0" opacity="0.7"/>
+
+  <!-- ANDV scatter points (red) -->
+  <circle cx="552" cy="194" r="2.5" fill="#C62828" opacity="0.6"/>
+  <circle cx="565" cy="183" r="2.5" fill="#C62828" opacity="0.6"/>
+  <circle cx="578" cy="170" r="2.5" fill="#C62828" opacity="0.6"/>
+  <circle cx="594" cy="156" r="2.5" fill="#C62828" opacity="0.6"/>
+  <circle cx="612" cy="140" r="2.5" fill="#C62828" opacity="0.7"/>
+  <circle cx="630" cy="125" r="2.5" fill="#C62828" opacity="0.7"/>
+  <circle cx="648" cy="110" r="2.5" fill="#C62828" opacity="0.7"/>
+  <circle cx="665" cy="96" r="2.5" fill="#C62828" opacity="0.7"/>
+  <circle cx="682" cy="83" r="2.5" fill="#C62828" opacity="0.7"/>
+  <circle cx="700" cy="70" r="2.5" fill="#C62828" opacity="0.7"/>
+  <circle cx="718" cy="58" r="2.5" fill="#C62828" opacity="0.7"/>
+
+  <!-- r² annotation -->
+  <text x="680" y="175" font-size="8" fill="#1565C0" font-weight="700">r²=0.87</text>
+  <text x="680" y="190" font-size="7.5" fill="#1565C0">(HTNV)</text>
+  <text x="595" y="80" font-size="8" fill="#C62828" font-weight="700">r²=0.84</text>
+  <text x="595" y="95" font-size="7.5" fill="#C62828">(ANDV)</text>
+
+  <!-- n genes -->
+  <text x="784" y="54" font-size="7" text-anchor="end" fill="#555">n=1,847 DEGs</text>
+
+  <!-- annotation box for pre-registration -->
+  <rect x="535" y="228" width="250" height="30" rx="4" fill="#E8F5E9" stroke="#2E7D32" stroke-width="0.9"/>
+  <text x="660" y="241" font-size="7.5" text-anchor="middle" fill="#2E7D32" font-weight="700">Pre-registered blind test (OSF.io)</text>
+  <text x="660" y="253" font-size="7" text-anchor="middle" fill="#555">Gc point mutations predicted before synthesis</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL D — Perturbation Prediction
+       x: 12–400, y: 305–530
+  ════════════════════════════════════════════ -->
+
+  <text x="205" y="316" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">In Silico Perturbation — Inhibitor Response</text>
+
+  <!-- bar chart: 5 conditions, predicted vs observed log2FC in TEER -->
+  <line x1="38" y1="328" x2="38" y2="480" stroke="#555" stroke-width="0.9"/>
+  <line x1="38" y1="480" x2="390" y2="480" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: -1.5 to +0.5 log2FC TEER -->
+  <text x="32" y="483" font-size="7" text-anchor="end" fill="#444">-1.5</text>
+  <line x1="34" y1="480" x2="38" y2="480" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="451" font-size="7" text-anchor="end" fill="#444">-1.0</text>
+  <line x1="34" y1="448" x2="38" y2="448" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="421" font-size="7" text-anchor="end" fill="#444">-0.5</text>
+  <line x1="34" y1="418" x2="38" y2="418" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="391" font-size="7" text-anchor="end" fill="#444">0.0</text>
+  <line x1="34" y1="388" x2="38" y2="388" stroke="#555" stroke-width="0.8"/>
+  <text x="32" y="361" font-size="7" text-anchor="end" fill="#444">+0.5</text>
+  <line x1="34" y1="358" x2="38" y2="358" stroke="#555" stroke-width="0.8"/>
+
+  <!-- grid -->
+  <line x1="38" y1="388" x2="390" y2="388" stroke="#555" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+  <line x1="38" y1="448" x2="390" y2="448" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="418" x2="390" y2="418" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="38" y1="358" x2="390" y2="358" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- y-axis label -->
+  <text x="18" y="405" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,18,405)">Predicted log₂ TEER change</text>
+
+  <!-- 5 conditions: ANDV, ANDV+Dasa, ANDV+tiro, ANDV+LY, HTNV -->
+  <!-- scale: 0.0=388, each 0.5 unit=30px. pos=up, neg=down -->
+  <!-- ANDV: -1.3 → y=388+1.3*60=466, from 388 to 466+18=484 (clipped at 480) height 92 -->
+  <!-- Group pos centers: 70, 140, 210, 280, 350 -->
+
+  <!-- Predicted bars (darker) -->
+  <rect x="57" y="388" width="16" height="92" fill="#C62828" rx="1.5"/>
+  <!-- Observed bars (lighter + outline) -->
+  <rect x="57" y="388" width="16" height="88" fill="none" stroke="#C62828" stroke-width="1.5" rx="1.5" stroke-dasharray="3,2"/>
+
+  <!-- ANDV+Dasa: predicted ~-0.3 → height 18 (up from 388=0) -->
+  <rect x="125" y="370" width="16" height="18" fill="#C62828" rx="1.5" opacity="0.6"/>
+  <rect x="125" y="368" width="16" height="22" fill="none" stroke="#C62828" stroke-width="1.5" rx="1.5" stroke-dasharray="3,2"/>
+  <text x="133" y="362" font-size="7" text-anchor="middle" fill="#2E7D32">***</text>
+
+  <!-- ANDV+tiro: -1.2 height ~72 -->
+  <rect x="195" y="388" width="16" height="72" fill="#C62828" rx="1.5" opacity="0.7"/>
+  <rect x="195" y="390" width="16" height="68" fill="none" stroke="#C62828" stroke-width="1.5" rx="1.5" stroke-dasharray="3,2"/>
+  <text x="203" y="383" font-size="7" text-anchor="middle" fill="#555">ns</text>
+
+  <!-- ANDV+LY: -1.1 height ~66 -->
+  <rect x="265" y="388" width="16" height="66" fill="#C62828" rx="1.5" opacity="0.65"/>
+  <rect x="265" y="390" width="16" height="62" fill="none" stroke="#C62828" stroke-width="1.5" rx="1.5" stroke-dasharray="3,2"/>
+  <text x="273" y="383" font-size="7" text-anchor="middle" fill="#555">ns</text>
+
+  <!-- HTNV: -0.2 height ~12 (small drop) -->
+  <rect x="335" y="376" width="16" height="12" fill="#1565C0" rx="1.5"/>
+  <rect x="335" y="374" width="16" height="14" fill="none" stroke="#1565C0" stroke-width="1.5" rx="1.5" stroke-dasharray="3,2"/>
+
+  <!-- x labels -->
+  <text x="65" y="492" font-size="7" text-anchor="middle" fill="#C62828">ANDV</text>
+  <text x="133" y="492" font-size="7" text-anchor="middle" fill="#C62828">+Dasa</text>
+  <text x="203" y="492" font-size="7" text-anchor="middle" fill="#C62828">+tiro</text>
+  <text x="273" y="492" font-size="7" text-anchor="middle" fill="#C62828">+LY</text>
+  <text x="343" y="492" font-size="7" text-anchor="middle" fill="#1565C0">HTNV</text>
+
+  <!-- legend -->
+  <rect x="55" y="502" width="10" height="8" fill="#555" rx="1.5"/>
+  <text x="68" y="510" font-size="7" fill="#555">Predicted</text>
+  <rect x="120" y="502" width="10" height="8" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="2,1" rx="1.5"/>
+  <text x="133" y="510" font-size="7" fill="#555">Observed</text>
+
+  <text x="205" y="528" font-size="7.5" text-anchor="middle" fill="#555">Src inhibitor selectively rescues ANDV-driven barrier loss</text>
+
+  <!-- ════════════════════════════════════════════
+       PANEL E — Cross-Strain Generalization
+       x: 415–790, y: 305–530
+  ════════════════════════════════════════════ -->
+
+  <text x="600" y="316" font-size="8.5" text-anchor="middle" fill="#222" font-weight="700">Cross-Strain Generalization</text>
+
+  <line x1="440" y1="328" x2="440" y2="480" stroke="#555" stroke-width="0.9"/>
+  <line x1="440" y1="480" x2="785" y2="480" stroke="#555" stroke-width="0.9"/>
+
+  <!-- y-axis: balanced accuracy 0.5–1.0 -->
+  <text x="434" y="483" font-size="7" text-anchor="end" fill="#444">0.5</text>
+  <line x1="436" y1="480" x2="440" y2="480" stroke="#555" stroke-width="0.8"/>
+  <text x="434" y="453" font-size="7" text-anchor="end" fill="#444">0.6</text>
+  <line x1="436" y1="450" x2="440" y2="450" stroke="#555" stroke-width="0.8"/>
+  <text x="434" y="423" font-size="7" text-anchor="end" fill="#444">0.7</text>
+  <line x1="436" y1="420" x2="440" y2="420" stroke="#555" stroke-width="0.8"/>
+  <text x="434" y="393" font-size="7" text-anchor="end" fill="#444">0.8</text>
+  <line x1="436" y1="390" x2="440" y2="390" stroke="#555" stroke-width="0.8"/>
+  <text x="434" y="363" font-size="7" text-anchor="end" fill="#444">0.9</text>
+  <line x1="436" y1="360" x2="440" y2="360" stroke="#555" stroke-width="0.8"/>
+  <text x="434" y="333" font-size="7" text-anchor="end" fill="#444">1.0</text>
+  <line x1="436" y1="330" x2="440" y2="330" stroke="#555" stroke-width="0.8"/>
+
+  <!-- grid -->
+  <line x1="440" y1="390" x2="785" y2="390" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="440" y1="420" x2="785" y2="420" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="440" y1="450" x2="785" y2="450" stroke="#eeeeee" stroke-width="0.6"/>
+  <line x1="440" y1="360" x2="785" y2="360" stroke="#eeeeee" stroke-width="0.6"/>
+
+  <!-- y-axis label -->
+  <text x="422" y="405" font-size="7.5" text-anchor="middle" fill="#333" transform="rotate(-90,422,405)">Balanced accuracy</text>
+
+  <!-- chance level at 0.5 = 480 -->
+  <line x1="440" y1="480" x2="785" y2="480" stroke="#E65100" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+  <text x="788" y="482" font-size="6" fill="#E65100">chance</text>
+
+  <!-- 4 scenarios: Train HTNV→Test ANDV, Train ANDV→Test HTNV, Train both→Test SNV, Cross-cell-type -->
+  <!-- scale: 0.5=480, 1.0=330, each 0.1 unit=30px -->
+  <!-- bar heights from y=480 (0.5 baseline): val=0.9→y=480-(0.9-0.5)*300=360, h=120 -->
+
+  <!-- Scenario 1: Train HTNV, Test ANDV (blue→red), acc~0.76→480-0.26*300=402, h=78 -->
+  <rect x="460" y="402" width="28" height="78" fill="url(#g-cross1)" rx="1.5"/>
+  <defs>
+    <linearGradient id="g-cross1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1565C0"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+  </defs>
+  <text x="474" y="396" font-size="7" text-anchor="middle" fill="#555">0.76</text>
+  <text x="474" y="495" font-size="6.5" text-anchor="middle" fill="#555">H→A</text>
+
+  <!-- Scenario 2: Train ANDV, Test HTNV, acc~0.72 →480-0.22*300=414, h=66 -->
+  <rect x="520" y="414" width="28" height="66" fill="url(#g-cross2)" rx="1.5"/>
+  <defs>
+    <linearGradient id="g-cross2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C62828"/>
+      <stop offset="100%" stop-color="#1565C0"/>
+    </linearGradient>
+  </defs>
+  <text x="534" y="408" font-size="7" text-anchor="middle" fill="#555">0.72</text>
+  <text x="534" y="495" font-size="6.5" text-anchor="middle" fill="#555">A→H</text>
+
+  <!-- Scenario 3: Train HTNV+ANDV, Test SNV, acc~0.68 →480-0.18*300=426, h=54 -->
+  <rect x="580" y="426" width="28" height="54" fill="#7B1FA2" rx="1.5" opacity="0.75"/>
+  <text x="594" y="420" font-size="7" text-anchor="middle" fill="#555">0.68</text>
+  <text x="594" y="495" font-size="6.5" text-anchor="middle" fill="#555">→SNV</text>
+
+  <!-- Scenario 4: Cross cell type PMVEC→TEC, acc~0.79 →480-0.29*300=393, h=87 -->
+  <rect x="640" y="393" width="28" height="87" fill="#2E7D32" rx="1.5" opacity="0.8"/>
+  <text x="654" y="387" font-size="7" text-anchor="middle" fill="#555">0.79</text>
+  <text x="654" y="495" font-size="6.5" text-anchor="middle" fill="#555">P→T</text>
+
+  <!-- In-distribution baseline for comparison -->
+  <line x1="440" y1="360" x2="785" y2="360" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="787" y="358" font-size="6" fill="#888">in-dist.</text>
+  <text x="787" y="366" font-size="6" fill="#888">(0.90)</text>
+
+  <!-- x-axis labels full -->
+  <text x="474" y="507" font-size="7" text-anchor="middle" fill="#555">Train HTNV</text>
+  <text x="474" y="516" font-size="7" text-anchor="middle" fill="#555">Test ANDV</text>
+  <text x="534" y="507" font-size="7" text-anchor="middle" fill="#555">Train ANDV</text>
+  <text x="534" y="516" font-size="7" text-anchor="middle" fill="#555">Test HTNV</text>
+  <text x="594" y="507" font-size="7" text-anchor="middle" fill="#555">Zero-shot</text>
+  <text x="594" y="516" font-size="7" text-anchor="middle" fill="#555">to SNV</text>
+  <text x="654" y="507" font-size="7" text-anchor="middle" fill="#555">PMVEC</text>
+  <text x="654" y="516" font-size="7" text-anchor="middle" fill="#555">→ TEC</text>
+
+  <!-- ── figure caption line ── -->
+  <line x1="12" y1="533" x2="788" y2="533" stroke="#cccccc" stroke-width="0.6"/>
+  <text x="12" y="539" font-size="6.5" fill="#888">Fig. 5 | MultiScaleVIC model performance. A, Architecture. B, 5-fold cross-validation. C, Pre-registered blind test (predicted vs observed). D, Perturbation prediction (inhibitor rescue). E, Cross-strain generalization.</text>
+</svg>

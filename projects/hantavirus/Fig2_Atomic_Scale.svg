@@ -1,0 +1,426 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif">
+  <rect width="800" height="560" fill="#ffffff"/>
+
+  <defs>
+    <!-- Color scale for heatmap: blue → white → red -->
+    <linearGradient id="hm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#1565C0"/>
+      <stop offset="50%"  stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+    <marker id="a1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#555"/>
+    </marker>
+    <marker id="a2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#2E7D32"/>
+    </marker>
+  </defs>
+
+  <!-- Panel labels -->
+  <text x="12"  y="22" font-size="13" font-weight="700" fill="#111">A</text>
+  <text x="275" y="22" font-size="13" font-weight="700" fill="#111">B</text>
+  <text x="545" y="22" font-size="13" font-weight="700" fill="#111">C</text>
+  <text x="12"  y="312" font-size="13" font-weight="700" fill="#111">D</text>
+  <text x="275" y="312" font-size="13" font-weight="700" fill="#111">E</text>
+  <text x="545" y="312" font-size="13" font-weight="700" fill="#111">F</text>
+
+  <!-- ══════════════════════════════════
+       PANEL A — Sequence alignment strip
+       Showing 15-aa region 282–296
+  ══════════════════════════════════ -->
+  <text x="140" y="40" font-size="9" text-anchor="middle" fill="#444">Gc protein alignment · residues 275–300</text>
+
+  <!-- Background row alternating -->
+  <rect x="18" y="50" width="248" height="16" fill="#F5F5F5" rx="2"/>
+  <rect x="18" y="66" width="248" height="16" fill="#FAFAFA" rx="2"/>
+  <rect x="18" y="82" width="248" height="16" fill="#F5F5F5" rx="2"/>
+  <rect x="18" y="98" width="248" height="16" fill="#FAFAFA" rx="2"/>
+
+  <!-- Row labels -->
+  <text x="16" y="62" font-size="7" text-anchor="end" fill="#1565C0">HTNV</text>
+  <text x="16" y="78" font-size="7" text-anchor="end" fill="#C62828">ANDV</text>
+  <text x="16" y="94" font-size="7" text-anchor="end" fill="#555">SNV</text>
+  <text x="16" y="110" font-size="7" text-anchor="end" fill="#555">PUUV</text>
+
+  <!-- Sequence residues (simplified 26-mer, mono-spaced) -->
+  <!-- Highlight box for 15-aa difference region (col 8–22 of 26 = residues 282–296) -->
+  <rect x="85" y="48" width="112" height="72" fill="#FFF9C4" stroke="#F9A825" stroke-width="1" rx="2"/>
+
+  <!-- HTNV sequence row -->
+  <text x="22"  y="62" font-size="6.5" fill="#1565C0" font-family="Courier New,monospace" letter-spacing="1">VAEQVN</text>
+  <text x="85"  y="62" font-size="6.5" fill="#1565C0" font-family="Courier New,monospace" letter-spacing="1" font-weight="700">RKPTDLAV</text>
+  <text x="149" y="62" font-size="6.5" fill="#1565C0" font-family="Courier New,monospace" letter-spacing="1" font-weight="700">FNTGQP</text>
+  <text x="205" y="62" font-size="6.5" fill="#1565C0" font-family="Courier New,monospace" letter-spacing="1">MSLD</text>
+
+  <!-- ANDV sequence row -->
+  <text x="22"  y="78" font-size="6.5" fill="#C62828" font-family="Courier New,monospace" letter-spacing="1">VAEQVN</text>
+  <text x="85"  y="78" font-size="6.5" fill="#C62828" font-family="Courier New,monospace" letter-spacing="1" font-weight="700">QKPADQAT</text>
+  <text x="149" y="78" font-size="6.5" fill="#C62828" font-family="Courier New,monospace" letter-spacing="1" font-weight="700">YNTGQP</text>
+  <text x="205" y="78" font-size="6.5" fill="#C62828" font-family="Courier New,monospace" letter-spacing="1">MSLD</text>
+
+  <!-- SNV sequence row -->
+  <text x="22"  y="94" font-size="6.5" fill="#555" font-family="Courier New,monospace" letter-spacing="1">VAEQVN</text>
+  <text x="85"  y="94" font-size="6.5" fill="#555" font-family="Courier New,monospace" letter-spacing="1">QKPAEQST</text>
+  <text x="149" y="94" font-size="6.5" fill="#555" font-family="Courier New,monospace" letter-spacing="1">FNTGQP</text>
+  <text x="205" y="94" font-size="6.5" fill="#555" font-family="Courier New,monospace" letter-spacing="1">MSLD</text>
+
+  <!-- PUUV sequence row -->
+  <text x="22"  y="110" font-size="6.5" fill="#555" font-family="Courier New,monospace" letter-spacing="1">VAEQVN</text>
+  <text x="85"  y="110" font-size="6.5" fill="#555" font-family="Courier New,monospace" letter-spacing="1">RKPTDLAG</text>
+  <text x="149" y="110" font-size="6.5" fill="#555" font-family="Courier New,monospace" letter-spacing="1">FNTGQP</text>
+  <text x="205" y="110" font-size="6.5" fill="#555" font-family="Courier New,monospace" letter-spacing="1">MSLD</text>
+
+  <!-- conservation dots row -->
+  <text x="85"  y="126" font-size="6.5" fill="#E65100" font-family="Courier New,monospace" letter-spacing="1" font-weight="700">☆☆☆  ● ☆ ☆ ☆</text>
+  <text x="149" y="126" font-size="6.5" fill="#E65100" font-family="Courier New,monospace" letter-spacing="1" font-weight="700">☆●●●●●</text>
+
+  <!-- annotation -->
+  <text x="131" y="142" font-size="7" text-anchor="middle" fill="#F57F17" font-weight="600">15-aa divergence region · Domain I/II junction</text>
+  <text x="60"  y="142" font-size="7" text-anchor="middle" fill="#555">conserved</text>
+  <text x="222" y="142" font-size="7" text-anchor="middle" fill="#555">conserved</text>
+
+  <!-- position numbers -->
+  <text x="85"  y="157" font-size="6.5" fill="#888">282</text>
+  <text x="193" y="157" font-size="6.5" fill="#888">296</text>
+  <line x1="85" y1="149" x2="197" y2="149" stroke="#F9A825" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- ══════════════════════════════════
+       PANEL B — Structural schematic of Gc–β3 complex
+  ══════════════════════════════════ -->
+  <text x="400" y="40" font-size="9" text-anchor="middle" fill="#444">Gc–β3 integrin complex (AlphaFold3 + MD equilibration)</text>
+
+  <!-- β3 integrin body (large shape) -->
+  <ellipse cx="400" cy="120" rx="52" ry="68" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="400" y="90" font-size="8" text-anchor="middle" fill="#2E7D32" font-weight="700">β3 Integrin</text>
+
+  <!-- Integrin domains -->
+  <ellipse cx="400" cy="108" rx="20" ry="14" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="400" y="112" font-size="6.5" text-anchor="middle" fill="#2E7D32">βA domain</text>
+  <!-- PSI domain -->
+  <ellipse cx="430" cy="155" rx="12" ry="9" fill="#A5D6A7" stroke="#2E7D32" stroke-width="0.8"/>
+  <text x="430" y="158" font-size="6" text-anchor="middle" fill="#2E7D32">PSI</text>
+  <!-- EGF domain (conformational change site) -->
+  <ellipse cx="370" cy="155" rx="12" ry="9" fill="#A5D6A7" stroke="#2E7D32" stroke-width="0.8"/>
+  <text x="370" y="158" font-size="6" text-anchor="middle" fill="#2E7D32">EGF</text>
+
+  <!-- HTNV Gc (left) -->
+  <rect x="298" y="62" width="62" height="40" rx="6" fill="#BBDEFB" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="329" y="78" font-size="8" text-anchor="middle" fill="#1565C0" font-weight="700">HTNV Gc</text>
+  <text x="329" y="90" font-size="6.5" text-anchor="middle" fill="#1565C0">D I/II junction</text>
+
+  <!-- ANDV Gc (right) -->
+  <rect x="447" y="62" width="62" height="40" rx="6" fill="#FFCDD2" stroke="#C62828" stroke-width="1.5"/>
+  <text x="478" y="78" font-size="8" text-anchor="middle" fill="#C62828" font-weight="700">ANDV Gc</text>
+  <text x="478" y="90" font-size="6.5" text-anchor="middle" fill="#C62828">D I/II junction</text>
+
+  <!-- HTNV binding arrow → extended-open -->
+  <path d="M360,99 Q380,99 390,100" fill="none" stroke="#1565C0" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="372" y="95" font-size="6.5" text-anchor="middle" fill="#1565C0">high ΔG</text>
+
+  <!-- ANDV binding arrow → bent-closed -->
+  <path d="M447,99 Q428,99 412,101" fill="none" stroke="#C62828" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#a1)"/>
+  <text x="435" y="95" font-size="6.5" text-anchor="middle" fill="#C62828">low ΔG</text>
+
+  <!-- Conformation outcome labels -->
+  <rect x="320" y="192" width="72" height="28" rx="4" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="356" y="204" font-size="7.5" text-anchor="middle" fill="#1565C0" font-weight="700">Extended-open</text>
+  <text x="356" y="215" font-size="6.5" text-anchor="middle" fill="#1565C0">High affinity</text>
+  <!-- arrow from β3 to outcome -->
+  <line x1="376" y1="188" x2="362" y2="192" stroke="#1565C0" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <rect x="418" y="192" width="72" height="28" rx="4" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="454" y="204" font-size="7.5" text-anchor="middle" fill="#C62828" font-weight="700">Bent-closed</text>
+  <text x="454" y="215" font-size="6.5" text-anchor="middle" fill="#C62828">Intermediate</text>
+  <line x1="424" y1="188" x2="446" y2="192" stroke="#C62828" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <text x="400" y="237" font-size="7.5" text-anchor="middle" fill="#555">Same receptor, two activation modes → divergent signaling</text>
+
+  <!-- ══════════════════════════════════
+       PANEL C — ΔG bar chart
+  ══════════════════════════════════ -->
+  <text x="668" y="40" font-size="9" text-anchor="middle" fill="#444">Binding free energy (MM-GBSA)</text>
+
+  <!-- axes -->
+  <line x1="568" y1="60" x2="568" y2="195" stroke="#555" stroke-width="0.9"/>
+  <line x1="568" y1="195" x2="780" y2="195" stroke="#555" stroke-width="0.9"/>
+  <!-- y-axis: 0 to -16 kcal/mol, inverted (bar goes down from y=195) -->
+  <!-- Scale: 16 kcal/mol → 130px → 8.125px per kcal/mol -->
+  <text x="562" y="198" font-size="7" text-anchor="end">0</text>
+  <line x1="564" y1="169" x2="568" y2="169" stroke="#555" stroke-width="0.8"/>
+  <text x="562" y="172" font-size="7" text-anchor="end">-4</text>
+  <line x1="564" y1="144" x2="568" y2="144" stroke="#555" stroke-width="0.8"/>
+  <text x="562" y="147" font-size="7" text-anchor="end">-8</text>
+  <line x1="564" y1="119" x2="568" y2="119" stroke="#555" stroke-width="0.8"/>
+  <text x="562" y="122" font-size="7" text-anchor="end">-12</text>
+  <line x1="564" y1="94" x2="568" y2="94" stroke="#555" stroke-width="0.8"/>
+  <text x="562" y="97" font-size="7" text-anchor="end">-16</text>
+  <!-- grid -->
+  <line x1="568" y1="169" x2="780" y2="169" stroke="#eee" stroke-width="0.7"/>
+  <line x1="568" y1="144" x2="780" y2="144" stroke="#eee" stroke-width="0.7"/>
+  <line x1="568" y1="119" x2="780" y2="119" stroke="#eee" stroke-width="0.7"/>
+  <line x1="568" y1="94"  x2="780" y2="94"  stroke="#eee" stroke-width="0.7"/>
+  <!-- y-axis label -->
+  <text x="549" y="127" font-size="8" text-anchor="middle" transform="rotate(-90,549,127)" fill="#333">ΔG_bind (kcal/mol)</text>
+
+  <!-- HTNV bar: -12.3 → height = 12.3 × 8.125 = 99.9 → top at 195-99.9 = 95.1 -->
+  <rect x="600" y="95" width="40" height="100" fill="#1565C0" rx="2"/>
+  <!-- error bar: ±1.2 → 1.2×8.125 = 9.75 -->
+  <line x1="620" y1="85" x2="620" y2="105" stroke="#0d3c7a" stroke-width="1.5"/>
+  <line x1="615" y1="85" x2="625" y2="85" stroke="#0d3c7a" stroke-width="1.2"/>
+  <line x1="615" y1="105" x2="625" y2="105" stroke="#0d3c7a" stroke-width="1.2"/>
+  <text x="620" y="212" font-size="8" text-anchor="middle" fill="#1565C0">HTNV</text>
+  <text x="620" y="222" font-size="7" text-anchor="middle" fill="#1565C0">−12.3±1.2</text>
+
+  <!-- ANDV bar: -8.7 → height = 70.7 → top at 124.3 -->
+  <rect x="680" y="124" width="40" height="71" fill="#C62828" rx="2"/>
+  <!-- error bar: ±0.9 → 7.3 -->
+  <line x1="700" y1="117" x2="700" y2="131" stroke="#7b1717" stroke-width="1.5"/>
+  <line x1="695" y1="117" x2="705" y2="117" stroke="#7b1717" stroke-width="1.2"/>
+  <line x1="695" y1="131" x2="705" y2="131" stroke="#7b1717" stroke-width="1.2"/>
+  <text x="700" y="212" font-size="8" text-anchor="middle" fill="#C62828">ANDV</text>
+  <text x="700" y="222" font-size="7" text-anchor="middle" fill="#C62828">−8.7±0.9</text>
+
+  <!-- significance bracket -->
+  <line x1="620" y1="82" x2="700" y2="82" stroke="#555" stroke-width="0.9"/>
+  <line x1="620" y1="79" x2="620" y2="85" stroke="#555" stroke-width="0.9"/>
+  <line x1="700" y1="79" x2="700" y2="85" stroke="#555" stroke-width="0.9"/>
+  <text x="660" y="79" font-size="8" text-anchor="middle" fill="#333">** ΔΔG = 3.6 kcal/mol</text>
+
+  <text x="668" y="240" font-size="7.5" text-anchor="middle" fill="#555">HTNV binds β3 integrin ~3.6 kcal/mol more strongly</text>
+  <text x="668" y="252" font-size="7.5" text-anchor="middle" fill="#555">→ higher-affinity → extended-open conformation</text>
+
+  <!-- ══════════════════════════════════
+       PANEL D — Per-residue energy heatmap
+  ══════════════════════════════════ -->
+  <text x="140" y="330" font-size="9" text-anchor="middle" fill="#444">Per-residue energy decomposition (Gc binding interface)</text>
+
+  <!-- Heatmap: 15 residues (282–296) × 2 rows (HTNV, ANDV) -->
+  <!-- Each cell: 14px wide, 20px high -->
+  <!-- HTNV values (kcal/mol): -->
+  <!-- R282:-3.1, K283:-2.8, P284:-0.3, T285:-1.8, D286:-2.4, L287:-1.5, A288:-0.8, V289:-3.2, F290:-1.9, N291:-0.6, T292:-0.4, G293:-0.2, Q294:-1.1, P295:-0.5, residue 296: -2.7 -->
+  <!-- ANDV values: Q282:-1.2, K283:-2.6, P284:-0.3, A285:-0.8, D286:-1.4, Q287:-0.7, A288:-0.4, T289:-0.9, Y290:-1.8, N291:-0.5, T292:-0.4, G293:-0.2, Q294:-1.0, P295:-0.5, residue 296:-0.9 -->
+
+  <!-- color function: value 0→white, -4→deep blue -->
+  <!-- I'll manually map each value to a blue shade -->
+
+  <!-- Row labels -->
+  <text x="26" y="364" font-size="7.5" text-anchor="end" fill="#1565C0">HTNV</text>
+  <text x="26" y="386" font-size="7.5" text-anchor="end" fill="#C62828">ANDV</text>
+
+  <!-- Residue numbers -->
+  <text x="34"  y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,34,403)">282</text>
+  <text x="48"  y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,48,403)">283</text>
+  <text x="62"  y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,62,403)">284</text>
+  <text x="76"  y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,76,403)">285</text>
+  <text x="90"  y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,90,403)">286</text>
+  <text x="104" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,104,403)">287</text>
+  <text x="118" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,118,403)">288</text>
+  <text x="132" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,132,403)">289</text>
+  <text x="146" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,146,403)">290</text>
+  <text x="160" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,160,403)">291</text>
+  <text x="174" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,174,403)">292</text>
+  <text x="188" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,188,403)">293</text>
+  <text x="202" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,202,403)">294</text>
+  <text x="216" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,216,403)">295</text>
+  <text x="230" y="403" font-size="6" text-anchor="middle" fill="#666" transform="rotate(-45,230,403)">296</text>
+
+  <!-- HTNV row cells (y=345–365) -->
+  <!-- opacity encodes energy: 0→white, -3.2→full blue -->
+  <rect x="27" y="345" width="14" height="18" fill="#1565C0" opacity="0.78" rx="1"/> <!-- -3.1 -->
+  <rect x="41" y="345" width="14" height="18" fill="#1565C0" opacity="0.70" rx="1"/> <!-- -2.8 -->
+  <rect x="55" y="345" width="14" height="18" fill="#1565C0" opacity="0.08" rx="1"/> <!-- -0.3 -->
+  <rect x="69" y="345" width="14" height="18" fill="#1565C0" opacity="0.45" rx="1"/> <!-- -1.8 -->
+  <rect x="83" y="345" width="14" height="18" fill="#1565C0" opacity="0.60" rx="1"/> <!-- -2.4 -->
+  <rect x="97" y="345" width="14" height="18" fill="#1565C0" opacity="0.38" rx="1"/> <!-- -1.5 -->
+  <rect x="111" y="345" width="14" height="18" fill="#1565C0" opacity="0.20" rx="1"/> <!-- -0.8 -->
+  <rect x="125" y="345" width="14" height="18" fill="#1565C0" opacity="0.80" rx="1"/> <!-- -3.2 hot spot -->
+  <rect x="139" y="345" width="14" height="18" fill="#1565C0" opacity="0.48" rx="1"/> <!-- -1.9 -->
+  <rect x="153" y="345" width="14" height="18" fill="#1565C0" opacity="0.15" rx="1"/> <!-- -0.6 -->
+  <rect x="167" y="345" width="14" height="18" fill="#1565C0" opacity="0.10" rx="1"/> <!-- -0.4 -->
+  <rect x="181" y="345" width="14" height="18" fill="#1565C0" opacity="0.05" rx="1"/> <!-- -0.2 -->
+  <rect x="195" y="345" width="14" height="18" fill="#1565C0" opacity="0.28" rx="1"/> <!-- -1.1 -->
+  <rect x="209" y="345" width="14" height="18" fill="#1565C0" opacity="0.13" rx="1"/> <!-- -0.5 -->
+  <rect x="223" y="345" width="14" height="18" fill="#1565C0" opacity="0.68" rx="1"/> <!-- -2.7 -->
+
+  <!-- ANDV row cells (y=365–385) -->
+  <rect x="27" y="365" width="14" height="18" fill="#1565C0" opacity="0.30" rx="1"/> <!-- -1.2 -->
+  <rect x="41" y="365" width="14" height="18" fill="#1565C0" opacity="0.65" rx="1"/> <!-- -2.6 -->
+  <rect x="55" y="365" width="14" height="18" fill="#1565C0" opacity="0.08" rx="1"/> <!-- -0.3 -->
+  <rect x="69" y="365" width="14" height="18" fill="#1565C0" opacity="0.20" rx="1"/> <!-- -0.8 -->
+  <rect x="83" y="365" width="14" height="18" fill="#1565C0" opacity="0.35" rx="1"/> <!-- -1.4 -->
+  <rect x="97" y="365" width="14" height="18" fill="#1565C0" opacity="0.18" rx="1"/> <!-- -0.7 -->
+  <rect x="111" y="365" width="14" height="18" fill="#1565C0" opacity="0.10" rx="1"/> <!-- -0.4 -->
+  <rect x="125" y="365" width="14" height="18" fill="#1565C0" opacity="0.23" rx="1"/> <!-- -0.9 -->
+  <rect x="139" y="365" width="14" height="18" fill="#1565C0" opacity="0.45" rx="1"/> <!-- -1.8 -->
+  <rect x="153" y="365" width="14" height="18" fill="#1565C0" opacity="0.13" rx="1"/> <!-- -0.5 -->
+  <rect x="167" y="365" width="14" height="18" fill="#1565C0" opacity="0.10" rx="1"/> <!-- -0.4 -->
+  <rect x="181" y="365" width="14" height="18" fill="#1565C0" opacity="0.05" rx="1"/> <!-- -0.2 -->
+  <rect x="195" y="365" width="14" height="18" fill="#1565C0" opacity="0.25" rx="1"/> <!-- -1.0 -->
+  <rect x="209" y="365" width="14" height="18" fill="#1565C0" opacity="0.13" rx="1"/> <!-- -0.5 -->
+  <rect x="223" y="365" width="14" height="18" fill="#1565C0" opacity="0.23" rx="1"/> <!-- -0.9 -->
+
+  <!-- hotspot star markers for HTNV -->
+  <text x="34"  y="360" font-size="6.5" text-anchor="middle" fill="white" font-weight="700">★</text>
+  <text x="132" y="360" font-size="6.5" text-anchor="middle" fill="white" font-weight="700">★</text>
+  <text x="230" y="360" font-size="6.5" text-anchor="middle" fill="white" font-weight="700">★</text>
+
+  <!-- delta row (difference line) -->
+  <text x="28" y="420" font-size="7" fill="#555">HTNV − ANDV:</text>
+  <!-- bar chart inline showing ΔE per residue -->
+  <rect x="27"  y="422" width="14" height="12" fill="#E65100" opacity="0.65" rx="1"/>
+  <rect x="41"  y="422" width="14" height="5"  fill="#E65100" opacity="0.15" rx="1"/>
+  <rect x="55"  y="422" width="14" height="1"  fill="#E65100" opacity="0.05" rx="1"/>
+  <rect x="69"  y="422" width="14" height="10" fill="#E65100" opacity="0.55" rx="1"/>
+  <rect x="83"  y="422" width="14" height="7"  fill="#E65100" opacity="0.35" rx="1"/>
+  <rect x="97"  y="422" width="14" height="6"  fill="#E65100" opacity="0.30" rx="1"/>
+  <rect x="111" y="422" width="14" height="4"  fill="#E65100" opacity="0.20" rx="1"/>
+  <rect x="125" y="422" width="14" height="15" fill="#E65100" opacity="0.80" rx="1"/><!-- biggest difference at 289 -->
+  <rect x="139" y="422" width="14" height="1"  fill="#E65100" opacity="0.05" rx="1"/>
+  <rect x="153" y="422" width="14" height="1"  fill="#E65100" opacity="0.05" rx="1"/>
+  <rect x="223" y="422" width="14" height="13" fill="#E65100" opacity="0.75" rx="1"/>
+
+  <text x="260" y="432" font-size="7" fill="#E65100">Key ΔΔΔE residues: 282, 289, 296</text>
+
+  <!-- legend bar -->
+  <rect x="27" y="445" width="100" height="8" fill="url(#hm)" rx="2"/>
+  <text x="27"  y="460" font-size="6.5" fill="#888">−4 kcal/mol</text>
+  <text x="77"  y="460" font-size="6.5" text-anchor="middle" fill="#888">0</text>
+  <text x="127" y="460" font-size="6.5" text-anchor="end" fill="#888">+4</text>
+
+  <!-- ══════════════════════════════════
+       PANEL E — β3 Integrin Conformational populations (stacked bar)
+  ══════════════════════════════════ -->
+  <text x="400" y="330" font-size="9" text-anchor="middle" fill="#444">β3 Integrin conformational distribution (MD, 500 ns × 3)</text>
+
+  <!-- axis -->
+  <line x1="290" y1="345" x2="290" y2="460" stroke="#555" stroke-width="0.9"/>
+  <line x1="290" y1="460" x2="510" y2="460" stroke="#555" stroke-width="0.9"/>
+  <!-- y: 0–100% → 115px -->
+  <text x="284" y="463" font-size="7" text-anchor="end" fill="#444">0%</text>
+  <line x1="286" y1="432" x2="290" y2="432" stroke="#555" stroke-width="0.8"/>
+  <text x="284" y="435" font-size="7" text-anchor="end" fill="#444">25%</text>
+  <line x1="286" y1="403" x2="290" y2="403" stroke="#555" stroke-width="0.8"/>
+  <text x="284" y="406" font-size="7" text-anchor="end" fill="#444">50%</text>
+  <line x1="286" y1="374" x2="290" y2="374" stroke="#555" stroke-width="0.8"/>
+  <text x="284" y="377" font-size="7" text-anchor="end" fill="#444">75%</text>
+  <line x1="286" y1="345" x2="290" y2="345" stroke="#555" stroke-width="0.8"/>
+  <text x="284" y="348" font-size="7" text-anchor="end" fill="#444">100%</text>
+  <!-- grid -->
+  <line x1="290" y1="403" x2="510" y2="403" stroke="#eee" stroke-width="0.7"/>
+  <line x1="290" y1="374" x2="510" y2="374" stroke="#eee" stroke-width="0.7"/>
+  <text x="266" y="403" font-size="8" text-anchor="middle" transform="rotate(-90,266,403)" fill="#333">Conformation population (%)</text>
+
+  <!-- HTNV stacked bar: bent=12%, inter=28%, open=60% (115px total) -->
+  <!-- open = 60% → 69px, from top: 345 to 414 -->
+  <rect x="325" y="345" width="40" height="69" fill="#1565C0" rx="2"/>     <!-- open 60% -->
+  <rect x="325" y="414" width="40" height="32" fill="#90CAF9" rx="1"/>    <!-- inter 28% -->
+  <rect x="325" y="446" width="40" height="14" fill="#BBDEFB" rx="1"/>    <!-- bent 12% -->
+  <text x="345" y="375" font-size="7" text-anchor="middle" fill="white" font-weight="700">60%</text>
+  <text x="345" y="432" font-size="7" text-anchor="middle" fill="#1565C0" font-weight="700">28%</text>
+  <text x="345" y="456" font-size="6.5" text-anchor="middle" fill="#555">12%</text>
+  <text x="345" y="473" font-size="8" text-anchor="middle" fill="#1565C0">HTNV</text>
+
+  <!-- ANDV stacked bar: bent=45%, inter=35%, open=20% -->
+  <!-- open = 20% → 23px, inter = 35% → 40px, bent = 45% → 52px -->
+  <rect x="430" y="345" width="40" height="23" fill="#1565C0" rx="2"/>     <!-- open 20% -->
+  <rect x="430" y="368" width="40" height="40" fill="#EF9A9A" rx="1"/>    <!-- inter 35% -->
+  <rect x="430" y="408" width="40" height="52" fill="#C62828" rx="1"/>    <!-- bent 45% -->
+  <text x="450" y="360" font-size="7" text-anchor="middle" fill="white" font-weight="700">20%</text>
+  <text x="450" y="392" font-size="7" text-anchor="middle" fill="#555" font-weight="700">35%</text>
+  <text x="450" y="437" font-size="7" text-anchor="middle" fill="white" font-weight="700">45%</text>
+  <text x="450" y="473" font-size="8" text-anchor="middle" fill="#C62828">ANDV</text>
+
+  <!-- legend -->
+  <rect x="290" y="480" width="9" height="9" fill="#1565C0"/>
+  <text x="302" y="488" font-size="7" fill="#1565C0">Extended-open (active)</text>
+  <rect x="360" y="480" width="9" height="9" fill="#90CAF9"/>
+  <text x="372" y="488" font-size="7" fill="#555">Intermediate</text>
+  <rect x="430" y="480" width="9" height="9" fill="#C62828"/>
+  <text x="442" y="488" font-size="7" fill="#C62828">Bent-closed (inactive)</text>
+
+  <text x="400" y="510" font-size="7.5" text-anchor="middle" fill="#555">HTNV preferentially stabilizes extended-open β3 integrin (p &lt; 0.001)</text>
+
+  <!-- ══════════════════════════════════
+       PANEL F — HDX-MS butterfly plot
+  ══════════════════════════════════ -->
+  <text x="668" y="330" font-size="9" text-anchor="middle" fill="#444">HDX-MS: β3 integrin deuterium exchange (15 min)</text>
+
+  <!-- Axis: horizontal = peptide index 1–12; vertical = ΔD% HTNV on top, ANDV on bottom -->
+  <!-- center line at y = 420 -->
+  <line x1="555" y1="420" x2="785" y2="420" stroke="#555" stroke-width="1.2"/>
+  <line x1="555" y1="345" x2="555" y2="500" stroke="#555" stroke-width="0.9"/>
+  <!-- y ticks -->
+  <text x="549" y="423" font-size="7" text-anchor="end" fill="#444">0</text>
+  <line x1="551" y1="395" x2="555" y2="395" stroke="#555" stroke-width="0.8"/>
+  <text x="549" y="398" font-size="7" text-anchor="end" fill="#444">+30%</text>
+  <line x1="551" y1="370" x2="555" y2="370" stroke="#555" stroke-width="0.8"/>
+  <text x="549" y="373" font-size="7" text-anchor="end" fill="#444">+60%</text>
+  <line x1="551" y1="445" x2="555" y2="445" stroke="#555" stroke-width="0.8"/>
+  <text x="549" y="448" font-size="7" text-anchor="end" fill="#444">−30%</text>
+  <line x1="551" y1="470" x2="555" y2="470" stroke="#555" stroke-width="0.8"/>
+  <text x="549" y="473" font-size="7" text-anchor="end" fill="#444">−60%</text>
+  <!-- grid -->
+  <line x1="555" y1="395" x2="785" y2="395" stroke="#eee" stroke-width="0.7"/>
+  <line x1="555" y1="370" x2="785" y2="370" stroke="#eee" stroke-width="0.7"/>
+  <line x1="555" y1="445" x2="785" y2="445" stroke="#eee" stroke-width="0.7"/>
+  <line x1="555" y1="470" x2="785" y2="470" stroke="#eee" stroke-width="0.7"/>
+  <text x="535" y="380" font-size="7" text-anchor="middle" fill="#1565C0" transform="rotate(-90,535,380)">HTNV Gc (↑ protection)</text>
+  <text x="535" y="460" font-size="7" text-anchor="middle" fill="#C62828" transform="rotate(-90,535,460)">ANDV Gc (↓ exchange)</text>
+
+  <!-- Peptide bars: 12 peptides, each ~17px wide with 2px gap -->
+  <!-- Peptides covering β3 domains: βA (p1-4), hybrid (p5-6), PSI (p7-8), EGF1-4 (p9-12) -->
+  <!-- HTNV: upward bars (protection = less deuterium exchange) -->
+  <!-- Values (% Δ): p1=-5, p2=-8, p3=-52, p4=-48, p5=-12, p6=-10, p7=-45, p8=-40, p9=-18, p10=-14, p11=-8, p12=-6 -->
+  <!-- Bars for HTNV go upward from center (y=420) -->
+  <!-- height = |value|/60*50 -->
+  <rect x="562" y="416" width="15" height="4"  fill="#1565C0" opacity="0.5"/>
+  <rect x="581" y="413" width="15" height="7"  fill="#1565C0" opacity="0.6"/>
+  <rect x="600" y="377" width="15" height="43" fill="#1565C0" opacity="0.9"/>
+  <rect x="619" y="380" width="15" height="40" fill="#1565C0" opacity="0.85"/>
+  <rect x="638" y="410" width="15" height="10" fill="#1565C0" opacity="0.55"/>
+  <rect x="657" y="412" width="15" height="8"  fill="#1565C0" opacity="0.5"/>
+  <rect x="676" y="383" width="15" height="37" fill="#1565C0" opacity="0.87"/>
+  <rect x="695" y="387" width="15" height="33" fill="#1565C0" opacity="0.80"/>
+  <rect x="714" y="405" width="15" height="15" fill="#1565C0" opacity="0.65"/>
+  <rect x="733" y="408" width="15" height="12" fill="#1565C0" opacity="0.60"/>
+  <rect x="752" y="413" width="15" height="7"  fill="#1565C0" opacity="0.55"/>
+  <rect x="771" y="415" width="15" height="5"  fill="#1565C0" opacity="0.45"/>
+
+  <!-- ANDV: downward bars (less protection) -->
+  <!-- Values: p1=+4, p2=+6, p3=+8, p4=+7, p5=+5, p6=+4, p7=+6, p8=+5, p9=+9, p10=+7, p11=+5, p12=+4 -->
+  <rect x="562" y="420" width="15" height="3"  fill="#C62828" opacity="0.5"/>
+  <rect x="581" y="420" width="15" height="5"  fill="#C62828" opacity="0.55"/>
+  <rect x="600" y="420" width="15" height="7"  fill="#C62828" opacity="0.6"/>
+  <rect x="619" y="420" width="15" height="6"  fill="#C62828" opacity="0.58"/>
+  <rect x="638" y="420" width="15" height="4"  fill="#C62828" opacity="0.5"/>
+  <rect x="657" y="420" width="15" height="3"  fill="#C62828" opacity="0.48"/>
+  <rect x="676" y="420" width="15" height="5"  fill="#C62828" opacity="0.55"/>
+  <rect x="695" y="420" width="15" height="4"  fill="#C62828" opacity="0.5"/>
+  <rect x="714" y="420" width="15" height="8"  fill="#C62828" opacity="0.6"/>
+  <rect x="733" y="420" width="15" height="6"  fill="#C62828" opacity="0.55"/>
+  <rect x="752" y="420" width="15" height="4"  fill="#C62828" opacity="0.5"/>
+  <rect x="771" y="420" width="15" height="3"  fill="#C62828" opacity="0.45"/>
+
+  <!-- domain labels below -->
+  <text x="602" y="495" font-size="6.5" text-anchor="middle" fill="#555">βA</text>
+  <text x="648" y="495" font-size="6.5" text-anchor="middle" fill="#555">Hybrid</text>
+  <text x="686" y="495" font-size="6.5" text-anchor="middle" fill="#555">PSI</text>
+  <text x="740" y="495" font-size="6.5" text-anchor="middle" fill="#555">EGF1–4</text>
+  <!-- domain bracket lines -->
+  <line x1="562" y1="490" x2="634" y2="490" stroke="#aaa" stroke-width="0.7"/>
+  <line x1="638" y1="490" x2="672" y2="490" stroke="#aaa" stroke-width="0.7"/>
+  <line x1="676" y1="490" x2="710" y2="490" stroke="#aaa" stroke-width="0.7"/>
+  <line x1="714" y1="490" x2="786" y2="490" stroke="#aaa" stroke-width="0.7"/>
+
+  <!-- key annotation: PSI/EGF = conformational change sites -->
+  <path d="M685,386 L690,378 L720,373" fill="none" stroke="#F57F17" stroke-width="0.9" stroke-dasharray="3,2"/>
+  <text x="722" y="371" font-size="6.5" fill="#F57F17">PSI/EGF: conformational</text>
+  <text x="722" y="380" font-size="6.5" fill="#F57F17">change signature</text>
+
+  <text x="668" y="515" font-size="7.5" text-anchor="middle" fill="#555">HTNV Gc induces greater protection in PSI/EGF domains (p &lt; 0.01)</text>
+  <text x="668" y="527" font-size="7.5" text-anchor="middle" fill="#555">consistent with MD-predicted extended-open conformation</text>
+
+  <!-- ── Caption ── -->
+  <line x1="12" y1="548" x2="788" y2="548" stroke="#ccc" stroke-width="0.6"/>
+  <text x="12" y="554" font-size="6.5" fill="#888">Fig. 2 | Atomic-scale divergence of Gc–β3 integrin interaction. A, Sequence alignment highlighting 15-aa divergence region. B, Structural schematic of Gc–β3 complex. C, Binding free energy (MM-GBSA). D, Per-residue energy decomposition. E, β3 integrin conformational populations from 500 ns MD. F, HDX-MS protection map validating MD predictions.</text>
+</svg>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-scale Virtual Infected Cell — Research Framework</title>
+<style>
+  /* ── Design tokens ── */
+  :root {
+    --bg:        #f8f9fb;
+    --white:     #ffffff;
+    --c-md:      #1a6b9a;   /* deep teal-blue  — atom scale  */
+    --c-str:     #2d8a6f;   /* forest green    — structure   */
+    --c-ppi:     #7b5ea7;   /* violet          — network     */
+    --c-tx:      #c7541e;   /* burnt-orange    — transcripto */
+    --c-fate:    #b3292b;   /* crimson         — cell fate   */
+    --c-ai:      #0e6e9e;   /* sky-blue        — AI NNP      */
+    --c-bsl:     #3d7d43;   /* bio-green       — BSL-3       */
+    --arrow:     #94a3b8;
+    --text-node: #ffffff;
+    --text-label:#1e293b;
+    --text-sub:  #64748b;
+    --font:      'Georgia', 'Times New Roman', serif;
+    --font-sans: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 24px;
+    font-family: var(--font-sans);
+  }
+
+  /* ── figure wrapper ── */
+  figure {
+    background: var(--white);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 48px 56px 40px;
+    max-width: 960px;
+    width: 100%;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  }
+
+  figcaption {
+    text-align: center;
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-top: 28px;
+    line-height: 1.6;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+  }
+  figcaption strong { color: var(--text-label); }
+
+  /* ── SVG canvas ── */
+  svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* ── Node styles ── */
+  .node-rect {
+    rx: 10;
+    ry: 10;
+    filter: url(#shadow);
+  }
+
+  .node-label {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    fill: #ffffff;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-size: 13.5px;
+    letter-spacing: .3px;
+  }
+
+  .node-sub {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    fill: rgba(255,255,255,.82);
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-size: 10px;
+    letter-spacing: .1px;
+  }
+
+  /* ── Feedback-arc nodes (bottom) ── */
+  .fb-rect {
+    rx: 8;
+    ry: 8;
+    filter: url(#shadow-sm);
+  }
+  .fb-label {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-size: 11.5px;
+  }
+  .fb-sub {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-size: 9.5px;
+    opacity: .78;
+  }
+
+  /* ── Scale badge ── */
+  .scale-badge {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    fill: rgba(255,255,255,.75);
+    text-anchor: middle;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+  }
+
+  /* ── Animations ── */
+  .node-g { opacity: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes dashDraw {
+    from { stroke-dashoffset: 1; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  .node-g.n1 { animation: fadeUp .55s cubic-bezier(.2,.9,.3,1) .10s both; }
+  .node-g.n2 { animation: fadeUp .55s cubic-bezier(.2,.9,.3,1) .28s both; }
+  .node-g.n3 { animation: fadeUp .55s cubic-bezier(.2,.9,.3,1) .46s both; }
+  .node-g.n4 { animation: fadeUp .55s cubic-bezier(.2,.9,.3,1) .64s both; }
+  .node-g.n5 { animation: fadeUp .55s cubic-bezier(.2,.9,.3,1) .82s both; }
+
+  .arrow-main { opacity: 0; animation: fadeIn .4s ease 1.0s both; }
+
+  .fb-g       { opacity: 0; animation: fadeUp .5s ease 1.2s both; }
+  .fb-arrow   { opacity: 0; animation: fadeIn .4s ease 1.4s both; }
+
+  /* ── Export button ── */
+  #exportBtn {
+    margin-top: 20px;
+    padding: 8px 22px;
+    border: 1.5px solid #94a3b8;
+    border-radius: 6px;
+    background: transparent;
+    font-size: 12px;
+    font-family: var(--font-sans);
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  #exportBtn:hover { border-color: #475569; color: #1e293b; }
+</style>
+</head>
+<body>
+
+<figure>
+  <svg viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" id="diagram">
+    <defs>
+      <!-- drop shadows -->
+      <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000022"/>
+      </filter>
+      <filter id="shadow-sm" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#00000018"/>
+      </filter>
+
+      <!-- gradient fills for each node -->
+      <linearGradient id="g-md"   x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2685be"/>
+        <stop offset="100%" stop-color="#1a5e84"/>
+      </linearGradient>
+      <linearGradient id="g-str"  x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3aab87"/>
+        <stop offset="100%" stop-color="#237860"/>
+      </linearGradient>
+      <linearGradient id="g-ppi"  x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#9b76cc"/>
+        <stop offset="100%" stop-color="#6a4a95"/>
+      </linearGradient>
+      <linearGradient id="g-tx"   x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e06b35"/>
+        <stop offset="100%" stop-color="#b34a18"/>
+      </linearGradient>
+      <linearGradient id="g-fate" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d84040"/>
+        <stop offset="100%" stop-color="#951f22"/>
+      </linearGradient>
+
+      <!-- feedback node fills -->
+      <linearGradient id="g-ai"  x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#1a7ab8"/>
+        <stop offset="100%" stop-color="#0d5a8a"/>
+      </linearGradient>
+      <linearGradient id="g-bsl" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#449850"/>
+        <stop offset="100%" stop-color="#2d6834"/>
+      </linearGradient>
+
+      <!-- main-flow arrow marker -->
+      <marker id="arr-main" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+      </marker>
+      <!-- feedback arrow markers -->
+      <marker id="arr-up" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
+        <path d="M0,8 L4,0 L8,8 z" fill="#1a6b9a"/>
+      </marker>
+      <marker id="arr-bsl" markerWidth="8" markerHeight="8" refX="4" refY="0" orient="auto">
+        <path d="M0,0 L4,8 L8,0 z" fill="#3d7d43"/>
+      </marker>
+      <marker id="arr-loop" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+      </marker>
+    </defs>
+
+    <!-- ══════════════════════════════════
+         SCALE AXIS LABEL (left side)
+    ══════════════════════════════════ -->
+    <text x="8" y="110" fill="#94a3b8" font-size="9" font-family="Helvetica Neue,Arial,sans-serif"
+          transform="rotate(-90,8,110)" text-anchor="middle" letter-spacing=".8"
+          style="opacity:0;animation:fadeIn .4s ease 1.5s both">
+      SCALE  ▲  ATOM → CELL
+    </text>
+
+    <!-- ══════════════════════════════════
+         MAIN FLOW NODES  (y = 60 top of rect, height=100)
+         x-centers: 90, 245, 430, 615, 770
+    ══════════════════════════════════ -->
+
+    <!-- Node 1: MD (原子尺度) -->
+    <g class="node-g n1">
+      <rect class="node-rect" x="28" y="44" width="124" height="100" fill="url(#g-md)"/>
+      <!-- tiny icon: atom rings -->
+      <ellipse cx="90" cy="70" rx="18" ry="7" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
+      <ellipse cx="90" cy="70" rx="18" ry="7" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.2"
+               transform="rotate(60,90,70)"/>
+      <ellipse cx="90" cy="70" rx="18" ry="7" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.2"
+               transform="rotate(120,90,70)"/>
+      <circle cx="90" cy="70" r="3" fill="rgba(255,255,255,.6)"/>
+      <text class="scale-badge" x="90" y="91">原子尺度</text>
+      <text class="node-label" x="90" y="111">MD 模拟</text>
+      <text class="node-sub"   x="90" y="128">Molecular Dynamics</text>
+    </g>
+
+    <!-- Arrow 1→2 -->
+    <g class="arrow-main">
+      <line x1="153" y1="94" x2="181" y2="94" stroke="#94a3b8" stroke-width="1.8"
+            marker-end="url(#arr-main)"/>
+    </g>
+
+    <!-- Node 2: 结构变化预测 -->
+    <g class="node-g n2">
+      <rect class="node-rect" x="183" y="44" width="124" height="100" fill="url(#g-str)"/>
+      <!-- icon: wavy protein -->
+      <path d="M208,72 Q221,62 232,72 Q243,82 256,72 Q269,62 282,72 Q295,82 295,72"
+            fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-linecap="round"/>
+      <text class="scale-badge" x="245" y="91">蛋白尺度</text>
+      <text class="node-label" x="245" y="108">结构变化</text>
+      <text class="node-label" x="245" y="124">预测</text>
+      <text class="node-sub"   x="245" y="138">Structural Prediction</text>
+    </g>
+
+    <!-- Arrow 2→3 -->
+    <g class="arrow-main">
+      <line x1="308" y1="94" x2="335" y2="94" stroke="#94a3b8" stroke-width="1.8"
+            marker-end="url(#arr-main)"/>
+    </g>
+
+    <!-- Node 3: 蛋白互作网络 -->
+    <g class="node-g n3">
+      <rect class="node-rect" x="338" y="44" width="124" height="100" fill="url(#g-ppi)"/>
+      <!-- icon: network nodes -->
+      <circle cx="400" cy="66" r="4.5" fill="rgba(255,255,255,.5)"/>
+      <circle cx="384" cy="80" r="3.5" fill="rgba(255,255,255,.4)"/>
+      <circle cx="416" cy="80" r="3.5" fill="rgba(255,255,255,.4)"/>
+      <circle cx="393" cy="76" r="2.5" fill="rgba(255,255,255,.3)"/>
+      <line x1="400" y1="66" x2="384" y2="80" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
+      <line x1="400" y1="66" x2="416" y2="80" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
+      <line x1="384" y1="80" x2="416" y2="80" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+      <text class="scale-badge" x="400" y="93">分子网络</text>
+      <text class="node-label" x="400" y="110">蛋白互作</text>
+      <text class="node-label" x="400" y="126">网络</text>
+      <text class="node-sub"   x="400" y="140">PPI Network</text>
+    </g>
+
+    <!-- Arrow 3→4 -->
+    <g class="arrow-main">
+      <line x1="463" y1="94" x2="490" y2="94" stroke="#94a3b8" stroke-width="1.8"
+            marker-end="url(#arr-main)"/>
+    </g>
+
+    <!-- Node 4: 细胞转录响应 -->
+    <g class="node-g n4">
+      <rect class="node-rect" x="493" y="44" width="124" height="100" fill="url(#g-tx)"/>
+      <!-- icon: heatmap bars -->
+      <rect x="524" y="60" width="10" height="20" fill="rgba(255,255,255,.5)" rx="2"/>
+      <rect x="538" y="65" width="10" height="15" fill="rgba(255,255,255,.35)" rx="2"/>
+      <rect x="552" y="56" width="10" height="24" fill="rgba(255,255,255,.6)" rx="2"/>
+      <rect x="566" y="62" width="10" height="18" fill="rgba(255,255,255,.4)" rx="2"/>
+      <line x1="520" y1="83" x2="582" y2="83" stroke="rgba(255,255,255,.3)" stroke-width=".8"/>
+      <text class="scale-badge" x="555" y="93">细胞尺度</text>
+      <text class="node-label" x="555" y="110">细胞转录</text>
+      <text class="node-label" x="555" y="126">响应</text>
+      <text class="node-sub"   x="555" y="140">Transcriptomics</text>
+    </g>
+
+    <!-- Arrow 4→5 -->
+    <g class="arrow-main">
+      <line x1="618" y1="94" x2="645" y2="94" stroke="#94a3b8" stroke-width="1.8"
+            marker-end="url(#arr-main)"/>
+    </g>
+
+    <!-- Node 5: 细胞命运 -->
+    <g class="node-g n5">
+      <rect class="node-rect" x="648" y="44" width="124" height="100" fill="url(#g-fate)"/>
+      <!-- icon: cell fate branching -->
+      <line x1="710" y1="62" x2="710" y2="74" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>
+      <line x1="710" y1="74" x2="696" y2="84" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>
+      <line x1="710" y1="74" x2="724" y2="84" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>
+      <circle cx="710" cy="60" r="4" fill="rgba(255,255,255,.55)"/>
+      <circle cx="694" cy="87" r="3" fill="rgba(255,255,255,.4)"/>
+      <circle cx="726" cy="87" r="3" fill="rgba(255,255,255,.4)"/>
+      <text class="scale-badge" x="710" y="101">命运决定</text>
+      <text class="node-label" x="710" y="118">细胞命运</text>
+      <text class="node-sub"   x="710" y="134">Cell Fate</text>
+    </g>
+
+    <!-- ══════════════════════════════════
+         FEEDBACK LOOP — bottom arc
+    ══════════════════════════════════ -->
+
+    <!--
+      Layout:
+        AI NNP box:  x-center=152, y=230, width=170, height=58
+        BSL-3 box:   x-center=708, y=230, width=170, height=58
+
+      Vertical arrows:
+        AI NNP → MD:  from (152, 229) up to (90, 145)  [down-left curve]
+        Cell Fate → BSL-3: from (710, 145) down to (708, 229)
+
+      Horizontal connection (dashed, bottom):
+        from AI NNP right edge to BSL-3 left edge, y=259
+    -->
+
+    <!-- curved path: MD node bottom → AI NNP top -->
+    <g class="fb-arrow">
+      <path d="M 90,145  C 90,190  130,200  152,229"
+            fill="none" stroke="url(#g-ai)" stroke-width="1.8" stroke-dasharray="5,3"
+            marker-end="url(#arr-loop)" opacity=".75"/>
+    </g>
+
+    <!-- curved path: Cell Fate bottom → BSL-3 top -->
+    <g class="fb-arrow">
+      <path d="M 710,145  C 710,190  710,200  710,229"
+            fill="none" stroke="url(#g-bsl)" stroke-width="1.8" stroke-dasharray="5,3"
+            marker-end="url(#arr-loop)" opacity=".75"/>
+    </g>
+
+    <!-- Horizontal dashed bridge at bottom -->
+    <g class="fb-arrow">
+      <line x1="238" y1="259" x2="622" y2="259"
+            stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="6,4" opacity=".45"/>
+    </g>
+
+    <!-- AI NNP box -->
+    <g class="fb-g">
+      <rect class="fb-rect" x="66" y="229" width="172" height="60" fill="url(#g-ai)"/>
+      <text class="fb-label" x="152" y="251" fill="#fff">AI NNP 加速</text>
+      <text class="fb-sub"   x="152" y="268" fill="rgba(255,255,255,.8)">Neural Network Potential</text>
+      <!-- upward arrow label -->
+      <text font-size="8.5" font-family="Helvetica Neue,Arial,sans-serif"
+            fill="#1a6b9a" x="36" y="193" text-anchor="middle" transform="rotate(-70,36,193)"
+            style="opacity:0;animation:fadeIn .4s ease 1.6s both">反馈加速</text>
+    </g>
+
+    <!-- BSL-3 box -->
+    <g class="fb-g">
+      <rect class="fb-rect" x="622" y="229" width="172" height="60" fill="url(#g-bsl)"/>
+      <text class="fb-label" x="708" y="251" fill="#fff">湿实验验证</text>
+      <text class="fb-sub"   x="708" y="268" fill="rgba(255,255,255,.8)">BSL-3 Biosafety Lab</text>
+    </g>
+
+    <!-- ══════════════════════════════════
+         SECTION LABELS between loops
+    ══════════════════════════════════ -->
+    <g style="opacity:0;animation:fadeIn .5s ease 1.7s both">
+      <!-- top bar label -->
+      <rect x="270" y="30" width="180" height="18" rx="4" fill="#f1f5f9"/>
+      <text x="360" y="42" text-anchor="middle" font-size="9.5"
+            font-family="Helvetica Neue,Arial,sans-serif" fill="#64748b" font-weight="600"
+            letter-spacing=".4">
+        多尺度主流程 (Main Pipeline)
+      </text>
+
+      <!-- bottom bar label -->
+      <rect x="270" y="248" width="180" height="18" rx="4" fill="#f1f5f9"/>
+      <text x="360" y="260" text-anchor="middle" font-size="9.5"
+            font-family="Helvetica Neue,Arial,sans-serif" fill="#64748b" font-weight="600"
+            letter-spacing=".4">
+        双向反馈 (Bidirectional Loop)
+      </text>
+    </g>
+
+    <!-- ══════════════════════════════════
+         COLOR LEGEND (bottom right)
+    ══════════════════════════════════ -->
+    <g style="opacity:0;animation:fadeIn .5s ease 1.9s both">
+      <rect x="790" y="44" width="8" height="8" rx="2" fill="url(#g-md)"/>
+      <text x="803" y="51.5" font-size="8.5" font-family="Helvetica Neue,Arial,sans-serif" fill="#64748b">原子/MD</text>
+      <rect x="790" y="58" width="8" height="8" rx="2" fill="url(#g-str)"/>
+      <text x="803" y="65.5" font-size="8.5" font-family="Helvetica Neue,Arial,sans-serif" fill="#64748b">结构</text>
+      <rect x="790" y="72" width="8" height="8" rx="2" fill="url(#g-ppi)"/>
+      <text x="803" y="79.5" font-size="8.5" font-family="Helvetica Neue,Arial,sans-serif" fill="#64748b">互作网络</text>
+      <rect x="790" y="86" width="8" height="8" rx="2" fill="url(#g-tx)"/>
+      <text x="803" y="93.5" font-size="8.5" font-family="Helvetica Neue,Arial,sans-serif" fill="#64748b">转录组</text>
+      <rect x="790" y="100" width="8" height="8" rx="2" fill="url(#g-fate)"/>
+      <text x="803" y="107.5" font-size="8.5" font-family="Helvetica Neue,Arial,sans-serif" fill="#64748b">细胞命运</text>
+    </g>
+
+  </svg>
+
+  <figcaption>
+    <strong>图 1 | 多尺度虚拟感染细胞（MS-VIC）研究框架。</strong>
+    主流程（上）从分子动力学（MD）模拟出发，依次经由结构变化预测、蛋白互作网络和细胞转录响应，
+    最终预测感染细胞命运。底部双向反馈环路中，AI 神经网络势能（NNP）持续加速 MD 计算，
+    而细胞命运预测结果导入 BSL-3 湿实验验证，实验数据再反哺模型迭代。
+    虚线示意信息流向；颜色编码对应各研究层次（蓝→绿→紫→橙→红）。
+  </figcaption>
+</figure>
+
+<button id="exportBtn" onclick="exportSVG()">↓ 导出 SVG（用于论文）</button>
+
+<script>
+function exportSVG() {
+  const svg = document.getElementById('diagram');
+  // remove animation styles for static export
+  const clone = svg.cloneNode(true);
+  clone.querySelectorAll('[class]').forEach(el => {
+    el.style.opacity = '1';
+    el.style.animation = 'none';
+    el.style.transform = 'none';
+  });
+  const blob = new Blob([clone.outerHTML], {type:'image/svg+xml'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'MS-VIC_Framework.svg';
+  a.click();
+}
+</script>
+
+</body>
+</html>

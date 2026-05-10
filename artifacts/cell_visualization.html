@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>虚拟细胞 · 结构与变化过程</title>
+<style>
+:root {
+  --bg:#030810;--bg2:#08111e;--bg3:#0d1929;
+  --primary:#00c8f0;--primary-dim:#005870;
+  --secondary:#00e87a;--accent:#ff6b35;
+  --glow:rgba(0,200,240,0.3);
+  --text:#b8d8f0;--text-bright:#e0f4ff;--text-dim:#3a6070;
+  --border:rgba(0,200,240,0.18);
+  --membrane:#0090c0;--nuc-border:#4090d0;
+  --mito:#ff8040;--er:#40a0d0;--golgi:#c060e0;--ribo:#60d0a0;
+}
+body.bio{
+  --bg:#020815;--bg2:#061020;--bg3:#0a1830;
+  --primary:#4dc4ff;--primary-dim:#1a4060;
+  --secondary:#7dff9a;--text-dim:#304860;--border:rgba(77,196,255,0.2);
+  --membrane:#2a8abf;--nuc-border:#5090e0;
+  --mito:#ff6030;--er:#30a0c8;--golgi:#d070e8;--ribo:#50c890;
+}
+body.neon{
+  --bg:#000005;--bg2:#000810;--bg3:#001018;
+  --primary:#00ffcc;--primary-dim:#005540;
+  --secondary:#ff00ff;--accent:#ffee00;
+  --glow:rgba(0,255,204,0.4);
+  --text:#80ffcc;--text-bright:#ccffee;--text-dim:#005040;
+  --border:rgba(0,255,204,0.25);
+  --membrane:#00ccaa;--nuc-border:#00ffcc;
+  --mito:#ff8800;--er:#0088ff;--golgi:#ff00ff;--ribo:#ffee00;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+#hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid var(--border);background:var(--bg2);flex-shrink:0}
+#hdr h1{font-size:16px;font-weight:600;color:var(--text-bright);letter-spacing:.05em}
+#hdr .sub{font-size:10px;color:var(--text-dim);margin-top:2px;font-family:monospace;letter-spacing:.08em}
+.tbtn{padding:5px 12px;border:1px solid var(--border);background:transparent;color:var(--text-dim);border-radius:4px;font-size:11px;cursor:pointer;transition:all .2s;margin-left:6px}
+.tbtn:hover{color:var(--text);border-color:var(--primary)}
+.tbtn.on{color:var(--bg);background:var(--primary);border-color:var(--primary)}
+#main{display:flex;flex:1;overflow:hidden}
+#cell-area{flex:0 0 62%;position:relative;border-right:1px solid var(--border)}
+#cellCanvas{width:100%;height:100%;display:block}
+#lsvg{position:absolute;inset:0;pointer-events:none}
+#side{flex:0 0 38%;display:flex;flex-direction:column;overflow:hidden}
+#pinfo{padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg2);flex-shrink:0}
+#pinfo .plabel{font-size:13px;font-weight:600;margin-bottom:3px;transition:color .4s}
+#pinfo .pdesc{font-size:10px;color:var(--text-dim);line-height:1.5}
+#gpanel{flex:1;padding:12px 16px;overflow-y:auto;min-height:0}
+#gpanel h3{font-size:10px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.grow{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.gname{font-family:monospace;font-size:9px;color:var(--text-dim);width:48px;text-align:right;flex-shrink:0}
+.gtrack{flex:1;height:9px;background:var(--bg3);border-radius:2px;overflow:hidden;position:relative}
+.gbar{height:100%;border-radius:2px;transition:width .8s cubic-bezier(.4,0,.2,1),background .6s}
+.gval{font-family:monospace;font-size:9px;color:var(--text-dim);width:28px;flex-shrink:0;transition:color .4s}
+#fpanel{flex-shrink:0;padding:12px 16px;background:var(--bg2);border-top:1px solid var(--border)}
+#fpanel h3{font-size:10px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+#fluxCanvas{width:100%;height:100px;display:block}
+#ctrl{display:flex;align-items:center;gap:6px;padding:10px 20px;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0}
+.clabel{font-size:10px;color:var(--text-dim);letter-spacing:.08em;flex-shrink:0;margin-right:2px}
+.pbtn{padding:6px 13px;border:1px solid var(--border);background:transparent;color:var(--text-dim);border-radius:4px;font-size:11px;cursor:pointer;transition:all .25s}
+.pbtn:hover{color:var(--text);border-color:var(--primary)}
+.pbtn.on{color:var(--bg);background:var(--primary);border-color:var(--primary)}
+#stat{margin-left:auto;font-family:monospace;font-size:10px;color:var(--text-dim)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--primary-dim);border-radius:2px}
+</style>
+</head>
+<body>
+
+<div id="hdr">
+  <div>
+    <h1>虚拟细胞 · 结构与变化过程</h1>
+    <div class="sub">OpenVCell-MVP · 单细胞多组学仿真可视化</div>
+  </div>
+  <div>
+    <button class="tbtn on" onclick="setTheme('',this)">精密仪器</button>
+    <button class="tbtn" onclick="setTheme('bio',this)">生物图谱</button>
+    <button class="tbtn" onclick="setTheme('neon',this)">赛博荧光</button>
+  </div>
+</div>
+
+<div id="main">
+  <div id="cell-area">
+    <canvas id="cellCanvas"></canvas>
+    <svg id="lsvg" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+  <div id="side">
+    <div id="pinfo">
+      <div class="plabel" id="plabel">对照组 Control</div>
+      <div class="pdesc" id="pdesc">正常细胞状态，各代谢通路维持基础活性，线粒体正常运转</div>
+    </div>
+    <div id="gpanel">
+      <h3>基因表达量 · Top 20</h3>
+      <div id="grows"></div>
+    </div>
+    <div id="fpanel">
+      <h3>代谢通量 · FBA 预测</h3>
+      <canvas id="fluxCanvas"></canvas>
+    </div>
+  </div>
+</div>
+
+<div id="ctrl">
+  <span class="clabel">扰动条件：</span>
+  <button class="pbtn on" onclick="setP('control',this)">对照</button>
+  <button class="pbtn" onclick="setP('gene_KO_A',this)">基因A敲除</button>
+  <button class="pbtn" onclick="setP('gene_KO_B',this)">基因B敲除</button>
+  <button class="pbtn" onclick="setP('drug_X',this)">药物X</button>
+  <button class="pbtn" onclick="setP('cytokine',this)">细胞因子</button>
+  <div id="stat">t = <span id="tc">0.00</span>s</div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────
+const GENES = ['Ldha','Pkm','Hk2','Pfkl','Gapdh','Pgk1','Eno1','Pklr',
+               'Cs','Aco2','Idh2','Sucla2','Sdhb','Fh1','Mdh2',
+               'Atp5a1','Cox4i1','Ndufs1','Cyc1','Uqcrc1'];
+const RXNS  = ['HK','PFK','PK','LDH','CS','IDH','SDH','MDH','CI','CII','CIII','ATP'];
+
+const PD = {
+  control:{label:'对照组 Control',color:'#00c8f0',
+    desc:'正常细胞状态，各代谢通路维持基础活性，线粒体正常运转',
+    genes:[.55,.60,.50,.65,.58,.52,.60,.48,.55,.58,.52,.56,.54,.57,.53,.60,.55,.58,.52,.56],
+    fluxes:[.65,.70,.60,.55,.68,.52,.58,.63,.66,.50,.54,.62],
+    mitoA:.72, nucA:.60, erS:.05, memA:.20, golgiA:.55},
+  gene_KO_A:{label:'基因A敲除',color:'#ff6b35',
+    desc:'糖酵解关键酶（Ldha/Pkm）敲除，线粒体能量供应受损，TCA代偿性上调',
+    genes:[.08,.10,.12,.18,.58,.52,.60,.48,.82,.88,.85,.80,.54,.57,.53,.38,.35,.42,.52,.46],
+    fluxes:[.10,.12,.15,.20,.25,.85,.88,.90,.80,.50,.54,.62],
+    mitoA:.22, nucA:.50, erS:.30, memA:.15, golgiA:.35},
+  gene_KO_B:{label:'基因B敲除',color:'#ff3399',
+    desc:'TCA循环酶（Cs/Aco2）敲除，内质网应激，蛋白折叠障碍，糖酵解代偿',
+    genes:[.85,.88,.82,.90,.88,.85,.80,.75,.08,.10,.12,.15,.88,.85,.82,.28,.25,.30,.52,.48],
+    fluxes:[.85,.88,.82,.80,.85,.15,.12,.10,.80,.50,.54,.62],
+    mitoA:.28, nucA:.55, erS:.85, memA:.20, golgiA:.30},
+  drug_X:{label:'药物X处理',color:'#a855f7',
+    desc:'药物X激活膜受体，MAPK/PI3K信号通路活化，全基因组转录上调，代谢增强',
+    genes:[.78,.82,.76,.88,.80,.75,.82,.78,.75,.80,.78,.82,.72,.78,.75,.82,.88,.80,.85,.80],
+    fluxes:[.78,.82,.80,.75,.80,.78,.82,.85,.80,.72,.75,.80],
+    mitoA:.88, nucA:.92, erS:.10, memA:.85, golgiA:.80},
+  cytokine:{label:'细胞因子刺激',color:'#00ff88',
+    desc:'炎症细胞因子（IL-6/TNFα）刺激，NF-κB激活，代谢重编程，能量需求骤增',
+    genes:[.92,.95,.90,.98,.92,.95,.92,.88,.85,.90,.88,.92,.90,.88,.85,.92,.88,.92,.95,.90],
+    fluxes:[.92,.95,.90,.88,.92,.90,.88,.92,.90,.85,.88,.92],
+    mitoA:.98, nucA:.99, erS:.05, memA:.95, golgiA:.90},
+};
+
+// ── STATE ─────────────────────────────────────────────────────────
+let target='control', prev=null, cur=null;
+let transT=1, transStart=null;
+const TRANS=1200;
+
+function lerp(a,b,t){return a+(b-a)*t}
+function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t}
+
+function interpPD(a,b,t){
+  if(!a) return {...b, genes:[...b.genes], fluxes:[...b.fluxes]};
+  const e=ease(Math.min(t,1));
+  return {
+    label:b.label, color:b.color, desc:b.desc,
+    genes:b.genes.map((v,i)=>lerp(a.genes[i],v,e)),
+    fluxes:b.fluxes.map((v,i)=>lerp(a.fluxes[i],v,e)),
+    mitoA:lerp(a.mitoA,b.mitoA,e), nucA:lerp(a.nucA,b.nucA,e),
+    erS:lerp(a.erS,b.erS,e), memA:lerp(a.memA,b.memA,e),
+    golgiA:lerp(a.golgiA,b.golgiA,e),
+  };
+}
+
+// ── CANVAS ────────────────────────────────────────────────────────
+const cc=document.getElementById('cellCanvas'), ctx=cc.getContext('2d');
+const fc=document.getElementById('fluxCanvas'), fctx=fc.getContext('2d');
+let W,H,cx,cy,CRX,CRY;
+let MPOS=[], GPOS={};
+
+function resize(){
+  const area=document.getElementById('cell-area');
+  W=area.clientWidth; H=area.clientHeight;
+  cc.width=W; cc.height=H;
+  cx=W*.5; cy=H*.52;
+  CRX=Math.min(W,H)*.40; CRY=Math.min(W,H)*.33;
+  const fp=document.getElementById('fpanel');
+  fc.width=fp.clientWidth-32; fc.height=100;
+  computePos(); renderLabels();
+}
+
+function computePos(){
+  MPOS=[
+    {ox:CRX*.55, oy:-CRY*.40, rx:CRX*.14, ry:CRY*.09, a:-.3},
+    {ox:-CRX*.52,oy:CRY*.42,  rx:CRX*.16, ry:CRY*.08, a:.5},
+    {ox:CRX*.48, oy:CRY*.44,  rx:CRX*.13, ry:CRY*.08, a:-.7},
+    {ox:-CRX*.44,oy:-CRY*.34, rx:CRX*.12, ry:CRY*.07, a:.2},
+  ];
+  GPOS={ox:CRX*.17, oy:-CRY*.20};
+}
+
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+
+// ── PARTICLES ─────────────────────────────────────────────────────
+const PARTS=[];
+let lastSpawn=0;
+
+class P{
+  constructor(sx,sy,tx,ty,col,sz,life){
+    this.x=sx; this.y=sy; this.tx=tx; this.ty=ty;
+    this.col=col; this.sz=sz; this.maxL=life;
+    this.l=0; this.dead=false;
+    this.cpx=(sx+tx)/2+(Math.random()-.5)*70;
+    this.cpy=(sy+ty)/2+(Math.random()-.5)*70;
+    this.wb=Math.random()*Math.PI*2; this.ws=.04+Math.random()*.04;
+    this.wa=4+Math.random()*8;
+  }
+  update(dt){
+    this.l+=dt; this.wb+=this.ws;
+    const t=Math.min(this.l/this.maxL,1);
+    const t1=1-t;
+    this.px=t1*t1*this.x+2*t1*t*this.cpx+t*t*this.tx+Math.sin(this.wb)*this.wa*(1-t);
+    this.py=t1*t1*this.y+2*t1*t*this.cpy+t*t*this.ty+Math.cos(this.wb*1.3)*this.wa*.5*(1-t);
+    this.alpha=t<.1?t/.1:t>.85?(1-t)/.15:1;
+    if(t>=1) this.dead=true;
+  }
+  draw(c){
+    c.save(); c.globalAlpha=this.alpha*.8;
+    c.fillStyle=this.col; c.shadowColor=this.col; c.shadowBlur=this.sz*4;
+    c.beginPath(); c.arc(this.px,this.py,this.sz,0,Math.PI*2); c.fill();
+    c.restore();
+  }
+}
+
+function spawnP(state,t){
+  if(t-lastSpawn<70) return; lastSpawn=t;
+  const nucR=Math.min(CRX,CRY)*.28;
+  const col=PD[target].color;
+
+  // Gene expression from nucleus
+  const n=Math.max(1,Math.floor(state.nucA*5));
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2;
+    const sx=cx+Math.cos(a)*nucR*.55, sy=cy+Math.sin(a)*nucR*.55*.82;
+    const ta=a+(Math.random()-.5)*1.8;
+    const td=nucR*(1.6+Math.random()*2.4);
+    const tx=cx+Math.cos(ta)*Math.min(td,CRX*.84);
+    const ty=cy+Math.sin(ta)*Math.min(td*CRY/CRX,CRY*.84);
+    const p=new P(sx,sy,tx,ty,col,1.5+Math.random()*1.2,.8+Math.random()*1.0);
+    PARTS.push(p);
+  }
+
+  // Mitochondria internal flow
+  MPOS.forEach((m,i)=>{
+    if(Math.random()<state.mitoA*.45){
+      const a=Math.random()*Math.PI*2;
+      const sx=cx+m.ox+Math.cos(a)*m.rx*.5, sy=cy+m.oy+Math.sin(a)*m.ry*.5;
+      const ta=a+Math.PI+(Math.random()-.5)*.8;
+      const tx=cx+m.ox+Math.cos(ta)*m.rx*.5, ty=cy+m.oy+Math.sin(ta)*m.ry*.5;
+      PARTS.push(new P(sx,sy,tx,ty,'#ff8040',.9+Math.random(),.4+Math.random()*.3));
+    }
+  });
+
+  // ER stress
+  if(state.erS>.25){
+    for(let i=0;i<Math.floor(state.erS*3);i++){
+      const a=Math.random()*Math.PI*2, d=nucR*(1.3+Math.random()*.5);
+      const sx=cx+Math.cos(a)*d, sy=cy+Math.sin(a)*d*.82;
+      PARTS.push(new P(sx,sy,sx+(Math.random()-.5)*30,sy+(Math.random()-.5)*30,'#ff2060',1.2,.35+Math.random()*.3));
+    }
+  }
+
+  // Membrane receptor particles
+  if(state.memA>.4 && Math.random()<state.memA*.3){
+    const a=Math.random()*Math.PI*2;
+    const sx=cx+Math.cos(a)*(CRX+2), sy=cy+Math.sin(a)*(CRY+2);
+    const tx=cx+Math.cos(a)*CRX*.7, ty=cy+Math.sin(a)*CRY*.7;
+    PARTS.push(new P(sx,sy,tx,ty,'#00ff88',1.2,.5+Math.random()*.4));
+  }
+
+  while(PARTS.length>350) PARTS.shift();
+}
+
+// ── DRAW FUNCTIONS ────────────────────────────────────────────────
+function drawBG(){
+  ctx.fillStyle=cssv('--bg'); ctx.fillRect(0,0,W,H);
+  ctx.save(); ctx.strokeStyle='rgba(255,255,255,0.025)'; ctx.lineWidth=.5;
+  const step=36;
+  for(let x=0;x<W;x+=step){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+  for(let y=0;y<H;y+=step){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  ctx.restore();
+}
+
+function drawMembrane(state,t){
+  ctx.save();
+  // Cytoplasm
+  const g=ctx.createRadialGradient(cx-CRX*.15,cy-CRY*.15,0,cx,cy,Math.max(CRX,CRY));
+  g.addColorStop(0,'rgba(6,22,45,.92)');
+  g.addColorStop(.75,'rgba(3,12,25,.95)');
+  g.addColorStop(1,'rgba(2,8,18,.98)');
+  ctx.fillStyle=g;
+  ctx.beginPath(); ctx.ellipse(cx,cy,CRX,CRY,0,0,Math.PI*2); ctx.fill();
+
+  // Outer glow
+  const mc=cssv('--membrane');
+  ctx.strokeStyle=mc; ctx.lineWidth=2.5; ctx.globalAlpha=.75;
+  ctx.beginPath(); ctx.ellipse(cx,cy,CRX,CRY,0,0,Math.PI*2); ctx.stroke();
+  ctx.lineWidth=.8; ctx.globalAlpha=.25; ctx.setLineDash([7,4]);
+  ctx.beginPath(); ctx.ellipse(cx,cy,CRX+9,CRY+9,0,0,Math.PI*2); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Membrane receptors
+  const nr=18;
+  for(let i=0;i<nr;i++){
+    const a=(i/nr)*Math.PI*2+t*.0003;
+    const act=Math.sin(t*.003+i*.9)>(1-state.memA*1.2);
+    const px1=cx+Math.cos(a)*(CRX+3), py1=cy+Math.sin(a)*(CRY+3);
+    const px2=cx+Math.cos(a)*(CRX-6), py2=cy+Math.sin(a)*(CRY-6);
+    ctx.strokeStyle=act?'#00ff88':mc;
+    ctx.lineWidth=act?2:1; ctx.globalAlpha=act?.9:.2;
+    ctx.beginPath(); ctx.moveTo(px1,py1); ctx.lineTo(px2,py2); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawER(state,t){
+  ctx.save();
+  const nucR=Math.min(CRX,CRY)*.28;
+  const stressed=state.erS>.5;
+  const col=stressed?`rgba(255,${Math.floor(60-state.erS*60)},${Math.floor(60-state.erS*60)},.45)`:'rgba(64,160,208,.4)';
+  ctx.strokeStyle=col; ctx.lineWidth=1.5; ctx.globalAlpha=.65;
+
+  for(let i=0;i<8;i++){
+    const ba=(i/8)*Math.PI*2+.15;
+    const r1=nucR*1.18, r2=nucR*(1.55+Math.sin(t*.001+i)*.06);
+    const sx=cx+Math.cos(ba)*r1, sy=cy+Math.sin(ba)*r1*.85;
+    const ex=cx+Math.cos(ba+.32)*r2, ey=cy+Math.sin(ba+.32)*r2*.85;
+    const cpx2=(sx+ex)/2+Math.cos(ba+Math.PI/2)*12, cpy2=(sy+ey)/2+Math.sin(ba+Math.PI/2)*12;
+    ctx.beginPath(); ctx.moveTo(sx,sy); ctx.quadraticCurveTo(cpx2,cpy2,ex,ey); ctx.stroke();
+    // Ribosomes on RER
+    for(let r=1;r<=3;r++){
+      const rt=r/4;
+      const rx2=sx+(ex-sx)*rt, ry2=sy+(ey-sy)*rt;
+      ctx.fillStyle=cssv('--ribo'); ctx.globalAlpha=.65;
+      ctx.beginPath(); ctx.arc(rx2,ry2,1.8,0,Math.PI*2); ctx.fill();
+      ctx.globalAlpha=.65; ctx.strokeStyle=col;
+    }
+  }
+  // Smooth ER outer
+  ctx.strokeStyle='rgba(40,120,180,.2)'; ctx.lineWidth=1;
+  for(let i=0;i<4;i++){
+    const ba=(i/4)*Math.PI*2+.6;
+    const r1=nucR*2.1, r2=nucR*2.9;
+    const sx=cx+Math.cos(ba)*r1, sy=cy+Math.sin(ba)*r1*.85;
+    const ex=cx+Math.cos(ba+.55)*r2, ey=cy+Math.sin(ba+.55)*r2*.85;
+    ctx.beginPath(); ctx.moveTo(sx,sy); ctx.quadraticCurveTo((sx+ex)/2+(Math.random()-0.5)*15,(sy+ey)/2+(Math.random()-0.5)*15,ex,ey); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawMito(state,t){
+  ctx.save();
+  MPOS.forEach((m,idx)=>{
+    const act=state.mitoA;
+    const pulse=1+Math.sin(t*.002*(1+idx*.3)+idx)*.05*act;
+    const mc=act<.3?'#806040':'#ff8040';
+    ctx.save();
+    ctx.translate(cx+m.ox,cy+m.oy); ctx.rotate(m.a);
+    const rx2=m.rx*pulse, ry2=m.ry*pulse;
+    // Glow
+    ctx.fillStyle=act<.3?'rgba(128,96,64,.2)':`rgba(255,128,64,${.18*act})`;
+    ctx.beginPath(); ctx.ellipse(0,0,rx2+7,ry2+7,0,0,Math.PI*2); ctx.fill();
+    // Body
+    ctx.fillStyle='rgba(25,12,4,.9)';
+    ctx.beginPath(); ctx.ellipse(0,0,rx2,ry2,0,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle=mc; ctx.lineWidth=2; ctx.globalAlpha=.5+act*.45;
+    ctx.beginPath(); ctx.ellipse(0,0,rx2,ry2,0,0,Math.PI*2); ctx.stroke();
+    // Cristae
+    ctx.lineWidth=1; ctx.globalAlpha=.25+act*.5;
+    for(let c=0;c<4;c++){
+      const cx3=-rx2*.5+(c/3)*rx2;
+      const ch=ry2*.6*(.5+Math.sin(t*.003+c+idx)*.5*act);
+      ctx.beginPath(); ctx.moveTo(cx3,-ch);
+      ctx.quadraticCurveTo(cx3+rx2*.15,0,cx3,ch); ctx.stroke();
+    }
+    // ATP glow dot
+    if(act>.5){
+      const da=(Math.sin(t*.004+idx*1.5)+1)*.5*act;
+      ctx.fillStyle='#ffcc00'; ctx.globalAlpha=da;
+      ctx.beginPath(); ctx.arc(0,0,2,0,Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+  });
+  ctx.restore();
+}
+
+function drawGolgi(state,t){
+  ctx.save();
+  ctx.translate(cx+GPOS.ox,cy+GPOS.oy);
+  const gc=cssv('--golgi'), act=state.golgiA;
+  for(let i=0;i<5;i++){
+    const ty2=(i-2)*10, ry2=3.5-i*.25;
+    const rx2=(20+i*3)*(0.65+act*.35);
+    ctx.strokeStyle=gc; ctx.lineWidth=1.5;
+    ctx.globalAlpha=(.25+act*.5)*(1-i*.1);
+    ctx.beginPath(); ctx.ellipse(0,ty2,rx2,ry2,0,0,Math.PI*2); ctx.stroke();
+    if(act>.4&&Math.sin(t*.002+i*.7)>.5){
+      ctx.fillStyle=gc; ctx.globalAlpha=act*.4;
+      ctx.beginPath(); ctx.arc(rx2*.9+5,ty2,2.5,0,Math.PI*2); ctx.fill();
+    }
+  }
+  ctx.restore();
+}
+
+function drawRibosomes(t){
+  ctx.save();
+  const rc=cssv('--ribo'), nucR=Math.min(CRX,CRY)*.28;
+  for(let i=0;i<28;i++){
+    const a=(i/28)*Math.PI*2+Math.sin(i*7.3)*.3;
+    const d=(.32+Math.abs(Math.sin(i*13.7))*.32)*Math.min(CRX,CRY)*.9;
+    if(d<nucR*1.25) continue;
+    const px=cx+Math.cos(a)*d, py=cy+Math.sin(a)*d*(CRY/CRX);
+    const nx=(px-cx)/CRX, ny=(py-cy)/CRY;
+    if(nx*nx+ny*ny>.84) continue;
+    const act=Math.sin(t*.003+i*2.1)>.0&&Math.sin(i*3.7)>-.3;
+    ctx.fillStyle=rc; ctx.globalAlpha=act?.65:.2;
+    ctx.beginPath(); ctx.arc(px,py,1.8,0,Math.PI*2); ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawNucleus(state,t){
+  ctx.save();
+  const nucR=Math.min(CRX,CRY)*.28, nucRy=nucR*.82, act=state.nucA;
+  const pulse=1+Math.sin(t*.002)*.02;
+  const pc=cssv('--primary');
+
+  // Glow aura
+  const grd=ctx.createRadialGradient(cx,cy,0,cx,cy,nucR*1.6);
+  grd.addColorStop(0,`rgba(0,120,180,${.12*act})`);
+  grd.addColorStop(.6,`rgba(0,60,120,${.06*act})`);
+  grd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=grd;
+  ctx.beginPath(); ctx.ellipse(cx,cy,nucR*1.6,nucRy*1.6,0,0,Math.PI*2); ctx.fill();
+
+  // Nuclear body
+  ctx.fillStyle='rgba(4,16,42,.93)';
+  ctx.beginPath(); ctx.ellipse(cx,cy,nucR*pulse,nucRy*pulse,0,0,Math.PI*2); ctx.fill();
+
+  // Double membrane
+  const nb=cssv('--nuc-border');
+  ctx.strokeStyle=nb; ctx.lineWidth=2.5; ctx.globalAlpha=.55+act*.4;
+  ctx.beginPath(); ctx.ellipse(cx,cy,nucR*pulse,nucRy*pulse,0,0,Math.PI*2); ctx.stroke();
+  ctx.lineWidth=1; ctx.globalAlpha=.22;
+  ctx.beginPath(); ctx.ellipse(cx,cy,nucR*.88*pulse,nucRy*.88*pulse,0,0,Math.PI*2); ctx.stroke();
+
+  // Nuclear pores
+  for(let i=0;i<12;i++){
+    const a=(i/12)*Math.PI*2;
+    const px=cx+Math.cos(a)*nucR*pulse, py=cy+Math.sin(a)*nucRy*pulse;
+    const pact=Math.sin(t*.004+i*.9)>.15;
+    ctx.fillStyle=pact?pc:'rgba(60,120,180,.4)';
+    ctx.globalAlpha=pact?act*.9:.3;
+    ctx.beginPath(); ctx.arc(px,py,2.2,0,Math.PI*2); ctx.fill();
+  }
+
+  // Chromatin
+  ctx.save();
+  ctx.beginPath(); ctx.ellipse(cx,cy,nucR*.83*pulse,nucRy*.83*pulse,0,0,Math.PI*2); ctx.clip();
+  for(let i=0;i<7;i++){
+    const ba=(i/7)*Math.PI*2+t*.0003;
+    const r1=nucR*(.1+Math.sin(i*2.3)*.14), r2=nucR*(.28+Math.cos(i*1.7)*.18);
+    const sx=cx+Math.cos(ba)*r1, sy=cy+Math.sin(ba)*r1;
+    const ea=ba+Math.PI*.4+Math.sin(i)*.5;
+    const ex=cx+Math.cos(ea)*r2, ey=cy+Math.sin(ea)*r2;
+    ctx.strokeStyle=`rgba(80,160,255,${.18+act*.28})`;
+    ctx.lineWidth=1.8+act*1.8; ctx.globalAlpha=.6;
+    ctx.beginPath(); ctx.moveTo(sx,sy);
+    ctx.quadraticCurveTo(cx+Math.cos(ba+.2)*r2*.5,cy+Math.sin(ba+.2)*r2*.5,ex,ey);
+    ctx.stroke();
+  }
+  // Nucleolus
+  ctx.fillStyle=`rgba(100,180,255,${.18+act*.28})`; ctx.globalAlpha=.8;
+  ctx.beginPath(); ctx.arc(cx+nucR*.1,cy-nucRy*.1,nucR*.19,0,Math.PI*2); ctx.fill();
+  ctx.restore();
+  ctx.restore();
+}
+
+// ── FLUX PANEL ────────────────────────────────────────────────────
+function drawFlux(state){
+  const fw=fc.width, fh=100;
+  fctx.fillStyle=cssv('--bg2'); fctx.fillRect(0,0,fw,fh);
+  const bw=fw/RXNS.length-3, maxH=fh-22;
+  RXNS.forEach((n,i)=>{
+    const x=i*(bw+3)+1.5, v=state.fluxes[i], bh=v*maxH;
+    fctx.fillStyle=cssv('--bg3');
+    fctx.fillRect(x,fh-22-maxH,bw,maxH);
+    fctx.fillStyle=v<.3?'#ff3040':PD[target].color;
+    fctx.globalAlpha=.65+v*.3;
+    fctx.fillRect(x,fh-22-bh,bw,bh);
+    fctx.globalAlpha=1;
+    fctx.fillStyle=cssv('--text-dim');
+    fctx.font='7px monospace'; fctx.textAlign='center';
+    fctx.fillText(n,x+bw/2,fh-6);
+  });
+}
+
+// ── GENE ROWS ─────────────────────────────────────────────────────
+function initGenes(){
+  const c=document.getElementById('grows'); c.innerHTML='';
+  GENES.forEach((n,i)=>{
+    const d=document.createElement('div'); d.className='grow';
+    d.innerHTML=`<span class="gname">${n}</span><div class="gtrack"><div class="gbar" id="gb${i}"></div></div><span class="gval" id="gv${i}"></span>`;
+    c.appendChild(d);
+  });
+}
+function updateGenes(state){
+  const ctrl=PD.control.genes, col=PD[target].color;
+  GENES.forEach((_,i)=>{
+    const v=state.genes[i], pct=v*100;
+    const b=document.getElementById(`gb${i}`), ve=document.getElementById(`gv${i}`);
+    if(!b) return;
+    b.style.width=pct+'%';
+    b.style.background=v>ctrl[i]+.1?`linear-gradient(90deg,${col}66,${col})`:v<ctrl[i]-.1?'linear-gradient(90deg,#ff304066,#ff3040)':'linear-gradient(90deg,#4a7a9b66,#4a7a9b)';
+    ve.textContent=v.toFixed(2);
+    ve.style.color=v>ctrl[i]+.1?col:v<ctrl[i]-.1?'#ff3040':'';
+  });
+}
+
+// ── LABELS SVG ────────────────────────────────────────────────────
+function renderLabels(){
+  const svg=document.getElementById('lsvg');
+  const nucR=Math.min(CRX,CRY)*.28, nucRy=nucR*.82;
+  const c=cssv('--text-dim');
+  const items=[
+    [cx,cy-nucRy-14,'细胞核 Nucleus','middle'],
+    [cx+CRX*.55+MPOS[0]?.rx*CRX+10,cy+MPOS[0]?.oy-14,'线粒体','start'],
+    [cx-CRX*.52-8,cy+CRY*.42+20,'线粒体','end'],
+    [cx+nucR*1.22,cy-nucRy*.45-12,'内质网 ER','start'],
+    [cx+GPOS.ox+38,cy+GPOS.oy,'高尔基体','start'],
+    [cx+CRX+6,cy,'细胞膜','start'],
+    [cx-CRX-6,cy+CRY*.3,'核糖体','end'],
+  ];
+  svg.innerHTML=items.map(([x,y,t,a])=>
+    `<text x="${x}" y="${y}" fill="${c}" font-size="10" font-family="'PingFang SC',sans-serif" text-anchor="${a}" opacity=".75">${t}</text>`
+  ).join('');
+}
+
+// ── MAIN LOOP ─────────────────────────────────────────────────────
+let t0=Date.now();
+function frame(){
+  const now=Date.now(), t=now-t0;
+  if(transStart!==null) transT=Math.min((now-transStart)/TRANS,1);
+  cur=interpPD(prev,PD[target],transT);
+
+  drawBG();
+  drawMembrane(cur,t);
+  drawER(cur,t);
+  drawMito(cur,t);
+  drawGolgi(cur,t);
+  drawRibosomes(t);
+  drawNucleus(cur,t);
+
+  spawnP(cur,t);
+  for(let i=PARTS.length-1;i>=0;i--){ PARTS[i].update(.016); if(PARTS[i].dead) PARTS.splice(i,1); }
+  PARTS.forEach(p=>p.draw(ctx));
+
+  updateGenes(cur);
+  drawFlux(cur);
+  document.getElementById('tc').textContent=(t/1000).toFixed(2);
+  requestAnimationFrame(frame);
+}
+
+// ── CONTROLS ──────────────────────────────────────────────────────
+function setP(key,btn){
+  document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  prev=cur?{...cur,genes:[...cur.genes],fluxes:[...cur.fluxes]}:null;
+  target=key; transT=0; transStart=Date.now();
+  const d=PD[key];
+  document.getElementById('plabel').textContent=d.label;
+  document.getElementById('plabel').style.color=d.color;
+  document.getElementById('pdesc').textContent=d.desc;
+  // Update button active style to match perturb color
+  btn.style.background=d.color; btn.style.borderColor=d.color; btn.style.color='#030810';
+}
+
+function setTheme(cls,btn){
+  document.querySelectorAll('.tbtn').forEach(b=>{b.classList.remove('on');b.style=''});
+  btn.classList.add('on');
+  document.body.className=cls;
+  setTimeout(renderLabels,50);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+window.addEventListener('resize',()=>{resize();computePos();renderLabels()});
+resize();
+initGenes();
+cur={...PD.control, genes:[...PD.control.genes], fluxes:[...PD.control.fluxes]};
+frame();
+</script>
+</body>
+</html>

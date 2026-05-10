@@ -17,7 +17,7 @@ FIG_DIR = ARTIFACTS / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
 # ----------------- Data -----------------
-USE_REAL_DATA = False  # if True, try cellxgene-census (requires internet + extra deps)
+USE_REAL_DATA = True   # if True, try cellxgene-census (requires internet + extra deps)
 N_CELLS = 2000
 N_GENES = 200
 N_CELL_TYPES = 3

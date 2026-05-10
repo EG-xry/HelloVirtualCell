@@ -71,23 +71,46 @@ def _make_synthetic_corpus(seed: int = C.SEED) -> ad.AnnData:
 
 
 def _try_load_real() -> ad.AnnData | None:
-    """Optional: load a small CELLxGENE Census slice (requires extra deps + internet)."""
+    """Optional: load a small CELLxGENE Census slice (requires extra deps + internet).
+
+    Caches the raw download to data/raw_census.h5ad so subsequent runs are offline.
+    """
+    data_dir = C.ROOT / "data"
+    data_dir.mkdir(exist_ok=True)
+    cache_path = data_dir / "raw_census.h5ad"
+
+    if cache_path.exists():
+        print(f"[stage1] loading real data from cache: {cache_path}")
+        return ad.read_h5ad(cache_path)
+
     try:
         import cellxgene_census  # type: ignore
     except Exception:
         return None
     try:
-        with cellxgene_census.open_soma(census_version="stable") as census:
+        print("[stage1] downloading CELLxGENE Census slice (blood T cells, n=5000)…")
+        with cellxgene_census.open_soma(census_version="2024-07-01") as census:
+            # First collect joinids matching the filter, then take at most 5000
+            obs_df = (
+                census["census_data"]["homo_sapiens"]["obs"]
+                .read(
+                    value_filter='tissue_general=="blood" and cell_type=="T cell"',
+                    column_names=["soma_joinid"],
+                )
+                .concat()
+                .to_pandas()
+            )
+            joinids = obs_df["soma_joinid"].values[:5000].tolist()
             adata = cellxgene_census.get_anndata(
                 census,
                 organism="Homo sapiens",
-                obs_value_filter='tissue_general=="blood" and cell_type=="T cell"',
-                var_value_filter=None,
-                obs_coords=slice(0, 5000),
+                obs_coords=joinids,
             )
         # No real perturbation labels here → annotate as control
         adata.obs["perturbation"] = "control"
         adata.obs["cell_type"] = adata.obs.get("cell_type", "T cell")
+        adata.write_h5ad(cache_path)
+        print(f"[stage1] cached to {cache_path}")
         return adata
     except Exception as e:  # pragma: no cover
         print(f"[stage1] real data load failed: {e}; falling back to synthetic.")

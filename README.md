@@ -16,6 +16,14 @@ CPU + 8GB 内存即可跑通（不需要 GPU、不需要下载海量数据）。
 
 ---
 
+## 1. Real Data Demo
+
+[![Real Data Demo](https://img.youtube.com/vi/DkxGVEV5taY/maxresdefault.jpg)](https://youtu.be/DkxGVEV5taY)
+
+> 点击图片跳转视频 → 使用 CELLxGENE Census 真实血液 T 细胞数据跑通 4 阶段 pipeline，并在 Streamlit 中展示各阶段模型推理过程的可视化。
+
+---
+
 ## 0. 一键体验
 
 ```bash
@@ -43,7 +51,7 @@ streamlit run openvcell/app.py    # 启动 demo
 
 ---
 
-## 1. 项目结构
+## 2. 项目结构
 
 ```
 HelloVirtulCell/
@@ -68,7 +76,7 @@ HelloVirtulCell/
 
 ---
 
-## 2. 各阶段做了什么
+## 3. 各阶段做了什么
 
 | 阶段 | 模块 | 做了什么（MVP 实现） | 真实研究里替换为 |
 |---|---|---|---|
@@ -81,7 +89,7 @@ HelloVirtulCell/
 
 ---
 
-## 3. 真实数据接入（可选）
+## 4. 真实数据接入（可选）
 
 默认使用合成数据，方便首次跑通。要切换到真实数据，把 `config.py` 中：
 
@@ -94,7 +102,7 @@ USE_REAL_DATA = False
 
 ---
 
-## 4. 评估输出
+## 5. 评估输出
 
 跑完 `make all` 后，`artifacts/report.md` 会包含：
 - 数据 QC 指标
@@ -105,7 +113,7 @@ USE_REAL_DATA = False
 
 ---
 
-## 5. 与研究计划的对应
+## 6. 与研究计划的对应
 
 ```
 research_plan.md   ──►  本 MVP 的可执行版本
@@ -121,7 +129,7 @@ research_plan.md   ──►  本 MVP 的可执行版本
 
 ---
 
-## 6. 下一步路线
+## 7. 下一步路线
 
 1. 把 `stage1_data.py` 替换为 `cellxgene-census` + `scvi-tools` 真实流水线。
 2. 把 `stage2_foundation.py` 升级为 scGPT/Geneformer 官方权重 + LoRA 微调。

@@ -1,16 +1,16 @@
 {
   "qc": {
-    "n_cells": 2000,
+    "n_cells": 5000,
     "n_genes": 200,
-    "median_counts": 1435.0,
-    "n_cell_types": 3,
+    "median_counts": 1129.5,
+    "n_cell_types": 1,
     "n_perturbations": 5
   },
-  "stage2_macro_f1_celltype": 0.9983373241699578,
-  "stage2_final_loss": 1.1000954546034336,
+  "stage2_macro_f1_celltype": 0.0,
+  "stage2_final_loss": 0.9239619713795336,
   "stage3_heldout_perturbation": "drug_X",
-  "stage3_per_gene_pearson": 0.5919066071510315,
-  "stage3_top20_deg_recall": 0.15,
+  "stage3_per_gene_pearson": 0.5723002091978404,
+  "stage3_top20_deg_recall": 0.1,
   "stage4_biomass_r2": 0.0,
-  "stage4_pathway_codirection": 0.8117546749611695
+  "stage4_pathway_codirection": 0.3569158200727005
 }

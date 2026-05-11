@@ -106,11 +106,25 @@ def _try_load_real() -> ad.AnnData | None:
                 organism="Homo sapiens",
                 obs_coords=joinids,
             )
-        # No real perturbation labels here → annotate as control
-        adata.obs["perturbation"] = "control"
+        # Normalize: log1p CPM (same as synthetic pipeline)
+        X = np.array(adata.X) if isinstance(adata.X, np.ndarray) else np.asarray(adata.X.todense() if hasattr(adata.X, "todense") else adata.X)  # type: ignore[union-attr]
+        libsize = X.sum(1, keepdims=True) + 1e-8
+        X_norm = np.log1p(X / libsize * 1e4).astype(np.float32)
+
+        # HVG selection: keep top N_GENES most variable genes
+        gene_var = X_norm.var(axis=0)
+        hvg_idx = np.argsort(-gene_var)[: C.N_GENES]
+        adata = adata[:, hvg_idx].copy()
+        adata.X = X_norm[:, hvg_idx]
+        adata.obs["n_counts"] = X[:, hvg_idx].sum(1)
+
+        # Assign synthetic perturbation labels (demo only — no real perturbation data)
+        rng = np.random.default_rng(C.SEED)
+        adata.obs["perturbation"] = rng.choice(list(C.PERTURBATIONS), size=adata.n_obs)
         adata.obs["cell_type"] = adata.obs.get("cell_type", "T cell")
+
         adata.write_h5ad(cache_path)
-        print(f"[stage1] cached to {cache_path}")
+        print(f"[stage1] cached to {cache_path} ({adata.n_obs} cells × {adata.n_vars} genes)")
         return adata
     except Exception as e:  # pragma: no cover
         print(f"[stage1] real data load failed: {e}; falling back to synthetic.")
